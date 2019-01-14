@@ -1,4 +1,4 @@
-<div class="slim-footer">
+<div class="slim-footer" [hidden]="!this.authservice.login">
   <div class="container">
     <p>Copyright {{year}} &copy; Universidad Politécnica de Pénjamo.</p>
     <p>Desarrollado por: <a href="">cactusfy</a></p>

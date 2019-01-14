@@ -1,14 +1,14 @@
 
-    <div class="slim-header">
+    <div class="slim-header" [hidden]="!this.authservice.login">
       <div class="container">
         <div class="slim-header-left">
-          <h2 class="slim-logo"><a href="index.html">R1PI6<span>.</span></a></h2>
+          <h2 class="slim-logo"><a>R1PI6<span>.</span></a></h2>
         </div>
         <div class="slim-header-right">
           <div class="dropdown dropdown-c">
             <a href="#" class="logged-user" data-toggle="dropdown">
-              <img src="http://via.placeholder.com/500x500" alt="">
-              <span>Katherine</span>
+              <img src="{{this.authservice.urlavatar}}" alt="">
+              <span>{{this.authservice.nombre}}</span>
               <i class="fa fa-angle-down"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right">

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/pages/login/login.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { GuardService } from './providers/guard.service';
 
 const routes: Routes = [
   {
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [GuardService]
   },
   {
     path: '**', pathMatch: 'full', redirectTo: 'login' 
