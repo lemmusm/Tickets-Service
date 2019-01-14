@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/providers/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,12 @@ export class LoginComponent implements OnInit {
 
   year = new Date().getFullYear();
   
-  constructor() { }
+  constructor(private authservice: AuthService) { }
 
   ngOnInit() {
   }
 
+  signInWithGoogle() {
+    this.authservice.signInWithGoogle();
+  }
 }
