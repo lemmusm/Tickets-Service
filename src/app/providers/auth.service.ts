@@ -12,10 +12,14 @@ import { Usuario } from '../models/usuario';
   providedIn: 'root'
 })
 export class AuthService {
-
-  nombre: any;
-  email: any;
-  urlavatar: any;
+  // interface usuario
+  usuario = new Usuario(); 
+  // variables para almacenar datos de firebase
+  uid: string;
+  displayName: string;
+  email: string;
+  photoURL: string;
+  // variable para ocultar/mostrar navbar/footer
   login = false;
 
   constructor(private afauth: AngularFireAuth, private router: Router) {
@@ -27,7 +31,6 @@ export class AuthService {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('email');
     provider.setCustomParameters({ hd: 'uppenjamo.edu.mx' });
-
     this.afauth.auth.signInWithPopup(provider)
       .then(data => {
         this.router.navigate(['dashboard']);
@@ -44,27 +47,30 @@ export class AuthService {
         this.router.navigate(['login']);
       });
   }
+
   // Trae datos de firebase auth y verifica el estatus de la autenticacion y muestra/oculta componentes
   getUserFirebase() {
     this.afauth.authState.subscribe(
       auth => {
+        // Se almacenan datos desde firebase
+        this.displayName = auth.displayName;
+        this.email = auth.email;
+        this.photoURL = auth.photoURL;
+        // Se alamacena los datos de firebase en el modelo
+        this.usuario = auth;
+
         if (auth) {
-          this.nombre = auth.displayName;
-          this.email = auth.email;
-          this.urlavatar = auth.photoURL;
           // Muestra componentes navbar/footer cuando el usuario esta autenticado
           this.login = true;
         } else {
-          this.nombre = '';
-          this.email = '';
-          this.urlavatar = '';
           // Oculta componentes navbar/footer cuando el usuario no esta autenticado
           this.login = false;
         }
       }
     );
   }
-  // Verifica el estaus de la autenticacion y se usa con GuardService
+
+  // Verifica el estatus de la autenticacion y se usa con GuardService
   isAuth() {
     return this.afauth.authState
       .pipe(
