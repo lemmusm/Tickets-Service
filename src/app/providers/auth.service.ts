@@ -21,12 +21,14 @@ export class AuthService {
   photoURL: string;
   // variable para ocultar/mostrar navbar/footer
   login = false;
+  // variable para almacenar numeros
+  nums = '0123456789';
 
   constructor(private afauth: AngularFireAuth, private router: Router) {
     this.getUserFirebase();
   }
 
-  // Método para la autenticación
+// Método para la autenticación
   signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('email');
@@ -40,15 +42,28 @@ export class AuthService {
       });
   }
 
-  // Método para el cierre de sesión
+// Método para el cierre de sesión
   signOut() {
     this.afauth.auth.signOut()
       .then(() => {
         this.router.navigate(['login']);
       });
   }
-
-  // Trae datos de firebase auth y verifica el estatus de la autenticacion y muestra/oculta componentes
+// Este método comprueba si es un alumno para cambiar de vista
+  isAlumno() {
+    this.email.slice(0, 9);
+    if (this.email) {
+      // algoritmmo que comprueba si la variable contiene numeros, si es así corresponde a un alumno y cierra sesión
+      for (let i = 0; i < this.email.length; i++) {
+        if (this.nums.indexOf(this.email.charAt(i), 0) !== -1) {
+          console.log('Eres un alumno');
+          return 1;
+        }
+      }
+      return 0;
+    }
+  }
+// Trae datos de firebase auth y verifica el estatus de la autenticacion y muestra/oculta componentes
   getUserFirebase() {
     this.afauth.authState.subscribe(
       auth => {
@@ -56,8 +71,10 @@ export class AuthService {
         this.displayName = auth.displayName;
         this.email = auth.email;
         this.photoURL = auth.photoURL;
+        this.isAlumno();
         // Se alamacena los datos de firebase en el modelo
         this.usuario = auth;
+        // this.isAlumno();
 
         if (auth) {
           // Muestra componentes navbar/footer cuando el usuario esta autenticado
@@ -70,7 +87,7 @@ export class AuthService {
     );
   }
 
-  // Verifica el estatus de la autenticacion y se usa con GuardService
+// Verifica el estatus de la autenticacion y se usa con GuardService
   isAuth() {
     return this.afauth.authState
       .pipe(
