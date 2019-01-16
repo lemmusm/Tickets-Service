@@ -1,11 +1,25 @@
-.signin-wrapper {
-    background: url('http://www.datacenterjournal.com/wp-content/uploads/2013/08/datacenter81613.jpg') no-repeat;
+// login
+.signin-left {
+    background: url('https://images.pexels.com/photos/273238/pexels-photo-273238.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat;
     background-size: cover;
     background-position: center center;
 }
 
+.signin-right {
+    z-index: 2;
+}
+
 .signin-box {
     background: rgba(255, 255, 255, .9)
+}
+
+// title 
+.slim-logo {
+ color: teal;
+ font-weight: 300 !important;
+}
+.slim-logo span {
+ font-weight: 100 !important;
 }
 
 // links
