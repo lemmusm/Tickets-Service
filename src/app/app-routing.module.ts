@@ -4,6 +4,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { GuardService } from './providers/guard.service';
 import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuario/editar-usuario.component';
+import { ListaUsuarioComponent } from './components/pages/usuario/lista-usuario/lista-usuario.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'editarUsuario',
     component: EditarUsuarioComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'listadoUsuarios',
+    component: ListaUsuarioComponent,
     canActivate: [GuardService]
   },
   {
