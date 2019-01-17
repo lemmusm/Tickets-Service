@@ -10,8 +10,9 @@ import { AuthService } from 'src/app/providers/auth.service';
 })
 export class DashboardComponent implements OnInit {
   
+  fecha = new Date();
   constructor(
-    private authservice: AuthService,
+    public authservice: AuthService,
     private apiservice: ApiService
   ) {}
 
