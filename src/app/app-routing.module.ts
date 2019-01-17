@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/pages/login/login.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { GuardService } from './providers/guard.service';
+import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuario/editar-usuario.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'editarUsuario',
+    component: EditarUsuarioComponent,
     canActivate: [GuardService]
   },
   {
