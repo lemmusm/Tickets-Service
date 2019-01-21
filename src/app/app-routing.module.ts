@@ -17,7 +17,7 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
   {
-    path: 'editarUsuario',
+    path: 'editarUsuario/:id',
     component: EditarUsuarioComponent,
     canActivate: [GuardService]
   },
@@ -27,7 +27,7 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
   {
-    path: '**', pathMatch: 'full', redirectTo: 'login' 
+    path: '**', pathMatch: 'full', redirectTo: 'login'
   }
 ];
 
