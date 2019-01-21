@@ -15,15 +15,16 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  // Comrpobar si el usuario no ha actualizado su perfil por primera vez
+  // Comprobar si el usuario no ha actualizado su perfil por primera vez, si es así solicita actualizar
   verifyUpdatePerfil() {
     this.apiservice.getUsuarioByUID(this.authservice.usuario.uid)
         .subscribe(
           (response: any) => {
             if (response.departamento_id === 2) {
-              this.router.navigate(['editarUsuario']);
+              // this.router.navigate(['editarUsuario/:id']);
+              this.router.navigate(['editarUsuario/' + this.authservice.usuario.uid]);
             } else {
-              console.log('Estas actualizado');              
+              console.log('Estas actualizado!');
             }
           },
           error => {
