@@ -10,6 +10,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 // HTTP
 import { HttpClientModule } from '@angular/common/http';
+// FormsModule
+import { FormsModule } from '@angular/forms';
 // datatables
 import { DataTablesModule } from 'angular-datatables';
 // componentes
@@ -40,6 +42,7 @@ import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuari
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     HttpClientModule,
+    FormsModule,
     DataTablesModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' } ],
