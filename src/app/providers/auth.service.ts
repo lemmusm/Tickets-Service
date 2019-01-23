@@ -13,7 +13,7 @@ import { Usuario } from '../models/usuario';
 })
 export class AuthService {
   // interface usuario
-  usuario = new Usuario(); 
+  usuario: Usuario;
   // variables para almacenar datos de firebase
   uid: string;
   displayName: string;
@@ -41,7 +41,6 @@ export class AuthService {
         console.log(error);
       });
   }
-
 // Método para el cierre de sesión
   signOut() {
     this.afauth.auth.signOut()
@@ -67,19 +66,21 @@ export class AuthService {
   getUserFirebase() {
     this.afauth.authState.subscribe(
       auth => {
-        // Se almacenan datos desde firebase
-        this.displayName = auth.displayName;
-        this.email = auth.email;
-        this.photoURL = auth.photoURL;
-        this.isAlumno();
-        // Se alamacena los datos de firebase en el modelo
-        this.usuario = auth;
-        // this.isAlumno();
 
         if (auth) {
+          this.displayName = auth.displayName;
+          this.email = auth.email;
+          this.photoURL = auth.photoURL;
+          // Se almacenan datos desde firebase
+          this.isAlumno();
+          // Se alamacena los datos de firebase en el modelo
+          this.usuario = auth;
           // Muestra componentes navbar/footer cuando el usuario esta autenticado
           this.login = true;
         } else {
+          this.displayName = '';
+          this.email = '';
+          this.photoURL = '';
           // Oculta componentes navbar/footer cuando el usuario no esta autenticado
           this.login = false;
         }

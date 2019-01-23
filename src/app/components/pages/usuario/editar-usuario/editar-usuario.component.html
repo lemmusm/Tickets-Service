@@ -1,0 +1,49 @@
+<div class="slim-mainpanel">
+  <div class="container">
+    <div class="section-wrapper mt-5">
+      <label class="section-title">Actualización de perfil</label>
+      <form class="form-layout" #updateUsuarioForm="ngForm" (submit)="updateUsuario()">
+        <div class="row mg-b-25">
+          <div class="col-lg-7">
+            <div class="card card-experience mg-t-20">
+              <div class="card-body">
+                <div class="slim-card-title">Datos personales</div>
+                <div class="media">
+                  <img class="experience-logo" src="{{usuario?.photoURL}}">
+                  <div class="media-body">
+                    <h6 class="position-name">{{usuario?.displayName}}</h6>
+                    <p class="position-company">{{usuario?.email}}</p>
+                    <p class="position-year">{{usuario.departamento?.departamento}} | Universidad Politécnica de Pénjamo</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+
+            <div class="card card-experience mg-t-20">
+              <div class="card-body">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label">Departamento: <span class="tx-danger">*</span></label>
+                  <select class="form-control select2" [(ngModel)]="usuario.departamento_id" name="departamento">
+                    <option label="Selecciona tu área"></option>
+                    <option *ngFor="let departamento of departamentos" [value]="departamento?.id_departamento">
+                      {{departamento.departamento}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-layout-footer">
+          <div class="row">
+            <div class="col-12 text-right">
+              <button class="btn btn-teal bd-0" [disabled]="!updateUsuarioForm.form.valid">Actualizar perfil</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

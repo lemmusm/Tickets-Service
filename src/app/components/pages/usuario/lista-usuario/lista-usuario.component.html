@@ -1,0 +1,40 @@
+<div class="slim-mainpanel mt-5">
+    <div class="container">
+        <h4 class="tx-inverse mb-5">LISTADO DE USUARIOS</h4>
+        <table id="listadoUsuarios" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+            <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th style="width: 30%">Nombre</th>
+                    <th style="width: 30%">Email</th>
+                    <th style="width: 15%">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios; let i = index">
+                    <td>{{ usuario.uid }}</td>
+                    <td>{{ usuario.displayName }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>
+                        <div class="row fixMarginRow">
+                            <div class="col-5 fixPaddingCol">
+                                <div class="btn-demo">
+                                    <button class="btn btn-primary btn-sm btn-block" [routerLink]="['/editarUsuario', usuario.uid]">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-5 fixPaddingCol">
+                                <div class="btn-demo">
+                                    <button class="btn btn-danger btn-sm btn-block" (click)="deleteUsuario(usuario.uid)">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
