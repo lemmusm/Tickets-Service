@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/providers/api.service';
 import { Usuario } from 'src/app/models/usuario';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AlertaService } from 'src/app/providers/alerta.service';
+// SweetAlert
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista-usuario',
@@ -14,8 +16,9 @@ export class ListaUsuarioComponent implements OnInit {
   usuarios: Usuario;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  message: any;
 
-  constructor(private apiservice: ApiService) { }
+  constructor(private apiservice: ApiService, private alerta: AlertaService) { }
 
   ngOnInit() {
     this.getUsuarios();
@@ -28,20 +31,53 @@ export class ListaUsuarioComponent implements OnInit {
           (response: Usuario) => {
             this.usuarios = response;
             this.dtTrigger.next();
+          },
+          error => {
+            this.alerta.toastNotification(
+              error.statusText,
+              '',
+              'red',
+              'fas fa-times'
+            );
           }
         );
   }
-// Elimina usuario seleccionado
+// Elimina usuario seleccionado mediante un popup de confirmacion mostrando una alerta
   deleteUsuario(uid: string) {
-    this.apiservice.deleteUsuario(uid)
+    Swal.fire({
+      title: '¿Deseas eliminar el registro?',
+      text: 'Será borrado de forma permanente',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#88D2F7',
+      cancelButtonColor: '#FC9297',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.value) {
+        this.apiservice.deleteUsuario(uid)
         .subscribe(
           response => {
+            this.message = response;
+            this.alerta.toastNotification(
+              'El usuario ha sido eliminado correctamente',
+              '',
+              'green',
+              'far fa-check-circle'
+            );
             this.recargaDataTable();
           },
           error => {
-            console.log(error);
+            this.alerta.toastNotification(
+              error.statusText,
+              '',
+              'red',
+              'fas fa-times'
+            );
           }
         );
+      }
+    })
   }
 // Recarga la tabla despues de que se borra el usuario
   recargaDataTable() {

@@ -27,8 +27,10 @@
     "datatables.net-dt": "^1.10.19",
     "firebase": "^5.7.3",
     "jquery": "^3.3.1",
+    "ng2-izitoast": "^2.0.0",
     "popper.js": "^1.14.6",
     "rxjs": "~6.3.3",
+    "sweetalert2": "^8.0.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

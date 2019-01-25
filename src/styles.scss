@@ -34,10 +34,17 @@
 .card {
     border: none !important
 }
-
+// Datatable
 .fixMarginRow {
     margin: 0 !important;
 }
 .fixPaddingCol {
     padding: 5px !important
+}
+.table.dataTable tbody tr {
+    line-height: 3em !important;
+}
+// modal sweetalert
+.swal2-popup {
+    font-size: .8rem !important;
 }

@@ -5,16 +5,18 @@
             <thead>
                 <tr>
                     <th style="width: 5%">#</th>
-                    <th style="width: 30%">Nombre</th>
-                    <th style="width: 30%">Email</th>
+                    <th style="width: 25%">Nombre</th>
+                    <th style="width: 25%">Email</th>
+                    <th style="width: 30%">Departamento</th>
                     <th style="width: 15%">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let usuario of usuarios; let i = index">
-                    <td>{{ usuario.uid }}</td>
+                    <td>{{ i + 1 }}</td>
                     <td>{{ usuario.displayName }}</td>
                     <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.departamento.departamento }}</td>
                     <td>
                         <div class="row fixMarginRow">
                             <div class="col-5 fixPaddingCol">

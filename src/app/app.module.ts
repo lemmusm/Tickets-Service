@@ -12,6 +12,8 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 // FormsModule
 import { FormsModule } from '@angular/forms';
+// Ng2IziToastModule
+import {Ng2IziToastModule} from 'ng2-izitoast';
 // datatables
 import { DataTablesModule } from 'angular-datatables';
 // componentes
@@ -43,7 +45,8 @@ import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuari
     AngularFireAuthModule,
     HttpClientModule,
     FormsModule,
-    DataTablesModule
+    DataTablesModule,
+    Ng2IziToastModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' } ],
   bootstrap: [AppComponent]
