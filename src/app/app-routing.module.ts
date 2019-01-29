@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 import { GuardService } from './providers/guard.service';
 import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuario/editar-usuario.component';
 import { ListaUsuarioComponent } from './components/pages/usuario/lista-usuario/lista-usuario.component';
+import { ControlpanelComponent } from './components/pages/controlpanel/controlpanel.component';
 
 const routes: Routes = [
   {
@@ -22,12 +23,17 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
   {
-    path: 'listadoUsuarios',
+    path: 'listado-usuarios',
     component: ListaUsuarioComponent,
     canActivate: [GuardService]
   },
   {
-    path: '**', pathMatch: 'full', redirectTo: 'login'
+    path: 'control-panel',
+    component: ControlpanelComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: '**', pathMatch: 'full', redirectTo: 'dashboard'
   }
 ];
 

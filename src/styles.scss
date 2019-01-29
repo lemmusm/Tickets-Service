@@ -26,6 +26,25 @@
 .nav-link {
     cursor: pointer
 }
+.slim-navbar .sub-item ul a {
+    cursor: pointer;
+}
+
+.nav-link-pc {
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: .7px;
+    font-weight: 500;
+    color: #273c75 !important;
+    height: 46px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-right-width: 0;
+}
 // icons
 .fas {
     padding-right: .8em;

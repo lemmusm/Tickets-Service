@@ -1,0 +1,46 @@
+<div class="slim-navbar bg-transparent border-bottom-0">
+  <div class="container">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link-pc"  [routerLink]="['/control-panel']">
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item with-sub">
+        <a class="nav-link-pc" data-toggle="dropdown">
+          <span>Usuarios</span>
+        </a>
+        <div class="sub-item">
+          <ul>
+              <li><a [routerLink]="['/listado-usuarios']">Listado usuarios</a></li>
+              <li><a >Estadísticas</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item with-sub">
+        <a class="nav-link-pc" data-toggle="dropdown">
+          <span>Departamentos</span>
+        </a>
+        <div class="sub-item">
+          <ul>
+              <li><a >Agregar departamento</a></li>
+              <li><a >Listado departamentos</a></li>
+              <li><a >Estadísticas</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item with-sub">
+        <a class="nav-link-pc" data-toggle="dropdown">
+          <span>Solicitudes</span>
+        </a>
+        <div class="sub-item">
+          <ul>
+              <li><a >Agregar solicitud</a></li>
+              <li><a >Listado solicitudes</a></li>
+              <li><a >Estadísticas</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

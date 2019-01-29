@@ -26,6 +26,11 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { ListaUsuarioComponent } from './components/pages/usuario/lista-usuario/lista-usuario.component';
 import { MenuComponent } from './components/shared/menu/menu.component';
 import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuario/editar-usuario.component';
+import { ControlpanelComponent } from './components/pages/controlpanel/controlpanel.component';
+import { MenucontrolpanelComponent } from './components/shared/menucontrolpanel/menucontrolpanel.component';
+import { AuthService } from './providers/auth.service';
+import { ApiService } from './providers/api.service';
+import { GuardService } from './providers/guard.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,9 @@ import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuari
     FooterComponent,
     ListaUsuarioComponent,
     MenuComponent,
-    EditarUsuarioComponent
+    EditarUsuarioComponent,
+    ControlpanelComponent,
+    MenucontrolpanelComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +55,7 @@ import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuari
     DataTablesModule,
     Ng2IziToastModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es' } ],
+  providers: [AuthService, ApiService, GuardService, { provide: LOCALE_ID, useValue: 'es' } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
