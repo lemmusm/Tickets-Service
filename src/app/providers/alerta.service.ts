@@ -16,7 +16,7 @@ export class AlertaService {
         message: message,
         color: color, //// blue, red, green, yellow
         icon: icon,
-        timeout: 8000,
+        timeout: 5000,
         position: 'topCenter',
         progressBarColor: '#2c3e50'
       }
