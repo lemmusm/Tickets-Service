@@ -5,11 +5,11 @@
         <table id="listadoUsuarios" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
             <thead>
                 <tr>
-                    <th style="width: 5%">#</th>
-                    <th style="width: 25%">Nombre</th>
-                    <th style="width: 25%">Email</th>
-                    <th style="width: 30%">Departamento</th>
-                    <th style="width: 15%">Acciones</th>
+                    <th style="width: 5%" class="text-center">#</th>
+                    <th style="width: 25%" class="text-center">Nombre</th>
+                    <th style="width: 25%" class="text-center">Email</th>
+                    <th style="width: 30%" class="text-center">Departamento</th>
+                    <th style="width: 15%" class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,14 +20,14 @@
                     <td>{{ usuario.departamento.departamento }}</td>
                     <td>
                         <div class="row fixMarginRow">
-                            <div class="col-5 fixPaddingCol">
+                            <div class="col-6 fixPaddingCol">
                                 <div class="btn-demo">
                                     <button class="btn btn-primary btn-sm btn-block" [routerLink]="['/editarUsuario', usuario.uid]">
                                         <i class="far fa-edit"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-5 fixPaddingCol">
+                            <div class="col-6 fixPaddingCol">
                                 <div class="btn-demo">
                                     <button class="btn btn-danger btn-sm btn-block" (click)="deleteUsuario(usuario.uid)">
                                         <i class="far fa-trash-alt"></i>

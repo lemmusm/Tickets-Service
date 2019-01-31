@@ -25,7 +25,7 @@
               <div class="card-body">
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label">Departamento: <span class="tx-danger">*</span></label>
-                  <select class="form-control select2" [(ngModel)]="usuario.departamento_id" name="departamento">
+                  <select class="form-control select2" [(ngModel)]="usuario.departamento_id" name="departamento" required>
                     <option label="Selecciona tu área"></option>
                     <option *ngFor="let departamento of departamentos" [value]="departamento?.id_departamento">
                       {{departamento.departamento}}
@@ -39,7 +39,7 @@
         <div class="form-layout-footer">
           <div class="row">
             <div class="col-12 text-right">
-              <button class="btn btn-teal bd-0" [disabled]="!updateUsuarioForm.form.valid">Actualizar perfil</button>
+              <button class="btn btn-teal bd-0" [disabled]="!updateUsuarioForm.form.valid">Actualizar</button>
             </div>
           </div>
         </div>

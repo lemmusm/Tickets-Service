@@ -1,0 +1,37 @@
+<div class="slim-mainpanel">
+  <div class="container">
+    <app-menucontrolpanel></app-menucontrolpanel>
+    <label class="section-title">Crear departamento</label>
+    <div class="section-wrapper mt-5">
+      <label class="section-title">Completa la información</label>
+      <form class="form-layout" #addDepartamentoForm="ngForm" (submit)="addDepartamento()">
+          <div class="row mg-b-25">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label">Área/Departamento: <span class="tx-danger">*</span></label>
+                <input class="form-control" type="text" name="dpto_name" [(ngModel)]="departamento.departamento" placeholder="Inserta el área/departamento" required>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group mg-b-10-force">
+                <label class="form-control-label">Departamento: <span class="tx-danger">*</span></label>
+                <select class="form-control select2" [(ngModel)]="departamento.ubicacion" name="ubicacion" required>
+                  <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.ubicacion">
+                    {{ubicacion.ubicacion}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-layout-footer">
+            <div class="row">
+              <div class="col-12 text-right">
+                <button class="btn btn-teal bd-0" [disabled]="!addDepartamentoForm.form.valid">Agregar</button>
+              </div>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

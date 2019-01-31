@@ -6,6 +6,9 @@ import { GuardService } from './providers/guard.service';
 import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuario/editar-usuario.component';
 import { ListaUsuarioComponent } from './components/pages/usuario/lista-usuario/lista-usuario.component';
 import { ControlpanelComponent } from './components/pages/controlpanel/controlpanel.component';
+import { ListaDepartamentoComponent } from './components/pages/departamento/lista-departamento/lista-departamento.component';
+import { EditarDepartamentoComponent } from './components/pages/departamento/editar-departamento/editar-departamento.component';
+import { AgregardepartamentoComponent } from './components/pages/departamento/agregardepartamento/agregardepartamento.component';
 
 const routes: Routes = [
   {
@@ -25,6 +28,21 @@ const routes: Routes = [
   {
     path: 'listado-usuarios',
     component: ListaUsuarioComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'listado-departamentos',
+    component: ListaDepartamentoComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'agregar-departamento',
+    component: AgregardepartamentoComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'editarDepartamento/:id',
+    component: EditarDepartamentoComponent,
     canActivate: [GuardService]
   },
   {

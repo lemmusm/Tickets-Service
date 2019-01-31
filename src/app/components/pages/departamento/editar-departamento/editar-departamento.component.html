@@ -1,0 +1,51 @@
+<div class="slim-mainpanel">
+    <div class="container">
+      <app-menucontrolpanel></app-menucontrolpanel>
+      <div class="section-wrapper mt-5">
+        <label class="section-title">Editar departamento</label>
+        <form class="form-layout" #updateDptoForm="ngForm" (submit)="updateDepartamento()">
+            <div class="row mg-b-25">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label">Área/Departamento: <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" name="dpto_name" #dpto_name="ngModel" [(ngModel)]="departamento.departamento" placeholder="Inserta el departamento" required>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label">Departamento: <span class="tx-danger">*</span></label>
+                  <select class="form-control select2" [(ngModel)]="departamento.ubicacion" name="ubicacion" required>
+                    <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.ubicacion">
+                      {{ubicacion.ubicacion}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-layout-footer">
+              <div class="row">
+                <div class="col-12 text-right">
+                  <button class="btn btn-teal bd-0" [disabled]="!updateDptoForm.form.valid">Actualizar</button>
+                </div>
+              </div>
+            </div>
+        </form>
+        <p class="section-label mg-t-5">Integrantes del departamento</p>
+          <table class="table table-reference">
+            <thead>
+              <tr>
+                <th class="wd-40p">Nombre</th>
+                <th class="wd-60p">Correo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let dpto of departamento.usuarios">
+                <td>{{dpto.displayName}}</td>
+                <td>{{dpto.email}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>

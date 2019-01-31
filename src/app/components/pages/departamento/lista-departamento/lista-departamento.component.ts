@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/providers/api.service';
-import { Usuario } from 'src/app/models/usuario';
+import { Departamento } from 'src/app/models/departamento';
 import { AlertaService } from 'src/app/providers/alerta.service';
-// SweetAlert
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-lista-usuario',
-  templateUrl: './lista-usuario.component.html',
+  selector: 'app-lista-departamento',
+  templateUrl: './lista-departamento.component.html',
   styles: []
 })
-export class ListaUsuarioComponent implements OnInit {
+export class ListaDepartamentoComponent implements OnInit {
 
-  usuarios: Usuario;
+  departamentos: Departamento;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   message: any;
@@ -21,15 +20,15 @@ export class ListaUsuarioComponent implements OnInit {
   constructor(private apiservice: ApiService, private alerta: AlertaService) { }
 
   ngOnInit() {
-    this.getUsuarios();
+    this.getDepartamentos();
   }
-// Trae los usuarios y los enlista en una datatable
-  getUsuarios() {
+// Trea los departamentos
+  getDepartamentos() {
     this.dtOptions = { pagingType: 'full_numbers', pageLength: 10 };
-    this.apiservice.getUsuarios()
+    this.apiservice.getDepartamentos()
         .subscribe(
-          (response: Usuario) => {
-            this.usuarios = response;
+          (response: any) => {
+            this.departamentos = response;
             this.dtTrigger.next();
           },
           error => {
@@ -42,8 +41,8 @@ export class ListaUsuarioComponent implements OnInit {
           }
         );
   }
-// Elimina usuario seleccionado mediante un popup de confirmacion mostrando una alerta
-  deleteUsuario(uid: string) {
+// Elimina el departamento seleccionado
+  deleteDepartamento(id: number) {
     Swal.fire({
       title: '¿Deseas eliminar el registro?',
       text: 'Será borrado de forma permanente',
@@ -55,12 +54,12 @@ export class ListaUsuarioComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.value) {
-        this.apiservice.deleteUsuario(uid)
+        this.apiservice.deleteDepartamento(id)
         .subscribe(
           response => {
             this.message = response;
             this.alerta.toastNotification(
-              'El usuario ha sido eliminado correctamente',
+              'El departamento ha sido eliminado correctamente',
               '',
               'green',
               'far fa-check-circle'
@@ -77,11 +76,11 @@ export class ListaUsuarioComponent implements OnInit {
           }
         );
       }
-    })
+    });
   }
-// Recarga la tabla despues de que se borra el usuario
+
   recargaDataTable() {
-    $('#listadoUsuarios').DataTable().destroy();
-    this.getUsuarios();
-  }
+    $('#listadoDepartamentos').DataTable().destroy();
+    this.getDepartamentos();
+    }
 }

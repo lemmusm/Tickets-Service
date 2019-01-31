@@ -31,6 +31,9 @@ import { MenucontrolpanelComponent } from './components/shared/menucontrolpanel/
 import { AuthService } from './providers/auth.service';
 import { ApiService } from './providers/api.service';
 import { GuardService } from './providers/guard.service';
+import { ListaDepartamentoComponent } from './components/pages/departamento/lista-departamento/lista-departamento.component';
+import { EditarDepartamentoComponent } from './components/pages/departamento/editar-departamento/editar-departamento.component';
+import { AgregardepartamentoComponent } from './components/pages/departamento/agregardepartamento/agregardepartamento.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { GuardService } from './providers/guard.service';
     MenuComponent,
     EditarUsuarioComponent,
     ControlpanelComponent,
-    MenucontrolpanelComponent
+    MenucontrolpanelComponent,
+    ListaDepartamentoComponent,
+    EditarDepartamentoComponent,
+    AgregardepartamentoComponent
   ],
   imports: [
     BrowserModule,
