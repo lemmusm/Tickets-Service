@@ -59,7 +59,7 @@ export class ListaDepartamentoComponent implements OnInit {
           response => {
             this.message = response;
             this.alerta.toastNotification(
-              'El departamento ha sido eliminado correctamente',
+              this.message.message,
               '',
               'green',
               'far fa-check-circle'

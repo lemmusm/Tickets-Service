@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/providers/api.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { Departamento } from 'src/app/models/departamento';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/providers/api.service';
 import { AlertaService } from 'src/app/providers/alerta.service';
 
 @Component({
-  selector: 'app-editar-usuario',
-  templateUrl: './editar-usuario.component.html',
+  selector: 'app-editar-usuario-admin',
+  templateUrl: './editar-usuario-admin.component.html',
   styles: []
 })
-export class EditarUsuarioComponent implements OnInit {
+export class EditarUsuarioAdminComponent implements OnInit {
 
   uid = this.aroute.snapshot.paramMap.get('id');
   usuario: Usuario = {};
@@ -48,7 +48,7 @@ export class EditarUsuarioComponent implements OnInit {
             'green',
             'far fa-check-circle'
           );
-          this.router.navigate(['/crear-ticket']);
+          this.router.navigate(['/listado-usuarios']);
         }
       );
   }
@@ -62,3 +62,4 @@ export class EditarUsuarioComponent implements OnInit {
       );
   }
 }
+

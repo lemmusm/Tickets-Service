@@ -1,7 +1,7 @@
 <div class="slim-mainpanel mt-5">
     <div class="container">
             <app-menucontrolpanel></app-menucontrolpanel>
-        <h4 class="tx-inverse mb-5">LISTADO DE USUARIOS</h4>
+        <label class="section-title">LISTADO DE USUARIOS</label>
         <table id="listadoUsuarios" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
             <thead>
                 <tr>
@@ -22,7 +22,7 @@
                         <div class="row fixMarginRow">
                             <div class="col-6 fixPaddingCol">
                                 <div class="btn-demo">
-                                    <button class="btn btn-primary btn-sm btn-block" [routerLink]="['/editarUsuario', usuario.uid]">
+                                    <button class="btn btn-primary btn-sm btn-block" [routerLink]="['/editarUsuarioAdmin', usuario.uid]">
                                         <i class="far fa-edit"></i>
                                     </button>
                                 </div>

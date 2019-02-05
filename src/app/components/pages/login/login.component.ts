@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/providers/auth.service';
 export class LoginComponent implements OnInit {
 
   year = new Date().getFullYear();
-  
+
   constructor(private authservice: AuthService) { }
 
   ngOnInit() {

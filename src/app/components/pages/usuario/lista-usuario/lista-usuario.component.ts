@@ -60,7 +60,7 @@ export class ListaUsuarioComponent implements OnInit {
           response => {
             this.message = response;
             this.alerta.toastNotification(
-              'El usuario ha sido eliminado correctamente',
+              this.message.message,
               '',
               'green',
               'far fa-check-circle'
@@ -77,7 +77,7 @@ export class ListaUsuarioComponent implements OnInit {
           }
         );
       }
-    })
+    });
   }
 // Recarga la tabla despues de que se borra el usuario
   recargaDataTable() {

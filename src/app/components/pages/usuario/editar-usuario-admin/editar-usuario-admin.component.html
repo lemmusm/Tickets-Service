@@ -1,5 +1,6 @@
 <div class="slim-mainpanel">
   <div class="container">
+    <app-menucontrolpanel></app-menucontrolpanel>
     <div class="section-wrapper mt-5">
       <label class="section-title">Actualización de perfil</label>
       <form class="form-layout" #updateUsuarioForm="ngForm" (submit)="updateUsuario()">
@@ -42,7 +43,7 @@
           <div class="row">
             <div class="col-12 text-right">
               <button class="btn btn-teal bd-0" [disabled]="!updateUsuarioForm.form.valid">Actualizar</button>
-              <button class="btn btn-secondary bd-0 ml-2">Cancelar</button>
+              <button class="btn btn-secondary bd-0 ml-2" [routerLink]="['/listado-usuarios']">Cancelar</button>
             </div>
           </div>
         </div>

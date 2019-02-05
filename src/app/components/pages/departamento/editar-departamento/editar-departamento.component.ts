@@ -16,7 +16,6 @@ export class EditarDepartamentoComponent implements OnInit {
   message: any;
   ubicaciones = this.apiservice.ubicaciones;
 
-
   constructor(public router: Router, private aroute: ActivatedRoute, private apiservice: ApiService, private alerta: AlertaService) { }
 
   ngOnInit() {
@@ -28,10 +27,14 @@ export class EditarDepartamentoComponent implements OnInit {
         .subscribe(
           (response: any) => {
             this.departamento = response;
-            console.log(this.departamento);
           },
           error => {
-            console.log(error);
+            this.alerta.toastNotification(
+              error.name,
+              '',
+              'red',
+              'fas fa-times'
+            );
           }
         );
   }
