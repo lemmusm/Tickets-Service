@@ -3,18 +3,9 @@
 
         <div class="dash-headline-two">
             <div>
-                <h4 class="tx-inverse mg-b-5">Buen día, {{authservice.displayName}}!</h4>
-                <p class="mg-b-0">{{ fecha | date:'fullDate' }}</p>
-            </div>
-            <div class="d-h-t-right">
-                <div class="summary-item">
-                    <h1>$1,433</h1>
-                    <span>Earnings<br>for today</span>
-                </div>
-                <div class="summary-item">
-                    <h1>$296</h1>
-                    <span>Expenses<br>for today</span>
-                </div>
+                <h4 class="tx-inverse mg-b-5">Buen día, {{usuario.displayName}}!</h4>
+                <p class="mg-b-0">Departamento: {{ usuario.departamento.departamento }}</p>
+                <p class="mg-b-0">Huella digital única: {{ usuario.uid }}</p>
             </div>
         </div>
 
@@ -24,19 +15,19 @@
                 <table id="listadoTickets" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
                     <thead>
                         <tr>
-                            <th class="text-center">ID</th>
-                            <th class="text-center">Solicitante</th>
-                            <th class="text-center">Área/Departamento</th>
+                            <th class="text-center">Ticket ID</th>
                             <th class="text-center">Tipo de servicio</th>
+                            <th class="text-center">Descripción</th>
+                            <th class="text-center">Atendio</th>
                             <th class="text-center">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let ticket of tickets; let i = index">
+                        <tr *ngFor="let ticket of usuario.tickets; let i = index">
                             <td class="text-center">UPPE-{{ ticket.id_ticket }}</td>
-                            <td>{{ ticket.displayName }}</td>
-                            <td>{{ ticket.departamento }}</td>
                             <td>{{ ticket.servicio }}</td>
+                            <td>{{ ticket.descripcion }}</td>
+                            <td>{{ ticket.tecnico }}</td>
                             <td class="text-center" 
                                 [ngClass]=" {
                                     'colorBlue' : ticket.status === 'Abierto',

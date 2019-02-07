@@ -65,7 +65,6 @@ export class CrearTicketComponent implements OnInit {
             this.router.navigate(['dashboard']);
           },
           error => {
-            console.log(error);
             this.alerta.toastNotification(
               error.name,
               '',

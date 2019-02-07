@@ -1,4 +1,5 @@
 import { Departamento } from './departamento';
+import { Ticket } from './ticket';
 export interface Usuario {
     displayName?: string;
     email?: string;
@@ -6,4 +7,5 @@ export interface Usuario {
     uid?: string;
     departamento_id?: string;
     departamento?: Departamento;
+    tickets?: Ticket;
 }

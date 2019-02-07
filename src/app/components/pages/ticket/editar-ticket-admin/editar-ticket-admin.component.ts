@@ -28,7 +28,6 @@ export class EditarTicketAdminComponent implements OnInit {
 
   ngOnInit() {
     this.getTicketByID();
-    console.log(this.authservice.displayName);
   }
 // Trae los registros de los tickets almacenados en la base de datos
   getTicketByID() {
@@ -36,6 +35,7 @@ export class EditarTicketAdminComponent implements OnInit {
         .subscribe(
           (response: any) => {
             this.ticket = response;
+            this.ticket.tecnico = this.authservice.usuario.displayName; // Almacena el nombre de Firebase para firmar como el técnico
           },
           error => {
             this.alerta.toastNotification(

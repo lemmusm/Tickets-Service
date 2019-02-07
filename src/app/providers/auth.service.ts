@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 // map
 import { map } from 'rxjs/operators';
 import { Usuario } from '../models/usuario';
+import { AlertaService } from './alerta.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class AuthService {
   // variable para almacenar numeros
   nums = '0123456789';
 
-  constructor(private afauth: AngularFireAuth, private router: Router) {
+  constructor(private afauth: AngularFireAuth, private router: Router, private alerta: AlertaService) {
     this.getUserFirebase();
   }
 
@@ -41,13 +42,6 @@ export class AuthService {
         console.log(error);
       });
   }
-// Método para el cierre de sesión
-  signOut() {
-    this.afauth.auth.signOut()
-      .then(() => {
-        this.router.navigate(['login']);
-      });
-  }
 // Este método comprueba si es un alumno para cambiar de vista
   isAlumno() {
     this.email.slice(0, 9);
@@ -55,13 +49,27 @@ export class AuthService {
       // algoritmmo que comprueba si la variable contiene numeros, si es así corresponde a un alumno y cierra sesión
       for (let i = 0; i < this.email.length; i++) {
         if (this.nums.indexOf(this.email.charAt(i), 0) !== -1) {
-          console.log('Eres un alumno');
+          this.signOut();
+          this.router.navigate(['/login']);
+          this.alerta.toastNotification(
+            'Acceso denegado',
+            'Aclaraciones: mhernandez@uppenjamo.edu.mx',
+            'red',
+            'fas fa-times'
+          );
           return 1;
         }
       }
       return 0;
     }
   }
+// Método para el cierre de sesión
+signOut() {
+  this.afauth.auth.signOut()
+    .then(() => {
+      this.router.navigate(['/login']);
+    });
+}
 // Trae datos de firebase auth y verifica el estatus de la autenticacion y muestra/oculta componentes
   getUserFirebase() {
     this.afauth.authState.subscribe(

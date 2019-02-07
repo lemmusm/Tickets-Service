@@ -102,4 +102,8 @@ export class ApiService {
   deleteTicket(id: number): Observable<Ticket> {
     return this.http.delete<Ticket>(`${this.API_URL}api/tickets/` + id);
   }
+  // Trae los ultimos 15 registros (tickets)
+  getLastTickets() {
+    return this.http.get(`${this.API_URL}api/lastTickets/filtertickets`);
+  }
 }

@@ -52,18 +52,19 @@
                 <textarea rows="5" class="form-control" name="descripcion" [(ngModel)]="ticket.descripcion" placeholder="Describe tu problema presentado." required></textarea>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-9">
                 <div class="form-group text-left border-0">
                     <label class="form-control-label tx-danger font-weight-bold">Importante:</label>
                     <ul class="list-group">
                         <li class="list-group-item  border-0">
-                            <p class="mg-b-0">- No se instalará software pirata</p>
-                            <p class="mg-b-0">- Enviar archivos adjuntos por correo electrónico en caso de requerirse</p>
+                            <p class="mg-b-0">- No se instalará software pirata.</p>
+                            <p class="mg-b-0">- Enviar archivos adjuntos por correo electrónico en caso de requerirse.</p>
+                            <p class="mg-b-0">- Las solicitudes serán atendidas como van llegando a nuestro sistema.</p>
                         </li>
                       </ul>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group text-right border-0">
                     <label class="form-control-label tx-primary">Huella dígital única de usuario:</label>
                     <input class="form-control text-right font-weight-bold" readonly="" type="text" name="usuario_uid" [(ngModel)]="ticket.usuario_uid">

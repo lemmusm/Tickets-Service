@@ -30,7 +30,6 @@ export class ListaTicketsComponent implements OnInit {
           (response: any) => {
             this.tickets = response;
             this.dtTrigger.next();
-            console.log(this.tickets);
           },
           error => {
             this.alerta.toastNotification(

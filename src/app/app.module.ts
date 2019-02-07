@@ -39,6 +39,7 @@ import { EditarTicketComponent } from './components/pages/ticket/editar-ticket/e
 import { EditarTicketAdminComponent } from './components/pages/ticket/editar-ticket-admin/editar-ticket-admin.component';
 import { EditarUsuarioAdminComponent } from './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.component';
 import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/crear-ticket.component';
+import { HistorialComponent } from './components/pages/historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/cre
     EditarTicketComponent,
     EditarTicketAdminComponent,
     EditarUsuarioAdminComponent,
-    CrearTicketComponent
+    CrearTicketComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,

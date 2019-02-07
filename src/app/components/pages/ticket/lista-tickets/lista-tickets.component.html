@@ -5,7 +5,7 @@
       <table id="listadoTickets" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
           <thead>
               <tr>
-                  <th class="text-center">#</th>
+                  <th class="text-center">ID</th>
                   <th class="text-center">Usuario</th>
                   <th class="text-center">Departamento</th>
                   <th class="text-center">Servicio</th>
@@ -16,7 +16,7 @@
           </thead>
           <tbody>
               <tr *ngFor="let ticket of tickets; let i = index">
-                  <td class="text-center">{{ i + 1 }}</td>
+                  <td class="text-center">UPPE-{{ticket.id_ticket }}</td>
                   <td>{{ ticket.displayName }}</td>
                   <td>{{ ticket.departamento }}</td>
                   <td>{{ ticket.servicio }}</td>
