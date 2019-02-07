@@ -28,7 +28,7 @@ export class FooterComponent implements OnInit {
         this.router.navigate(['control-panel']);
         break;
       default:
-        location.href = "https://uppenjamo.edu.mx";
+        location.href = 'https://uppenjamo.edu.mx';
         break;
     }
   }

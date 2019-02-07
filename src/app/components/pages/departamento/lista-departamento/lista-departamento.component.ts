@@ -61,7 +61,7 @@ export class ListaDepartamentoComponent implements OnInit {
             this.alerta.toastNotification(
               this.message.message,
               '',
-              'green',
+              'yellow',
               'far fa-check-circle'
             );
             this.recargaDataTable();
