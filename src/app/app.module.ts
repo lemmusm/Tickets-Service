@@ -34,6 +34,11 @@ import { GuardService } from './providers/guard.service';
 import { ListaDepartamentoComponent } from './components/pages/departamento/lista-departamento/lista-departamento.component';
 import { EditarDepartamentoComponent } from './components/pages/departamento/editar-departamento/editar-departamento.component';
 import { AgregardepartamentoComponent } from './components/pages/departamento/agregardepartamento/agregardepartamento.component';
+import { ListaTicketsComponent } from './components/pages/ticket/lista-tickets/lista-tickets.component';
+import { EditarTicketComponent } from './components/pages/ticket/editar-ticket/editar-ticket.component';
+import { EditarTicketAdminComponent } from './components/pages/ticket/editar-ticket-admin/editar-ticket-admin.component';
+import { EditarUsuarioAdminComponent } from './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.component';
+import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/crear-ticket.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +54,12 @@ import { AgregardepartamentoComponent } from './components/pages/departamento/ag
     MenucontrolpanelComponent,
     ListaDepartamentoComponent,
     EditarDepartamentoComponent,
-    AgregardepartamentoComponent
+    AgregardepartamentoComponent,
+    ListaTicketsComponent,
+    EditarTicketComponent,
+    EditarTicketAdminComponent,
+    EditarUsuarioAdminComponent,
+    CrearTicketComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +71,7 @@ import { AgregardepartamentoComponent } from './components/pages/departamento/ag
     DataTablesModule,
     Ng2IziToastModule,
   ],
-  providers: [AuthService, ApiService, GuardService, { provide: LOCALE_ID, useValue: 'es' } ],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

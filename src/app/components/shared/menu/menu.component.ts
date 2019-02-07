@@ -31,7 +31,7 @@ export class MenuComponent implements OnInit {
               'fas fa-info-circle'
             );
           } else {
-            console.log('Estas actualizado!');
+            this.router.navigate(['/crear-ticket']);
           }
         },
         error => {

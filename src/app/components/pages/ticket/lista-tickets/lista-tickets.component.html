@@ -1,0 +1,53 @@
+<div class="slim-mainpanel mt-5">
+  <div class="container">
+          <app-menucontrolpanel></app-menucontrolpanel>
+      <label class="section-title">LISTADO DE SOLICITUDES</label>
+      <table id="listadoTickets" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+          <thead>
+              <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Usuario</th>
+                  <th class="text-center">Departamento</th>
+                  <th class="text-center">Servicio</th>
+                  <th class="text-center">Creación</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let ticket of tickets; let i = index">
+                  <td class="text-center">{{ i + 1 }}</td>
+                  <td>{{ ticket.displayName }}</td>
+                  <td>{{ ticket.departamento }}</td>
+                  <td>{{ ticket.servicio }}</td>
+                  <td class="text-center">{{ ticket.created_at | date: 'mediumDate' | uppercase}}</td>
+                  <td class="text-center"
+                    [ngClass] = " {
+                        'colorBlue' : ticket.status === 'Abierto',
+                        'colorYellow' : ticket.status === 'Proceso',
+                        'colorGreen': ticket.status === 'Realizado'
+                        }"
+                  >{{ ticket.status}}</td>
+                  <td>
+                      <div class="row fixMarginRow">
+                          <div class="col-6 fixPaddingCol">
+                              <div class="btn-demo">
+                                  <button class="btn btn-primary btn-sm btn-block" [routerLink]="['/editarTicketAdmin', ticket.id_ticket]">
+                                      <i class="far fa-edit"></i>
+                                  </button>
+                              </div>
+                          </div>
+                          <div class="col-6 fixPaddingCol">
+                              <div class="btn-demo">
+                                  <button class="btn btn-danger btn-sm btn-block" (click)="deleteTicket(ticket.id_ticket)">
+                                      <i class="far fa-trash-alt"></i>
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

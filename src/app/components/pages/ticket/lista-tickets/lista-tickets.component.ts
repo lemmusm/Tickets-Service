@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/providers/api.service';
-import { Usuario } from 'src/app/models/usuario';
+import { Ticket } from 'src/app/models/ticket';
+import { Subject } from 'rxjs';
 import { AlertaService } from 'src/app/providers/alerta.service';
-// SweetAlert
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-lista-usuario',
-  templateUrl: './lista-usuario.component.html',
+  selector: 'app-lista-tickets',
+  templateUrl: './lista-tickets.component.html',
   styles: []
 })
-export class ListaUsuarioComponent implements OnInit {
+export class ListaTicketsComponent implements OnInit {
 
-  usuarios: Usuario;
+  tickets: Ticket;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   message: any;
@@ -21,16 +20,17 @@ export class ListaUsuarioComponent implements OnInit {
   constructor(private apiservice: ApiService, private alerta: AlertaService) { }
 
   ngOnInit() {
-    this.getUsuarios();
+    this.getTickets();
   }
-// Trae los usuarios y los enlista en una datatable
-  getUsuarios() {
-    this.dtOptions = { pagingType: 'full_numbers', pageLength: 10 };
-    this.apiservice.getUsuarios()
+
+  getTickets() {
+    this.dtOptions = { pagingType: 'full_numbers', order: [0, 'desc'], pageLength: 10 };
+    this.apiservice.getTickets()
         .subscribe(
-          (response: Usuario) => {
-            this.usuarios = response;
+          (response: any) => {
+            this.tickets = response;
             this.dtTrigger.next();
+            console.log(this.tickets);
           },
           error => {
             this.alerta.toastNotification(
@@ -42,8 +42,8 @@ export class ListaUsuarioComponent implements OnInit {
           }
         );
   }
-// Elimina usuario seleccionado mediante un popup de confirmacion mostrando una alerta
-  deleteUsuario(uid: string) {
+
+  deleteTicket(id: number) {
     Swal.fire({
       title: '¿Deseas eliminar el registro?',
       text: 'Será borrado de forma permanente',
@@ -55,7 +55,7 @@ export class ListaUsuarioComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.value) {
-        this.apiservice.deleteUsuario(uid)
+        this.apiservice.deleteTicket(id)
         .subscribe(
           response => {
             this.message = response;
@@ -65,7 +65,7 @@ export class ListaUsuarioComponent implements OnInit {
               'yellow',
               'far fa-check-circle'
             );
-            this.recargaDataTable();
+            this.recargaDatatable();
           },
           error => {
             this.alerta.toastNotification(
@@ -79,9 +79,9 @@ export class ListaUsuarioComponent implements OnInit {
       }
     });
   }
-// Recarga la tabla despues de que se borra el usuario
-  recargaDataTable() {
-    $('#listadoUsuarios').DataTable().destroy();
-    this.getUsuarios();
+
+  recargaDatatable() {
+    $('#listadoTickets').DataTable().destroy();
+    this.getTickets();
   }
 }

@@ -68,6 +68,7 @@ export class AuthService {
       auth => {
 
         if (auth) {
+          this.uid = auth.uid;
           this.displayName = auth.displayName;
           this.email = auth.email;
           this.photoURL = auth.photoURL;

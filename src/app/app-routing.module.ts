@@ -9,6 +9,11 @@ import { ControlpanelComponent } from './components/pages/controlpanel/controlpa
 import { ListaDepartamentoComponent } from './components/pages/departamento/lista-departamento/lista-departamento.component';
 import { EditarDepartamentoComponent } from './components/pages/departamento/editar-departamento/editar-departamento.component';
 import { AgregardepartamentoComponent } from './components/pages/departamento/agregardepartamento/agregardepartamento.component';
+import { ListaTicketsComponent } from './components/pages/ticket/lista-tickets/lista-tickets.component';
+import { EditarTicketComponent } from './components/pages/ticket/editar-ticket/editar-ticket.component';
+import { EditarTicketAdminComponent } from './components/pages/ticket/editar-ticket-admin/editar-ticket-admin.component';
+import { EditarUsuarioAdminComponent } from './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.component';
+import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/crear-ticket.component';
 
 const routes: Routes = [
   {
@@ -23,6 +28,11 @@ const routes: Routes = [
   {
     path: 'editarUsuario/:id',
     component: EditarUsuarioComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'editarUsuarioAdmin/:id',
+    component: EditarUsuarioAdminComponent,
     canActivate: [GuardService]
   },
   {
@@ -43,6 +53,21 @@ const routes: Routes = [
   {
     path: 'editarDepartamento/:id',
     component: EditarDepartamentoComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'listado-tickets',
+    component: ListaTicketsComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'editarTicketAdmin/:id',
+    component: EditarTicketAdminComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'crear-ticket',
+    component: CrearTicketComponent,
     canActivate: [GuardService]
   },
   {

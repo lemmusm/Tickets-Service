@@ -1,0 +1,56 @@
+<div class="slim-mainpanel">
+  <div class="container">
+    <app-menucontrolpanel></app-menucontrolpanel>
+    <div class="section-wrapper mg-t-20">
+      <form class="form-layout form-layout-2">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="form-control-label">Solicitante: <span class="tx-danger">*</span></label>
+              <input class="form-control" type="text" name="solicitante" [(ngModel)]="ticket.usuario.displayName"
+                placeholder="Inserta tu nombre">
+            </div>
+          </div>
+          <div class="col-md-4 mg-t--1 mg-md-t-0">
+            <div class="form-group mg-md-l--1">
+              <label class="form-control-label">Correo electrónico: <span class="tx-danger">*</span></label>
+              <input class="form-control" type="text" name="email" [(ngModel)]="ticket.usuario.email" placeholder="Inserta tu correo institucional">
+            </div>
+          </div>
+          <div class="col-md-4 mg-t--1 mg-md-t-0">
+            <div class="form-group mg-md-l--1">
+              <label class="form-control-label">Servicio: <span class="tx-danger">*</span></label>
+              <select id="select2-a" class="form-control" data-placeholder="Choose country">
+                  <option label="Choose country"></option>
+                  <option value="USA" selected>United States of America</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="China">China</option>
+                  <option value="Japan">Japan</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group bd-t-0-force">
+                <label class="form-control-label">Descripción: <span class="tx-danger">*</span></label>
+                <input class="form-control" type="text" name="descripcion" [(ngModel)]="ticket.descripcion" placeholder="Describe tu problema presentado.">
+              </div>
+            </div>
+          <div class="col-md-6">
+            <div class="form-group bd-t-0-force">
+              <label class="form-control-label">Diagnóstico: <span class="tx-danger">*</span></label>
+              <input class="form-control" type="text" name="descripcion" [(ngModel)]="ticket.diagnostico" placeholder="Describe tu problema presentado.">
+            </div>
+          </div>
+        </div>
+        <div class="form-layout-footer bd pd-20 bd-t-0">
+          <div class="row">
+            <div class="col-12 text-right">
+              <button class="btn btn-teal bd-0" [disabled]="!updateDptoForm.form.valid">Actualizar</button>
+              <button class="btn btn-secondary bd-0 ml-2">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
