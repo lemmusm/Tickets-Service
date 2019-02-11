@@ -1,0 +1,19 @@
+<div class="col-md-6">
+    <canvas id="chartServicios">{{ chartServicios }}</canvas>
+</div>
+<div class="col-md-6 mt-5 mb-5">
+    <div class="table-responsive">
+        <table class="table mg-b-0">
+            <thead>
+                <tr>
+                    <th *ngFor="let g of gservicio">{{g.servicio}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th *ngFor="let g of gservicio">{{g.count}}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -21,8 +21,8 @@ export class ApiService {
 // Arreglo de los status
   estados = [
     {id: 1, status: 'Abierto'},
-    {id: 2, status: 'Proceso'},
-    {id: 3, status: 'Realizado'}
+    {id: 2, status: 'Realizado'},
+    {id: 3, status: 'N/A'}
   ];
 // Arreglo de servicios
   servicios = [
@@ -105,5 +105,19 @@ export class ApiService {
   // Trae los ultimos 15 registros (tickets)
   getLastTickets() {
     return this.http.get(`${this.API_URL}api/lastTickets/filtertickets`);
+  }
+
+  // Graphs
+  graphStatus() {
+    return this.http.get(`${this.API_URL}api/graphs/gtickets`);
+  }
+  graphCountServicios() {
+    return this.http.get(`${this.API_URL}api/graphs/gservicios`);
+  }
+  graphTicketsByDepartamentos() {
+    return this.http.get(`${this.API_URL}api/graphs/gticketsareas`);
+  }
+  getTotalTickets() {
+    return this.http.get(`${this.API_URL}api/graphs/totaltickets`);
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/providers/api.service';
-import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from 'src/app/providers/auth.service';
 import { Subject } from 'rxjs';
 import { Ticket } from 'src/app/models/ticket';

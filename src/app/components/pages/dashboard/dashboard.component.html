@@ -40,8 +40,8 @@
                             <td class="text-center" 
                                 [ngClass]=" {
                                     'colorBlue' : ticket.status === 'Abierto',
-                                    'colorYellow' : ticket.status === 'Proceso',
-                                    'colorGreen': ticket.status === 'Realizado'
+                                    'colorGreen': ticket.status === 'Realizado',
+                                    'colorYellow' : ticket.status === 'N/A'
                                 }">
                                 {{ticket.status}}
                             </td>

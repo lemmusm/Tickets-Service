@@ -28,9 +28,6 @@ import { MenuComponent } from './components/shared/menu/menu.component';
 import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuario/editar-usuario.component';
 import { ControlpanelComponent } from './components/pages/controlpanel/controlpanel.component';
 import { MenucontrolpanelComponent } from './components/shared/menucontrolpanel/menucontrolpanel.component';
-import { AuthService } from './providers/auth.service';
-import { ApiService } from './providers/api.service';
-import { GuardService } from './providers/guard.service';
 import { ListaDepartamentoComponent } from './components/pages/departamento/lista-departamento/lista-departamento.component';
 import { EditarDepartamentoComponent } from './components/pages/departamento/editar-departamento/editar-departamento.component';
 import { AgregardepartamentoComponent } from './components/pages/departamento/agregardepartamento/agregardepartamento.component';
@@ -40,6 +37,9 @@ import { EditarTicketAdminComponent } from './components/pages/ticket/editar-tic
 import { EditarUsuarioAdminComponent } from './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.component';
 import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/crear-ticket.component';
 import { HistorialComponent } from './components/pages/historial/historial.component';
+import { ServiciosComponent } from './components/shared/charts/servicios/servicios.component';
+import { StatusComponent } from './components/shared/charts/status/status.component';
+import { DepartamentosComponent } from './components/shared/charts/departamentos/departamentos.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,10 @@ import { HistorialComponent } from './components/pages/historial/historial.compo
     EditarTicketAdminComponent,
     EditarUsuarioAdminComponent,
     CrearTicketComponent,
-    HistorialComponent
+    HistorialComponent,
+    ServiciosComponent,
+    StatusComponent,
+    DepartamentosComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,7 @@ import { HistorialComponent } from './components/pages/historial/historial.compo
     HttpClientModule,
     FormsModule,
     DataTablesModule,
-    Ng2IziToastModule,
+    Ng2IziToastModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' } ],
   bootstrap: [AppComponent]

@@ -1,6 +1,26 @@
 <div class="slim-mainpanel">
   <div class="container pd-t-30">
-      <app-menucontrolpanel></app-menucontrolpanel>
-    <h1>Control Panel</h1>
+
+    <app-menucontrolpanel class="m-5"></app-menucontrolpanel>
+
+    <h1>Estadisticas</h1>
+
+    <div class="dash-headline-two mt-5 mb-5">
+      <div>
+        
+      </div>
+      <div class="d-h-t-right">
+        <div class="summary-item">
+          <h1 class="txteal">{{totalTickets}}</h1>
+          <span class="tx-black">Solicitudes<br>totales</span>
+        </div>
+      </div>
+    </div>
+    <label class="section-title">Número de solicitudes por tipo de servicio</label>
+    <app-graphservicios class="row"></app-graphservicios>
+    <label class="section-title">Número de solicitudes por estatus</label>
+    <app-graphstatus class="row"></app-graphstatus>
+    <label class="section-title">Número de solicitudes por departamento</label>
+    <app-graphdepartamentos class="row"></app-graphdepartamentos>
   </div>
 </div>

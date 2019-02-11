@@ -15,6 +15,7 @@ import { EditarTicketAdminComponent } from './components/pages/ticket/editar-tic
 import { EditarUsuarioAdminComponent } from './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.component';
 import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/crear-ticket.component';
 import { HistorialComponent } from './components/pages/historial/historial.component';
+import { ServiciosComponent } from './components/shared/charts/servicios/servicios.component';
 
 const routes: Routes = [
   {

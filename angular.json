@@ -39,7 +39,8 @@
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/datatables.net/js/jquery.dataTables.js",
               "./node_modules/izitoast/dist/js/iziToast.min.js",
-              "./node_modules/sweetalert2/dist/sweetalert2.all.min.js"
+              "./node_modules/sweetalert2/dist/sweetalert2.all.min.js",
+              "./node_modules/chart.js/dist/Chart.min.js"
             ]
           },
           "configurations": {
