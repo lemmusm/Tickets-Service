@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
     this.apiservice.getUsuarioByUID(this.authservice.usuario.uid)
       .subscribe(
         (response: any) => {
-          if (response.departamento_id === 2) {
+          if (response.departamento_id === '2') {
             // this.router.navigate(['editarUsuario/:id']);
             this.router.navigate(['editarUsuario/' + this.authservice.usuario.uid]);
             this.alerta.toastNotification(

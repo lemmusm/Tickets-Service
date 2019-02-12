@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
   year = new Date().getFullYear();
   email: any;
 
-  constructor(private authservice: AuthService, private router: Router) { }
+  constructor(public authservice: AuthService, private router: Router) { }
 
   ngOnInit() {
   }

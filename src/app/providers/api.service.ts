@@ -9,7 +9,7 @@ import { Ticket } from '../models/ticket';
 })
 export class ApiService {
 // URL API
-  API_URL = 'http://webapiuppe/';
+  API_URL = 'https://www.uppenjamo.edu.mx/laravel/webapiuppe/';
 // Arreglo de ubicaciones
   ubicaciones = [
     {id: 1, ubicacion: 'UD-1'},

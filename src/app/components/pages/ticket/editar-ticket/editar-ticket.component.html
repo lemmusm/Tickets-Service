@@ -2,19 +2,19 @@
   <div class="container">
     <app-menucontrolpanel></app-menucontrolpanel>
     <div class="section-wrapper mg-t-20">
-      <form class="form-layout form-layout-2">
+      <form #updateTicketForm="ngForm" class="form-layout form-layout-2">
         <div class="row no-gutters">
           <div class="col-md-4">
             <div class="form-group">
               <label class="form-control-label">Solicitante: <span class="tx-danger">*</span></label>
-              <input class="form-control" type="text" name="solicitante" [(ngModel)]="ticket.usuario.displayName"
+              <input class="form-control" type="text" name="solicitante" [(ngModel)]="ticket.displayName"
                 placeholder="Inserta tu nombre">
             </div>
           </div>
           <div class="col-md-4 mg-t--1 mg-md-t-0">
             <div class="form-group mg-md-l--1">
               <label class="form-control-label">Correo electrónico: <span class="tx-danger">*</span></label>
-              <input class="form-control" type="text" name="email" [(ngModel)]="ticket.usuario.email" placeholder="Inserta tu correo institucional">
+              <input class="form-control" type="text" name="email" [(ngModel)]="ticket.email" placeholder="Inserta tu correo institucional">
             </div>
           </div>
           <div class="col-md-4 mg-t--1 mg-md-t-0">
@@ -45,7 +45,7 @@
         <div class="form-layout-footer bd pd-20 bd-t-0">
           <div class="row">
             <div class="col-12 text-right">
-              <button class="btn btn-teal bd-0" [disabled]="!updateDptoForm.form.valid">Actualizar</button>
+              <button class="btn btn-teal bd-0" [disabled]="!updateTicketForm.form.valid">Actualizar</button>
               <button class="btn btn-secondary bd-0 ml-2">Cancelar</button>
             </div>
           </div>

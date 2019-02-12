@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
 
   year = new Date().getFullYear();
 
-  constructor(private authservice: AuthService) { }
+  constructor(public authservice: AuthService) { }
 
   ngOnInit() {
   }
