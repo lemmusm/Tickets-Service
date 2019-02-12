@@ -14,8 +14,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <nav class="nav">
-                  <a class="nav-link"><i class="fas fa-user-circle"></i> View Profile</a>
-                  <a class="nav-link"><i class="fas fa-edit"></i> Edit Profile</a>
+                  <a class="nav-link" [routerLink]="['editarUsuario/', this.authservice.uid]"><i class="fas fa-edit"></i>Editar perfil</a>
                   <a class="nav-link" (click)="signOut()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
                 </nav>
               </div>
