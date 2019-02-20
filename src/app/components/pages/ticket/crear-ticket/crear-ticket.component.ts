@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class CrearTicketComponent implements OnInit {
-
   // Se crea objeto de tipo ticket y se inicializa
   ticket: Ticket = {};
   // se crea objeto de tipo Usuario y a su vez el objeto departartamento y ambos se inicializan
@@ -28,7 +27,8 @@ export class CrearTicketComponent implements OnInit {
     private apiservice: ApiService,
     private router: Router,
     public authservice: AuthService,
-    private alerta: AlertaService) { }
+    private alerta: AlertaService
+  ) {}
 
   ngOnInit() {
     this.getDataById();
@@ -36,43 +36,33 @@ export class CrearTicketComponent implements OnInit {
 
   // Traer datos de la base de datos de acuerdo al id y los datos son usados para los campos nombre, email y departamento
   getDataById() {
-    this.apiservice.getUsuarioByUID(this.id)
-        .subscribe(
-          (response: any) => {
-            this.usuario = response;
-          }
-        );
-    this.ticket.usuario_uid = this.authservice.uid; // Se almacena el uid de los datos de firebase para usarlo como huella digital
+    this.apiservice.getUsuarioByUID(this.id).subscribe((response: any) => {
+      this.usuario = response;
+    });
+    this.ticket.uid = this.authservice.uid; // Se almacena el uid de los datos de firebase para usarlo como huella digital
   }
   // Método para agregra solicitud
   addTicket() {
-    this.apiservice.postTicket(this.ticket)
-        .subscribe(
-          (response: any) => {
-            this.message = response;
-            this.alerta.toastNotification(
-              this.message.message,
-              '',
-              'green',
-              'far fa-check-circle'
-            );
-            this.alerta.toastNotification(
-              'Se mantendra la comunicación para solucionar el problema.',
-              '',
-              'blue',
-              'fas fa-info-circle'
-            );
-            this.router.navigate(['dashboard']);
-          },
-          error => {
-            this.alerta.toastNotification(
-              error.name,
-              '',
-              'red',
-              'fas fa-times'
-            );
-          }
+    this.apiservice.postTicket(this.ticket).subscribe(
+      (response: any) => {
+        this.message = response;
+        this.alerta.toastNotification(
+          this.message.message,
+          '',
+          'green',
+          'far fa-check-circle'
         );
+        this.alerta.toastNotification(
+          'Se mantendra la comunicación para solucionar el problema.',
+          '',
+          'blue',
+          'fas fa-info-circle'
+        );
+        this.router.navigate(['dashboard']);
+      },
+      error => {
+        this.alerta.toastNotification(error.name, '', 'red', 'fas fa-times');
+      }
+    );
   }
-
 }

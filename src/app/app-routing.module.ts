@@ -16,6 +16,7 @@ import { EditarUsuarioAdminComponent } from './components/pages/usuario/editar-u
 import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/crear-ticket.component';
 import { HistorialComponent } from './components/pages/historial/historial.component';
 import { ServiciosComponent } from './components/shared/charts/servicios/servicios.component';
+import { DetallessolicitudComponent } from './components/pages/detallessolicitud/detallessolicitud.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,11 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
   {
+    path: 'detalles-solicitud/:id',
+    component: DetallessolicitudComponent,
+    canActivate: [GuardService]
+  },
+  {
     path: 'crear-ticket',
     component: CrearTicketComponent,
     canActivate: [GuardService]
@@ -83,12 +89,14 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
   {
-    path: '**', pathMatch: 'full', redirectTo: 'dashboard'
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,91 +1,127 @@
 // login
 .signin-left {
-    background: url('https://images.pexels.com/photos/273238/pexels-photo-273238.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat;
-    background-size: cover;
-    background-position: center center;
+  background: url('http://www.netkafem.org/wp-content/uploads/2018/04/slider2.jpg')
+    no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 .signin-right {
-    z-index: 2;
+  z-index: 2;
 }
 
 .signin-box {
-    background: rgba(255, 255, 255, .9)
+  background: rgba(255, 255, 255, 0.9);
 }
-
-// title 
+// body color text
+body {
+  color: #34495e !important;
+}
+// title
 .slim-logo {
- color: teal;
- font-weight: 300 !important;
+  color: teal;
+  font-weight: 300 !important;
 }
 .slim-logo span {
- font-weight: 100 !important;
+  font-weight: 100 !important;
 }
 
 // links
 .nav-link {
-    cursor: pointer
+  cursor: pointer;
 }
 .slim-navbar .sub-item ul a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .nav-link-pc {
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: .7px;
-    font-weight: 500;
-    color: #273c75 !important;
-    height: 46px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-right-width: 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.7px;
+  font-weight: 500;
+  color: #273c75 !important;
+  height: 46px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-right-width: 0;
 }
 // icons
 .fas {
-    padding-right: .8em;
+  padding-right: 0.8em;
 }
 // formularios
 .card {
-    border: none !important
+  border: none !important;
 }
 // Datatable
 .fixMarginRow {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 .fixPaddingCol {
-    padding: 5px !important
+  padding: 5px !important;
 }
 .table.dataTable tbody tr {
-    line-height: 3em !important;
+  line-height: 3em !important;
 }
 // modal sweetalert
 .swal2-popup {
-    font-size: .8rem !important;
+  font-size: 0.8rem !important;
 }
 // ngclass-status
 .colorYellow {
-    color: #EE5A24 !important;
-    font-weight: 700
+  color: #ee5a24 !important;
+  font-weight: 700;
 }
 .colorBlue {
-    color: #0652DD !important;
-    font-weight: 700
+  color: #0652dd !important;
+  font-weight: 700;
 }
 .colorGreen {
-    color: #009432 !important;
-    font-weight: 700
+  color: #009432 !important;
+  font-weight: 700;
 }
 // list-group
 .list-group-item {
-    padding: 0.75rem 1rem !important;
-    margin-bottom: -15px !important;
+  padding: 0.75rem 1rem !important;
+  margin-bottom: -15px !important;
 }
 // h1 color
 .txteal {
-    color: #1CAF9A !important;
+  color: #1caf9a !important;
+}
+// labesl details
+
+.details {
+  color: #535c68;
+}
+// btn list custom
+.btncustom {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.76563rem;
+  line-height: 1.5;
+}
+
+.btnsuccess {
+  color: #2980b9;
+  font-size: 1.4em;
+}
+.btnsuccess:hover {
+  color: #3498db;
+}
+.btndanger {
+  color: #c0392b;
+  font-size: 1.4em;
+}
+.btndanger:hover {
+  color: #e74c3c;
+}
+
+.fixLineHeightText {
+  line-height: 4em !important;
 }

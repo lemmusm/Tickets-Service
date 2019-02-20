@@ -1,0 +1,111 @@
+<div class="slim-mainpanel">
+  <div class="container">
+    <div class="section-wrapper mg-t-20">
+      <div class="card card-invoice">
+        <div class="card-body">
+          <div class="invoice-header">
+            <!-- <h4 class="invoice-title"><img src="./assets/img/logo_uppe.png" width="100" alt="logouppe" /></h4> -->
+            <h4 class="invoice-title">UPPE-{{ ticket.id_ticket }}</h4>
+            <div class="billed-from">
+              <h6>R1PI6 | Servicio de Soporte Técnico</h6>
+            </div>
+          </div>
+
+          <div class="row mg-t-20">
+            <div class="col-md">
+              <label class="section-label-sm tx-gray-500 text-left"
+                ><strong class="details">Solicitante:</strong>
+                {{ ticket.displayName }}</label
+              >
+              <label class="section-label-sm tx-gray-500 text-left"
+                ><strong class="details">Departamento:</strong>
+                {{ ticket.departamento }}</label
+              >
+              <label class="section-label-sm tx-gray-500 text-left"
+                ><strong class="details">Email:</strong>
+                {{ ticket.email }}</label
+              >
+            </div>
+            <div class="col-md">
+              <label class="section-label-sm tx-gray-500 text-right"
+                ><strong class="details">Fecha de creación:</strong>
+                {{ ticket.created_at }}</label
+              >
+              <label class="section-label-sm tx-gray-500 text-right"
+                ><strong class="details">Fecha de atención:</strong>
+                {{ ticket.updated_at }}</label
+              >
+              <label class="section-label-sm tx-gray-500 text-right"
+                ><strong class="details">Atendio:</strong>
+                {{ ticket.tecnico }}</label
+              >
+            </div>
+          </div>
+          <div class="row mg-t-40">
+            <div class="col-md-6">
+              <label class="section-label-sm">
+                <strong class="details"> Descripción:</strong></label
+              >
+              <p>
+                {{ ticket.descripcion }}
+              </p>
+            </div>
+            <div class="col-md-6">
+              <label class="section-label-sm">
+                <strong class="details"> Diagnóstico:</strong></label
+              >
+              <p>
+                {{ ticket.diagnostico }}
+              </p>
+            </div>
+          </div>
+
+          <div class="row mg-t-40">
+            <div class="col-md-6">
+              <label class="section-label-sm">
+                <strong class="details"> Tipo de servicio:</strong></label
+              >
+              <p>
+                {{ ticket.servicio }}
+              </p>
+            </div>
+            <div class="col-md-6">
+              <label class="section-label-sm">
+                <strong class="details"> Status:</strong></label
+              >
+              <p
+                [ngClass]="{
+                  colorBlue: ticket.status === 'Abierto',
+                  colorGreen: ticket.status === 'Realizado',
+                  colorYellow: ticket.status === 'N/A'
+                }"
+              >
+                {{ ticket.status }}
+              </p>
+            </div>
+          </div>
+          <hr class="mg-b-60" />
+          <div class="row mg-t-40">
+            <div class="col-md-6">
+              <label class="section-label-sm details"
+                >Huella digital solicitante:</label
+              >
+              <p>
+                {{ ticket.uid }}
+              </p>
+            </div>
+            <div class="col-md-6">
+              <label class="section-label-sm details text-right"
+                >Huella digital personal técnico:</label
+              >
+              <p class="text-right">
+                {{ huelladigitaltecnico }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- card-body -->
+      </div>
+    </div>
+  </div>
+</div>

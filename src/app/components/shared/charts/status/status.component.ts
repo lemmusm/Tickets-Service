@@ -13,13 +13,12 @@ export interface GraphStatus {
   styles: []
 })
 export class StatusComponent implements OnInit {
-
   graphstatus: GraphStatus[] = [];
   gstatus: GraphStatus;
   chartStatus: any;
   // generate random color
   colorR = [];
-  dynamicColors = function () {
+  dynamicColors = function() {
     const r = Math.floor(Math.random() * 255);
     const g = Math.floor(Math.random() * 255);
     const b = Math.floor(Math.random() * 255);
@@ -27,7 +26,7 @@ export class StatusComponent implements OnInit {
   };
   // end random color
 
-  constructor(private apiservice: ApiService) { }
+  constructor(private apiservice: ApiService) {}
 
   ngOnInit() {
     this.graphCountStatus();
@@ -35,55 +34,51 @@ export class StatusComponent implements OnInit {
 
   // Grafica para status
   graphCountStatus() {
-    this.apiservice.graphStatus()
-      .subscribe(
-        (response: any) => {
-          this.gstatus = response;
-          this.graphstatus = response;
-          const labels = this.graphstatus.map(x => x.status);
-          const count = this.graphstatus.map((x: any) => x.count);
-          // Aplicar color random
-          // tslint:disable-next-line:forin
-          for (const i in count) {
-            this.colorR.push(this.dynamicColors());
-          }
-          this.chartStatus = new Chart('chartStatus', {
-            type: 'line',
-            data: {
-              labels: labels,
-              datasets: [
-                {
-                  data: count,
-                  backgroundColor: this.colorR,
-                  borderColor: '#ee5253',
-                  borderDash: [1],
-                  pointBorderColor: '#e74c3c',
-                  pointBackgroundColor: '#e74c3c',
-                  fill: false
-                }
-              ]
-            },
-            options: {
-              legend: {
-                display: false
-              },
-              title: {
-                display: true,
-              },
-              scales: {
-                xAxes: [{
-                  display: true
-                }],
-                yAxes: [{
-                  display: true,
-                  ticks: {
-                    beginAtZero: true
-                  }
-                }],
-              }
+    this.apiservice.graphStatus().subscribe((response: any) => {
+      this.gstatus = response;
+      this.graphstatus = response;
+      const labels = this.graphstatus.map(x => x.status);
+      const count = this.graphstatus.map((x: any) => x.count);
+      // Aplicar color random
+      // tslint:disable-next-line:forin
+      for (const i in count) {
+        this.colorR.push(this.dynamicColors());
+      }
+      this.chartStatus = new Chart('chartStatus', {
+        type: 'pie',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              data: count,
+              backgroundColor: this.colorR
             }
-          });
+          ]
+        },
+        options: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true
+          },
+          scales: {
+            xAxes: [
+              {
+                display: true
+              }
+            ],
+            yAxes: [
+              {
+                display: true,
+                ticks: {
+                  beginAtZero: true
+                }
+              }
+            ]
+          }
         }
-      );
+      });
+    });
   }
 }

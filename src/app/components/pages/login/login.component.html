@@ -9,23 +9,26 @@
 </div> -->
 
 <div class="d-md-flex flex-row-reverse" *ngIf="!this.authservice.login">
-      <div class="signin-right">
+  <div class="signin-right">
+    <div class="signin-box">
+      <h2 class="signin-title-primary">Bienvenido!</h2>
 
-        <div class="signin-box">
-          <h2 class="signin-title-primary">Bienvenido!</h2>
+      <h2 class="slim-logo">SoporteTécnico | <span>R1PI6</span></h2>
 
-          <h2 class="slim-logo">SoporteTécnico | <span>R1PI6</span></h2>
-  
-            <p> Plataforma web para generar solicitudes de servicio de soporte técnico, destinada para el personal administrativo/docente de la Universidad Politécnica de Pénjamo.</p>
-              
-              <p>Inicia sesión para comenzar a generar tus solicitudes.</p>
-  
-            <!-- <p><a href="" class="btn btn-outline-secondary pd-x-25">Learn More</a></p> -->
-          <button class="btn btn-teal btn-block" (click)="signInWithGoogle()">Accede con tu correo institucional</button>
-          <p class="mg-b-0 tx-10 text-right mt-5">Versión 1.0.0</p>
-        </div>
+      <p>
+        Plataforma web para generar solicitudes de servicio de soporte técnico,
+        destinada para el personal administrativo/docente de la Universidad
+        Politécnica de Pénjamo.
+      </p>
 
-      </div>
-        <div class="signin-left">
-        </div>
+      <p>Inicia sesión para comenzar a generar tus solicitudes.</p>
+
+      <!-- <p><a href="" class="btn btn-outline-secondary pd-x-25">Learn More</a></p> -->
+      <button class="btn btn-teal btn-block" (click)="signInWithGoogle()">
+        Accede con tu correo institucional
+      </button>
+      <p class="mg-b-0 tx-10 text-right mt-5">Versión 1.0.1</p>
     </div>
+  </div>
+  <div class="signin-left"></div>
+</div>

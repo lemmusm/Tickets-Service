@@ -20,7 +20,6 @@ export class AgregardepartamentoComponent implements OnInit {
   }
 
   addDepartamento() {
-    console.log(this.departamento);
     this.apiservice.postDepartamento(this.departamento)
         .subscribe(
           (response: any) => {
@@ -31,6 +30,7 @@ export class AgregardepartamentoComponent implements OnInit {
               'green',
               'far fa-check-circle'
             );
+            this.router.navigate(['listado-departamentos']);
           },
           error => {
             console.log(error);

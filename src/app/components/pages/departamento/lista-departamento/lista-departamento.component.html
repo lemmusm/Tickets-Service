@@ -2,7 +2,13 @@
   <div class="container pd-t-30">
     <app-menucontrolpanel></app-menucontrolpanel>
     <label class="section-title">Listado departamentos</label>
-    <table id="listadoDepartamentos" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
+    <table
+      id="listadoDepartamentos"
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+      class="row-border hover table"
+    >
       <thead>
         <tr>
           <th style="width: 5%" class="text-center">#</th>
@@ -14,24 +20,35 @@
       </thead>
       <tbody>
         <tr *ngFor="let departamento of departamentos; let i = index">
-          <td class="text-center">{{ i + 1 }}</td>
-          <td>{{ departamento.departamento }}</td>
-          <td>{{ departamento.ubicacion }}</td>
-          <td class="text-center">{{ departamento.usuarios.length}}</td>
+          <td class="text-center fixLineHeightText">{{ i + 1 }}</td>
+          <td class="fixLineHeightText">{{ departamento.departamento }}</td>
+          <td class="fixLineHeightText">{{ departamento.ubicacion }}</td>
+          <td class="text-center fixLineHeightText">
+            {{ departamento.usuarios.length }}
+          </td>
           <td>
             <div class="row fixMarginRow">
               <div class="col-6 fixPaddingCol">
                 <div class="btn-demo">
-                  <button class="btn btn-primary btn-sm btn-block" [routerLink]="['/editarDepartamento', departamento.id_departamento]">
-                    <i class="far fa-edit"></i>
-                  </button>
+                  <a
+                    class="btn btncustom"
+                    [routerLink]="[
+                      '/editarDepartamento',
+                      departamento.id_departamento
+                    ]"
+                  >
+                    <i class="btnsuccess far fa-edit"></i>
+                  </a>
                 </div>
               </div>
               <div class="col-6 fixPaddingCol">
                 <div class="btn-demo">
-                  <button class="btn btn-danger btn-sm btn-block" (click)="deleteDepartamento(departamento.id_departamento)">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
+                  <a
+                    class="btn btncustom"
+                    (click)="deleteDepartamento(departamento.id_departamento)"
+                  >
+                    <i class="btndanger far fa-trash-alt"></i>
+                  </a>
                 </div>
               </div>
             </div>

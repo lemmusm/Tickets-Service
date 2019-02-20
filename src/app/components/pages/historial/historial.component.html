@@ -1,45 +1,70 @@
 <div class="slim-mainpanel mt-5">
-    <div class="container">
-
-        <div class="dash-headline-two">
-            <div>
-                <h4 class="tx-inverse mg-b-5">Buen día, {{usuario.displayName}}!</h4>
-                <span class="mg-b-0 tx-primary">Departamento: </span> <span class="mg-b-0">{{ usuario.departamento.departamento }}</span> <br>
-                <span class="mg-b-0 tx-primary">Huella digital única: </span> <span class="mg-b-0">{{ usuario.uid }}</span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <label class="section-title">ÚLTIMAS SOLICITUDES EN COLA</label>
-                <table id="listadoTickets" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Ticket ID</th>
-                            <th class="text-center">Tipo de servicio</th>
-                            <th class="text-center">Descripción</th>
-                            <th class="text-center">Atendio</th>
-                            <th class="text-center">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let ticket of usuario.tickets; let i = index">
-                            <td class="text-center">UPPE-{{ ticket.id_ticket }}</td>
-                            <td>{{ ticket.servicio }}</td>
-                            <td>{{ ticket.descripcion }}</td>
-                            <td>{{ ticket.tecnico }}</td>
-                            <td class="text-center" 
-                                [ngClass]=" {
-                                    'colorBlue' : ticket.status === 'Abierto',
-                                    'colorYellow' : ticket.status === 'Proceso',
-                                    'colorGreen': ticket.status === 'Realizado'
-                                }">
-                                {{ticket.status}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <div class="container">
+    <div class="dash-headline-two">
+      <div>
+        <h4 class="tx-inverse mg-b-5">Buen día, {{ usuario.displayName }}!</h4>
+        <span class="mg-b-0 tx-primary">Departamento: </span>
+        <span class="mg-b-0">{{ usuario.departamento.departamento }}</span>
+        <br />
+        <span class="mg-b-0 tx-primary">Huella digital única: </span>
+        <span class="mg-b-0">{{ usuario.uid }}</span>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <label class="section-title">ÚLTIMAS SOLICITUDES EN COLA</label>
+        <table
+          id="listadoTickets"
+          datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+          class="row-border hover table"
+        >
+          <thead>
+            <tr>
+              <th class="text-center">Ticket ID</th>
+              <th class="text-center">Tipo de servicio</th>
+              <th class="text-center">Descripción</th>
+              <!-- <th class="text-center">Atendio</th> -->
+              <th class="text-center">Status</th>
+              <th class="text-center"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ticket of usuario.tickets; let i = index">
+              <td class="text-center">UPPE-{{ ticket.id_ticket }}</td>
+              <td>{{ ticket.servicio }}</td>
+              <td>{{ ticket.descripcion }}</td>
+              <!-- <td>{{ ticket.tecnico }}</td> -->
+              <td
+                class="text-center"
+                [ngClass]="{
+                  colorBlue: ticket.status === 'Abierto',
+                  colorYellow: ticket.status === 'Proceso',
+                  colorGreen: ticket.status === 'Realizado'
+                }"
+              >
+                {{ ticket.status }}
+              </td>
+              <td>
+                <div class="row fixMarginRow">
+                  <div class="col-12 fixPaddingCol">
+                    <div class="btn-demo">
+                      <a
+                        class="btn btn-success btn-sm btn-block"
+                        [routerLink]="['/detalles-solicitud', ticket.id_ticket]"
+                      >
+                        Ver detalles
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

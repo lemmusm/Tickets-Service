@@ -1,53 +1,72 @@
 <div class="slim-mainpanel mt-5">
   <div class="container">
-          <app-menucontrolpanel></app-menucontrolpanel>
-      <label class="section-title">LISTADO DE SOLICITUDES</label>
-      <table id="listadoTickets" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
-          <thead>
-              <tr>
-                  <th class="text-center">ID</th>
-                  <th class="text-center">Usuario</th>
-                  <th class="text-center">Departamento</th>
-                  <th class="text-center">Servicio</th>
-                  <th class="text-center">Creación</th>
-                  <th class="text-center">Status</th>
-                  <th class="text-center">Acciones</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let ticket of tickets; let i = index">
-                  <td class="text-center">UPPE-{{ticket.id_ticket }}</td>
-                  <td>{{ ticket.displayName }}</td>
-                  <td>{{ ticket.departamento }}</td>
-                  <td>{{ ticket.servicio }}</td>
-                  <td class="text-center">{{ ticket.created_at | date: 'mediumDate' | uppercase}}</td>
-                  <td class="text-center"
-                    [ngClass] = " {
-                        'colorBlue' : ticket.status === 'Abierto',
-                        'colorGreen': ticket.status === 'Realizado',
-                        'colorYellow' : ticket.status === 'N/A'
-                        }"
-                  >{{ ticket.status}}</td>
-                  <td>
-                      <div class="row fixMarginRow">
-                          <div class="col-6 fixPaddingCol">
-                              <div class="btn-demo">
-                                  <button class="btn btn-primary btn-sm btn-block" [routerLink]="['/editarTicketAdmin', ticket.id_ticket]">
-                                      <i class="far fa-edit"></i>
-                                  </button>
-                              </div>
-                          </div>
-                          <div class="col-6 fixPaddingCol">
-                              <div class="btn-demo">
-                                  <button class="btn btn-danger btn-sm btn-block" (click)="deleteTicket(ticket.id_ticket)">
-                                      <i class="far fa-trash-alt"></i>
-                                  </button>
-                              </div>
-                          </div>
-                      </div>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+    <app-menucontrolpanel></app-menucontrolpanel>
+    <label class="section-title">LISTADO DE SOLICITUDES</label>
+    <table
+      id="listadoTickets"
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+      class="row-border hover table"
+    >
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Usuario</th>
+          <th class="text-center">Departamento</th>
+          <th class="text-center">Servicio</th>
+          <th class="text-center">Creación</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets; let i = index">
+          <td class="text-center fixLineHeightText">
+            UPPE-{{ ticket.id_ticket }}
+          </td>
+          <td class="fixLineHeightText">{{ ticket.displayName }}</td>
+          <td class="fixLineHeightText">{{ ticket.departamento }}</td>
+          <td class="fixLineHeightText">{{ ticket.servicio }}</td>
+          <td class="text-center fixLineHeightText">
+            {{ ticket.created_at | date: 'mediumDate' | uppercase }}
+          </td>
+          <td
+            class="text-center fixLineHeightText"
+            [ngClass]="{
+              colorBlue: ticket.status === 'Abierto',
+              colorGreen: ticket.status === 'Realizado',
+              colorYellow: ticket.status === 'N/A'
+            }"
+          >
+            {{ ticket.status }}
+          </td>
+          <td>
+            <div class="row fixMarginRow">
+              <div class="col-6 fixPaddingCol">
+                <div class="btn-demo">
+                  <a
+                    class="btn btncustom"
+                    [routerLink]="['/editarTicketAdmin', ticket.id_ticket]"
+                  >
+                    <i class="btnsuccess far fa-edit"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="col-6 fixPaddingCol">
+                <div class="btn-demo">
+                  <a
+                    class="btn btncustom"
+                    (click)="deleteTicket(ticket.id_ticket)"
+                  >
+                    <i class="btndanger far fa-trash-alt"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

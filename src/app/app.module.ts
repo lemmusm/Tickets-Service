@@ -40,6 +40,7 @@ import { HistorialComponent } from './components/pages/historial/historial.compo
 import { ServiciosComponent } from './components/shared/charts/servicios/servicios.component';
 import { StatusComponent } from './components/shared/charts/status/status.component';
 import { DepartamentosComponent } from './components/shared/charts/departamentos/departamentos.component';
+import { DetallessolicitudComponent } from './components/pages/detallessolicitud/detallessolicitud.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { DepartamentosComponent } from './components/shared/charts/departamentos
     HistorialComponent,
     ServiciosComponent,
     StatusComponent,
-    DepartamentosComponent
+    DepartamentosComponent,
+    DetallessolicitudComponent
   ],
   imports: [
     BrowserModule,
