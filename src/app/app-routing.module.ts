@@ -17,6 +17,7 @@ import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/cre
 import { HistorialComponent } from './components/pages/historial/historial.component';
 import { ServiciosComponent } from './components/shared/charts/servicios/servicios.component';
 import { DetallessolicitudComponent } from './components/pages/detallessolicitud/detallessolicitud.component';
+import { ChangelogComponent } from './components/pages/changelog/changelog.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,11 @@ const routes: Routes = [
   {
     path: 'control-panel',
     component: ControlpanelComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'changelogs',
+    component: ChangelogComponent,
     canActivate: [GuardService]
   },
   {
