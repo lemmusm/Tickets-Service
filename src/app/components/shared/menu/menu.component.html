@@ -1,25 +1,24 @@
 <div class="slim-navbar">
   <div class="container">
     <ul class="nav">
-      
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['dashboard']">
-            <i class="fas fa-tachometer-alt"></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item" >
-        <a class="nav-link" (click)="verifyUpdatePerfil()">
-            <i class="fas fa-ticket-alt"></i>
-          <span>Solicitar servicio</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['historial']">
-            <i class="fas fa-list-ul"></i>
+        <a class="nav-link tx-bold" [routerLink]="['dashboard']">
+          <i class="fas fa-tachometer-alt"></i>
           <span>Mi historial</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link tx-bold" (click)="verifyUpdatePerfil()">
+          <i class="fas fa-ticket-alt"></i>
+          <span>Solicitar servicio</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link tx-bold" [routerLink]="['historial']">
+          <i class="fas fa-list-ul"></i>
+          <span>Mi historial</span>
+        </a>
+      </li> -->
     </ul>
   </div>
 </div>

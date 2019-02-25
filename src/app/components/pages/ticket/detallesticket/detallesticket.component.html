@@ -1,0 +1,114 @@
+<div class="slim-mainpanel">
+  <div class="container">
+    <app-menucontrolpanel></app-menucontrolpanel>
+    <div class="section-wrapper mg-t-20">
+      <div class="row justify-content-end">
+        <div class="col-md-3 tx-right">
+          <a
+            [routerLink]="['/editarTicketAdmin', ticket.id_ticket]"
+            class="btn btn-indigo rounded-circle btn-icon"
+            placement="top"
+            ngbTooltip="Editar"
+          >
+            <div>
+              <i class="far fa-edit"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="card card-invoice">
+        <div class="card-body">
+          <div class="invoice-header">
+            <!-- <h4 class="invoice-title"><img src="./assets/img/logo_uppe.png" width="100" alt="logouppe" /></h4> -->
+            <h5 class="tx-bold text-danger">U-{{ ticket.id_ticket }}</h5>
+            <div class="billed-from">
+              <h6>R1PI6 | Servicio de Soporte Técnico</h6>
+            </div>
+          </div>
+
+          <div class="row mg-t-20">
+            <div class="col-md">
+              <label class="section-label tx-normal text-left">
+                <strong class="tx-normal text-primary">Solicitante:</strong>
+                {{ ticket.displayName }}
+              </label>
+              <label class="section-label tx-normal text-left">
+                <strong class="tx-normal text-primary">Departamento:</strong>
+                {{ ticket.departamento }}
+              </label>
+              <label class="section-label tx-normal tx-normal text-left">
+                <strong class="tx-normal text-primary">Email:</strong>
+                {{ ticket.email }}
+              </label>
+            </div>
+            <div class="col-md">
+              <label class="section-label tx-normal text-right">
+                <strong class="tx-normal text-primary"
+                  >Fecha de creación:</strong
+                >
+                {{ ticket.created_at }}
+              </label>
+              <label class="section-label tx-normal text-right">
+                <strong class="tx-normal text-primary"
+                  >Fecha de atención:</strong
+                >
+                {{ ticket.updated_at }}
+              </label>
+              <label class="section-label tx-normal text-right">
+                <strong class="tx-normal text-primary">Atendio:</strong>
+                {{ ticket.tecnico }}
+              </label>
+            </div>
+          </div>
+          <div class="row mg-t-40">
+            <div class="col-md-6">
+              <label class="section-label">
+                <strong class="tx-normal text-primary"> Descripción:</strong>
+              </label>
+              <label class="section-label tx-normal">
+                {{ ticket.descripcion }}
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="section-label">
+                <strong class="tx-normal text-primary"> Diagnóstico:</strong>
+              </label>
+              <label class="section-label tx-normal">
+                {{ ticket.diagnostico }}
+              </label>
+            </div>
+          </div>
+
+          <div class="row mg-t-40">
+            <div class="col-md-6">
+              <label class="section-label">
+                <strong class="tx-normal text-primary">
+                  Tipo de servicio:</strong
+                >
+              </label>
+              <label class="section-label tx-normal">
+                {{ ticket.servicio }}
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="section-label">
+                <strong class="tx-normal text-primary"> Status:</strong>
+              </label>
+              <label
+                class="section-label tx-normal"
+                [ngClass]="{
+                  colorBlue: ticket.status === 'Abierto',
+                  colorGreen: ticket.status === 'Realizado',
+                  colorYellow: ticket.status === 'N/A'
+                }"
+              >
+                {{ ticket.status }}
+              </label>
+            </div>
+          </div>
+          <hr class="mg-b-60" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

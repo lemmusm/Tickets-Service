@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="invoice-header">
             <!-- <h4 class="invoice-title"><img src="./assets/img/logo_uppe.png" width="100" alt="logouppe" /></h4> -->
-            <h4 class="invoice-title">UPPE-{{ ticket.id_ticket }}</h4>
+            <h5 class="tx-bold text-danger">U-{{ ticket.id_ticket }}</h5>
             <div class="billed-from">
               <h6>R1PI6 | Servicio de Soporte Técnico</h6>
             </div>
@@ -13,67 +13,78 @@
 
           <div class="row mg-t-20">
             <div class="col-md">
-              <label class="section-label-sm tx-gray-500 text-left"
-                ><strong class="details">Solicitante:</strong>
+              <label class="section-label tx-normal text-left"
+                ><strong class="tx-normal text-primary">Solicitante:</strong>
                 {{ ticket.displayName }}</label
               >
-              <label class="section-label-sm tx-gray-500 text-left"
-                ><strong class="details">Departamento:</strong>
+              <label class="section-label tx-normal text-left"
+                ><strong class="tx-normal text-primary">Departamento:</strong>
                 {{ ticket.departamento }}</label
               >
-              <label class="section-label-sm tx-gray-500 text-left"
-                ><strong class="details">Email:</strong>
+              <label class="section-label tx-normal text-left"
+                ><strong class="tx-normal text-primary">Email:</strong>
                 {{ ticket.email }}</label
               >
             </div>
             <div class="col-md">
-              <label class="section-label-sm tx-gray-500 text-right"
-                ><strong class="details">Fecha de creación:</strong>
+              <label class="section-label tx-normal text-right"
+                ><strong class="tx-normal text-primary"
+                  >Fecha de creación:</strong
+                >
                 {{ ticket.created_at }}</label
               >
-              <label class="section-label-sm tx-gray-500 text-right"
-                ><strong class="details">Fecha de atención:</strong>
+              <label class="section-label tx-normal text-right"
+                ><strong class="tx-normal text-primary"
+                  >Fecha de atención:</strong
+                >
                 {{ ticket.updated_at }}</label
               >
-              <label class="section-label-sm tx-gray-500 text-right"
-                ><strong class="details">Atendio:</strong>
+              <label class="section-label tx-normal text-right"
+                ><strong class="tx-normal text-primary">Atendio:</strong>
                 {{ ticket.tecnico }}</label
               >
             </div>
           </div>
           <div class="row mg-t-40">
             <div class="col-md-6">
-              <label class="section-label-sm">
-                <strong class="details"> Descripción:</strong></label
+              <label class="section-label tx-normal">
+                <strong class="tx-normal text-primary">
+                  Descripción:</strong
+                ></label
               >
-              <p>
+              <label class="section-label tx-normal">
                 {{ ticket.descripcion }}
-              </p>
+              </label>
             </div>
             <div class="col-md-6">
-              <label class="section-label-sm">
-                <strong class="details"> Diagnóstico:</strong></label
+              <label class="section-label tx-normal">
+                <strong class="tx-normal text-primary">
+                  Diagnóstico:</strong
+                ></label
               >
-              <p>
+              <label class="section-label tx-normal">
                 {{ ticket.diagnostico }}
-              </p>
+              </label>
             </div>
           </div>
 
           <div class="row mg-t-40">
             <div class="col-md-6">
-              <label class="section-label-sm">
-                <strong class="details"> Tipo de servicio:</strong></label
+              <label class="section-label tx-normal">
+                <strong class="tx-normal text-primary">
+                  Tipo de servicio:</strong
+                ></label
               >
-              <p>
+              <label class="section-label tx-normal">
                 {{ ticket.servicio }}
-              </p>
+              </label>
             </div>
             <div class="col-md-6">
-              <label class="section-label-sm">
-                <strong class="details"> Status:</strong></label
+              <label class="section-label tx-normal">
+                <strong class="tx-normal text-primary"> Status:</strong></label
               >
-              <p
+              <label
+                class="section-label tx-normal"
                 [ngClass]="{
                   colorBlue: ticket.status === 'Abierto',
                   colorGreen: ticket.status === 'Realizado',
@@ -81,27 +92,28 @@
                 }"
               >
                 {{ ticket.status }}
-              </p>
+              </label>
             </div>
           </div>
           <hr class="mg-b-60" />
           <div class="row mg-t-40">
-            <div class="col-md-6">
-              <label class="section-label-sm details"
+            <div class="col-md-12">
+              <label
+                class="section-label tx-normal tx-normal text-right text-primary"
                 >Huella digital solicitante:</label
               >
-              <p>
-                {{ ticket.uid }}
-              </p>
+              <label class="section-label tx-normal tx-normal text-right">
+                {{ ticket.usuario_uid }}
+              </label>
             </div>
-            <div class="col-md-6">
-              <label class="section-label-sm details text-right"
+            <!-- <div class="col-md-6">
+              <label class="section-label tx-normal text-right"
                 >Huella digital personal técnico:</label
               >
               <p class="text-right">
-                {{ huelladigitaltecnico }}
+                {{ ticket.tecnico }}
               </p>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- card-body -->

@@ -1,7 +1,7 @@
 <div class="slim-mainpanel">
   <div class="container pd-t-30">
     <app-menucontrolpanel></app-menucontrolpanel>
-    <label class="section-title">Listado departamentos</label>
+    <label class="section-title text-primary mb-3">Listado departamentos</label>
     <table
       id="listadoDepartamentos"
       datatable
@@ -11,24 +11,28 @@
     >
       <thead>
         <tr>
-          <th style="width: 5%" class="text-center">#</th>
-          <th style="width: 50%" class="text-center">Departamento</th>
-          <th style="width: 20%" class="text-center">Ubicación</th>
-          <th style="width: 10%" class="text-center">Integrantes</th>
-          <th style="width: 15%" class="text-center">Acciones</th>
+          <th style="width: 5%" class="text-center tx-bold">#</th>
+          <th style="width: 50%" class="text-center tx-bold">Departamento</th>
+          <th style="width: 20%" class="text-center tx-bold">Ubicación</th>
+          <th style="width: 10%" class="text-center tx-bold">Integrantes</th>
+          <th style="width: 15%" class="text-center tx-bold">Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let departamento of departamentos; let i = index">
-          <td class="text-center fixLineHeightText">{{ i + 1 }}</td>
-          <td class="fixLineHeightText">{{ departamento.departamento }}</td>
-          <td class="fixLineHeightText">{{ departamento.ubicacion }}</td>
-          <td class="text-center fixLineHeightText">
+          <td class="text-center fixLineHeightText tx-normal">{{ i + 1 }}</td>
+          <td class="fixLineHeightText tx-normal">
+            {{ departamento.departamento }}
+          </td>
+          <td class="fixLineHeightText tx-normal">
+            {{ departamento.ubicacion }}
+          </td>
+          <td class="text-center fixLineHeightText tx-normal">
             {{ departamento.usuarios.length }}
           </td>
           <td>
             <div class="row fixMarginRow">
-              <div class="col-6 fixPaddingCol">
+              <div class="col-6">
                 <div class="btn-demo">
                   <a
                     class="btn btncustom"
@@ -41,7 +45,7 @@
                   </a>
                 </div>
               </div>
-              <div class="col-6 fixPaddingCol">
+              <div class="col-6">
                 <div class="btn-demo">
                   <a
                     class="btn btncustom"

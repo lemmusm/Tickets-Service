@@ -7,7 +7,7 @@ export interface Ticket {
   status?: string;
   created_at?: string;
   updated_at?: string;
-  uid?: string;
+  usuario_uid?: string;
   displayName?: string;
   email?: string;
   departamento?: string;

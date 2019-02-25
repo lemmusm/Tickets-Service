@@ -11,24 +11,24 @@
     >
       <thead>
         <tr>
-          <th style="width: 5%" class="text-center">#</th>
-          <th style="width: 25%" class="text-center">Nombre</th>
-          <th style="width: 25%" class="text-center">Email</th>
-          <th style="width: 30%" class="text-center">Departamento</th>
-          <th style="width: 15%" class="text-center">Acciones</th>
+          <th style="width: 5%" class="text-center tx-bold">#</th>
+          <th style="width: 25%" class="text-center tx-bold">Nombre</th>
+          <th style="width: 25%" class="text-center tx-bold">Email</th>
+          <th style="width: 30%" class="text-center tx-bold">Departamento</th>
+          <th style="width: 15%" class="text-center tx-bold">Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let usuario of usuarios; let i = index">
-          <td class="fixLineHeightText">{{ i + 1 }}</td>
-          <td class="fixLineHeightText">{{ usuario.displayName }}</td>
-          <td class="fixLineHeightText">{{ usuario.email }}</td>
-          <td class="fixLineHeightText">
+          <td class="fixLineHeightText tx-normal">{{ i + 1 }}</td>
+          <td class="fixLineHeightText tx-normal">{{ usuario.displayName }}</td>
+          <td class="fixLineHeightText tx-normal">{{ usuario.email }}</td>
+          <td class="fixLineHeightText tx-normal">
             {{ usuario.departamento.departamento }}
           </td>
           <td>
             <div class="row fixMarginRow">
-              <div class="col-6 fixPaddingCol">
+              <div class="col-6">
                 <div class="btn-demo">
                   <a
                     class="btn btncustom"
@@ -38,7 +38,7 @@
                   </a>
                 </div>
               </div>
-              <div class="col-6 fixPaddingCol">
+              <div class="col-6">
                 <div class="btn-demo">
                   <a class="btn btncustom" (click)="deleteUsuario(usuario.uid)">
                     <i class="btndanger far fa-trash-alt"></i>

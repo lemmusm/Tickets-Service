@@ -20,7 +20,7 @@
             <h6
               class="position-name text-center tx-teal tx-20 font-weight-light"
             >
-              SERVICIO DE SOPORTE TÉCNICO
+              R1PI6 | SERVICIO DE SOPORTE TÉCNICO
             </h6>
           </div>
           <div class="col-md-12">
@@ -34,7 +34,7 @@
             <div class="form-group">
               <label class="form-control-label tx-primary">Solicitante: </label>
               <input
-                class="form-control"
+                class="form-control section-label tx-normal"
                 type="text"
                 name="solicitante"
                 [(ngModel)]="usuario.displayName"
@@ -48,7 +48,7 @@
                 >Correo electrónico:
               </label>
               <input
-                class="form-control"
+                class="form-control section-label tx-normal"
                 type="text"
                 name="email"
                 [(ngModel)]="usuario.email"
@@ -62,7 +62,7 @@
                 >Área/Departamento:
               </label>
               <input
-                class="form-control"
+                class="form-control section-label tx-normal"
                 type="text"
                 name="departamento"
                 [(ngModel)]="usuario.departamento.departamento"
@@ -79,7 +79,7 @@
               <select
                 id="select2-a"
                 label="Selecciona el tipo de servicio"
-                class="form-control"
+                class="form-control section-label tx-normal"
                 name="servicio"
                 [(ngModel)]="ticket.servicio"
                 required
@@ -101,7 +101,7 @@
               >
               <textarea
                 rows="5"
-                class="form-control"
+                class="form-control section-label tx-normal"
                 name="descripcion"
                 [(ngModel)]="ticket.descripcion"
                 placeholder="Describe tu problema presentado."
@@ -116,12 +116,14 @@
               >
               <ul class="list-group">
                 <li class="list-group-item  border-0">
-                  <p class="mg-b-0">- No se instalará software pirata.</p>
-                  <p class="mg-b-0">
+                  <p class="mg-b-0 tx-light">
+                    - No se instalará software pirata.
+                  </p>
+                  <p class="mg-b-0 tx-light">
                     - Enviar archivos adjuntos por correo electrónico en caso de
                     requerirse.
                   </p>
-                  <p class="mg-b-0">
+                  <p class="mg-b-0 tx-light">
                     - Las solicitudes serán atendidas como van llegando a
                     nuestro sistema.
                   </p>
@@ -135,11 +137,11 @@
                 >Huella dígital única de usuario:</label
               >
               <input
-                class="form-control text-right font-weight-bold"
+                class="form-control section-label tx-normal details text-right"
                 readonly=""
                 type="text"
                 name="usuario_uid"
-                [(ngModel)]="ticket.uid"
+                [(ngModel)]="ticket.usuario_uid"
               />
             </div>
           </div>

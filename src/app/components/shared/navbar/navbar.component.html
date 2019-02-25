@@ -1,26 +1,33 @@
-
-    <div [hidden]="!this.authservice.login">
-      <div class="slim-header">
-        <div class="container">
-          <div class="slim-header-left">
-            <h2 class="slim-logo"><a>R1PI6 | <span>SERVICIO DE SOPORTE TÉCNICO</span></a></h2>
-          </div>
-          <div class="slim-header-right">
-            <div class="dropdown dropdown-c">
-              <a href="#" class="logged-user" data-toggle="dropdown">
-                <img src="{{this.authservice.photoURL}}" alt="">
-                <span>{{this.authservice.displayName}}</span>
-                <i class="fa fa-angle-down"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <nav class="nav">
-                  <a class="nav-link" [routerLink]="['editarUsuario/', this.authservice.uid]"><i class="fas fa-edit"></i>Editar perfil</a>
-                  <a class="nav-link" (click)="signOut()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
-                </nav>
-              </div>
-            </div>
+<div [hidden]="!this.authservice.login">
+  <div class="slim-header">
+    <div class="container">
+      <div class="slim-header-left">
+        <h2 class="slim-logo">
+          <a>R1PI6 | <span>SERVICIO DE SOPORTE TÉCNICO</span></a>
+        </h2>
+      </div>
+      <div class="slim-header-right">
+        <div class="dropdown dropdown-c">
+          <a href="" class="logged-user tx-normal" data-toggle="dropdown">
+            <img src="{{ this.authservice.photoURL }}" alt="" />
+            <span>{{ this.authservice.displayName }}</span>
+            <i class="fa fa-angle-down"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <nav class="nav">
+              <a
+                class="nav-link tx-normal"
+                [routerLink]="['editarUsuario/', this.authservice.uid]"
+                ><i class="fas fa-edit"></i>Editar perfil</a
+              >
+              <a class="nav-link tx-normal" (click)="signOut()"
+                ><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a
+              >
+            </nav>
           </div>
         </div>
       </div>
-      <app-menu></app-menu>
     </div>
+  </div>
+  <app-menu></app-menu>
+</div>

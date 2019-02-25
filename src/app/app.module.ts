@@ -13,9 +13,20 @@ import { HttpClientModule } from '@angular/common/http';
 // FormsModule
 import { FormsModule } from '@angular/forms';
 // Ng2IziToastModule
-import {Ng2IziToastModule} from 'ng2-izitoast';
+import { Ng2IziToastModule } from 'ng2-izitoast';
 // datatables
 import { DataTablesModule } from 'angular-datatables';
+// AngularMaterial
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule
+} from '@angular/material';
+import { DatePipe } from '@angular/common';
+// ngBootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // componentes
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +53,8 @@ import { StatusComponent } from './components/shared/charts/status/status.compon
 import { DepartamentosComponent } from './components/shared/charts/departamentos/departamentos.component';
 import { DetallessolicitudComponent } from './components/pages/detallessolicitud/detallessolicitud.component';
 import { ChangelogComponent } from './components/pages/changelog/changelog.component';
+import { EstadisticasFechasComponent } from './components/shared/charts/estadisticas-fechas/estadisticas-fechas.component';
+import { DetallesticketComponent } from './components/pages/ticket/detallesticket/detallesticket.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +81,9 @@ import { ChangelogComponent } from './components/pages/changelog/changelog.compo
     StatusComponent,
     DepartamentosComponent,
     DetallessolicitudComponent,
-    ChangelogComponent
+    ChangelogComponent,
+    EstadisticasFechasComponent,
+    DetallesticketComponent
   ],
   imports: [
     BrowserModule,
@@ -78,9 +93,19 @@ import { ChangelogComponent } from './components/pages/changelog/changelog.compo
     HttpClientModule,
     FormsModule,
     DataTablesModule,
-    Ng2IziToastModule
+    Ng2IziToastModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    NgbModule
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es' } ],
+  providers: [
+    DatePipe,
+    MatDatepickerModule,
+    { provide: LOCALE_ID, useValue: 'es' }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

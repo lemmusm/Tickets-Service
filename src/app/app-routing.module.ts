@@ -10,14 +10,13 @@ import { ListaDepartamentoComponent } from './components/pages/departamento/list
 import { EditarDepartamentoComponent } from './components/pages/departamento/editar-departamento/editar-departamento.component';
 import { AgregardepartamentoComponent } from './components/pages/departamento/agregardepartamento/agregardepartamento.component';
 import { ListaTicketsComponent } from './components/pages/ticket/lista-tickets/lista-tickets.component';
-import { EditarTicketComponent } from './components/pages/ticket/editar-ticket/editar-ticket.component';
 import { EditarTicketAdminComponent } from './components/pages/ticket/editar-ticket-admin/editar-ticket-admin.component';
 import { EditarUsuarioAdminComponent } from './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.component';
 import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/crear-ticket.component';
-import { HistorialComponent } from './components/pages/historial/historial.component';
-import { ServiciosComponent } from './components/shared/charts/servicios/servicios.component';
 import { DetallessolicitudComponent } from './components/pages/detallessolicitud/detallessolicitud.component';
 import { ChangelogComponent } from './components/pages/changelog/changelog.component';
+import { EstadisticasFechasComponent } from './components//shared/charts/estadisticas-fechas/estadisticas-fechas.component';
+import { DetallesticketComponent } from './components/pages/ticket/detallesticket/detallesticket.component';
 
 const routes: Routes = [
   {
@@ -29,11 +28,11 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [GuardService]
   },
-  {
-    path: 'historial',
-    component: HistorialComponent,
-    canActivate: [GuardService]
-  },
+  // {
+  //   path: 'historial',
+  //   component: HistorialComponent,
+  //   canActivate: [GuardService]
+  // },
   {
     path: 'editarUsuario/:id',
     component: EditarUsuarioComponent,
@@ -74,6 +73,13 @@ const routes: Routes = [
     component: EditarTicketAdminComponent,
     canActivate: [GuardService]
   },
+  // Detalles solicitud administrador
+  {
+    path: 'detalles-ticket/:id',
+    component: DetallesticketComponent,
+    canActivate: [GuardService]
+  },
+  // Detalles solicitud usuario
   {
     path: 'detalles-solicitud/:id',
     component: DetallessolicitudComponent,
@@ -92,6 +98,11 @@ const routes: Routes = [
   {
     path: 'changelogs',
     component: ChangelogComponent,
+    canActivate: [GuardService]
+  },
+  {
+    path: 'estadisticas-fechas',
+    component: EstadisticasFechasComponent,
     canActivate: [GuardService]
   },
   {

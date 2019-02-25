@@ -1,19 +1,34 @@
-<div class="col-md-6">
-        <canvas id="chartStatus">{{ chartStatus }}</canvas>
-    </div>
-    <div class="col-md-6 mt-5 mb-5">
-        <div class="table-responsive">
-            <table class="table mg-b-0">
-                <thead>
-                    <tr>
-                        <th *ngFor="let g of gstatus">{{g.status}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th *ngFor="let g of gstatus">{{g.count}}</th>
-                    </tr>
-                </tbody>
-            </table>
+<div class="slim-mainpanel">
+  <div class="container">
+    <div class="section-wrapper mg-t-20">
+      <label class="section-title tx-bold text-primary mb-3"
+        >Número de solicitudes por estatus</label
+      >
+      <div class="row">
+        <div class="col-md-6">
+          <canvas id="chartStatus">{{ chartStatus }}</canvas>
         </div>
+        <div class="col-md-6 mt-5 mb-5">
+          <div class="table-responsive">
+            <table class="table mg-b-0">
+              <thead>
+                <tr>
+                  <th *ngFor="let g of gstatus" class="tx-bold text-center">
+                    {{ g.status }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th *ngFor="let g of gstatus" class="tx-normal text-center">
+                    {{ g.count }}
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>

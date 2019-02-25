@@ -39,7 +39,7 @@ export class CrearTicketComponent implements OnInit {
     this.apiservice.getUsuarioByUID(this.id).subscribe((response: any) => {
       this.usuario = response;
     });
-    this.ticket.uid = this.authservice.uid; // Se almacena el uid de los datos de firebase para usarlo como huella digital
+    this.ticket.usuario_uid = this.authservice.uid; // Se almacena el uid de los datos de firebase para usarlo como huella digital
   }
   // Método para agregra solicitud
   addTicket() {
@@ -47,16 +47,10 @@ export class CrearTicketComponent implements OnInit {
       (response: any) => {
         this.message = response;
         this.alerta.toastNotification(
-          this.message.message,
+          'Tu solicitud ha sido creada, será analizada y atendida.',
           '',
           'green',
-          'far fa-check-circle'
-        );
-        this.alerta.toastNotification(
-          'Se mantendra la comunicación para solucionar el problema.',
-          '',
-          'blue',
-          'fas fa-info-circle'
+          'fas fa-check-circle'
         );
         this.router.navigate(['dashboard']);
       },

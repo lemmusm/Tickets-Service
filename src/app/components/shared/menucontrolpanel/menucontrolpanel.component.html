@@ -2,38 +2,36 @@
   <div class="container">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link-pc"  [routerLink]="['/control-panel']">
-          <span>Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item with-sub">
-        <a class="nav-link-pc" data-toggle="dropdown">
-          <span>Usuarios</span>
-        </a>
-        <div class="sub-item">
-          <ul>
-              <li><a [routerLink]="['/listado-usuarios']">Listado usuarios</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item with-sub">
-        <a class="nav-link-pc" data-toggle="dropdown">
-          <span>Departamentos</span>
-        </a>
-        <div class="sub-item">
-          <ul>
-              <li><a [routerLink]="['/agregar-departamento']">Agregar departamento</a></li>
-              <li><a [routerLink]="['/listado-departamentos']">Listado departamentos</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item with-sub">
-        <a class="nav-link-pc" data-toggle="dropdown">
+        <a class="nav-link-pc tx-bold" [routerLink]="['/listado-tickets']">
           <span>Solicitudes</span>
         </a>
-        <div class="sub-item">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link-pc tx-bold" [routerLink]="['/control-panel']">
+          <span>Estadisticas</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link-pc tx-bold" [routerLink]="['/listado-usuarios']">
+          <span>Usuarios</span>
+        </a>
+      </li>
+      <li class="nav-item with-sub">
+        <a href="" class="nav-link-pc tx-bold" data-toggle="dropdown">
+          <span>Departamentos</span>
+        </a>
+        <div class="sub-item tx-normal">
           <ul>
-              <li><a [routerLink]="['/listado-tickets']">Listado solicitudes</a></li>
+            <li>
+              <a [routerLink]="['/agregar-departamento']"
+                >Agregar departamento</a
+              >
+            </li>
+            <li>
+              <a [routerLink]="['/listado-departamentos']"
+                >Listado departamentos</a
+              >
+            </li>
           </ul>
         </div>
       </li>

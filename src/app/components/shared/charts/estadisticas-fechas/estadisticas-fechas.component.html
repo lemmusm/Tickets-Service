@@ -1,0 +1,114 @@
+<div class="slim-mainpanel">
+  <div class="container">
+    <div class="section-wrapper mg-t-20">
+      <label class="section-title tx-bold text-primary mb-3"
+        >Obtener estadisticas por rango de fecha sobre solicitudes</label
+      >
+      <form
+        class="form-layout form-layout-2"
+        #statisticsForm="ngForm"
+        (submit)="getDataByDates()"
+      >
+        <div class="col-md-12 text-right ">
+          <div class="row text-right">
+            <div class="col-12 text-right ">
+              <button
+                class="btn btn-teal bd-0"
+                [disabled]="!statisticsForm.form.valid"
+              >
+                Obtener datos
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters mt-3">
+          <div class="col-md-4 mg-t--1">
+            <div class="form-group">
+              <label class="form-control-label tx-primary"
+                >Fecha inicio:
+              </label>
+              <mat-form-field>
+                <input
+                  matInput
+                  [matDatepicker]="from"
+                  [(ngModel)]="dateFrom"
+                  name="dateFrom"
+                  placeholder="Selecciona el rango inicial"
+                  required
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="from"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #from></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-4 mg-t--1">
+            <div class="form-group">
+              <label class="form-control-label tx-primary">Fecha fin: </label>
+              <mat-form-field>
+                <input
+                  matInput
+                  [matDatepicker]="to"
+                  [(ngModel)]="dateTo"
+                  name="dateTo"
+                  placeholder="Selecciona el rango final"
+                  required
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="to"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #to></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-4 mg-t--1">
+            <div class="form-group">
+              <label class="form-control-label tx-primary"
+                >Total solicitudes período seleccionado:
+              </label>
+              <strong>{{ total }}</strong>
+              <label class="form-control-label tx-primary mt-2"
+                >Indicador por período seleccionado:
+              </label>
+              <strong>{{ indicador }}</strong>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col-md-6">
+          <canvas id="chartStatusDates">{{ chartStatusDates }}</canvas>
+        </div>
+        <div class="col-md-6 mt-5 mb-5">
+          <div class="table-responsive">
+            <table class="table mg-b-0">
+              <thead>
+                <tr>
+                  <th
+                    *ngFor="let st of gstatusdates"
+                    class="tx-bold text-center"
+                  >
+                    {{ st.status }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th
+                    *ngFor="let st of gstatusdates"
+                    class="tx-normal text-center"
+                  >
+                    {{ st.count }}
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

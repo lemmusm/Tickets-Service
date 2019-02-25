@@ -11,35 +11,32 @@ import Swal from 'sweetalert2';
   styles: []
 })
 export class ListaTicketsComponent implements OnInit {
-
   tickets: Ticket;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   message: any;
 
-  constructor(private apiservice: ApiService, private alerta: AlertaService) { }
+  constructor(private apiservice: ApiService, private alerta: AlertaService) {}
 
   ngOnInit() {
     this.getTickets();
   }
 
   getTickets() {
-    this.dtOptions = { pagingType: 'full_numbers', order: [0, 'desc'], pageLength: 10 };
-    this.apiservice.getTickets()
-        .subscribe(
-          (response: any) => {
-            this.tickets = response;
-            this.dtTrigger.next();
-          },
-          error => {
-            this.alerta.toastNotification(
-              error.name,
-              '',
-              'red',
-              'fas fa-times'
-            );
-          }
-        );
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      order: [0, 'desc'],
+      pageLength: 10
+    };
+    this.apiservice.getTickets().subscribe(
+      (response: any) => {
+        this.tickets = response;
+        this.dtTrigger.next();
+      },
+      error => {
+        this.alerta.toastNotification(error.name, '', 'red', 'fas fa-times');
+      }
+    );
   }
 
   deleteTicket(id: number) {
@@ -51,11 +48,10 @@ export class ListaTicketsComponent implements OnInit {
       confirmButtonColor: '#88D2F7',
       cancelButtonColor: '#FC9297',
       confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-    }).then((result) => {
+      cancelButtonText: 'Cancelar'
+    }).then(result => {
       if (result.value) {
-        this.apiservice.deleteTicket(id)
-        .subscribe(
+        this.apiservice.deleteTicket(id).subscribe(
           response => {
             this.message = response;
             this.alerta.toastNotification(
@@ -80,7 +76,9 @@ export class ListaTicketsComponent implements OnInit {
   }
 
   recargaDatatable() {
-    $('#listadoTickets').DataTable().destroy();
+    $('#listadoTickets')
+      .DataTable()
+      .destroy();
     this.getTickets();
   }
 }

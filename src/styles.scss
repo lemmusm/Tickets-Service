@@ -62,10 +62,15 @@ body {
   margin: 0 !important;
 }
 .fixPaddingCol {
-  padding: 5px !important;
+  padding-right: 2px !important;
+  padding-left: 2px !important;
 }
 .table.dataTable tbody tr {
   line-height: 3em !important;
+}
+
+.mt-n {
+  margin-top: -35px;
 }
 // modal sweetalert
 .swal2-popup {
@@ -73,7 +78,7 @@ body {
 }
 // ngclass-status
 .colorYellow {
-  color: #ee5a24 !important;
+  color: #f39c12 !important;
   font-weight: 700;
 }
 .colorBlue {
@@ -82,6 +87,10 @@ body {
 }
 .colorGreen {
   color: #009432 !important;
+  font-weight: 700;
+}
+.colorPurple {
+  color: #8c14fc !important;
   font-weight: 700;
 }
 // list-group
@@ -95,8 +104,32 @@ body {
 }
 // labesl details
 
-.details {
-  color: #535c68;
+.billed-from h6 {
+  text-transform: uppercase;
+}
+
+.section-label {
+  color: #2c3e50 !important;
+  text-transform: none !important;
+}
+.section-label strong {
+  text-transform: uppercase !important;
+}
+
+.tx-normal {
+  font-weight: 400 !important;
+  letter-spacing: 1px !important;
+  font-size: 12px !important;
+}
+.tx-bold {
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+  font-size: 12px !important;
+}
+.tx-boldx {
+  font-weight: 900 !important;
+  letter-spacing: 1px !important;
+  font-size: 12px !important;
 }
 // btn list custom
 .btncustom {
@@ -114,6 +147,13 @@ body {
 .btnsuccess:hover {
   color: #3498db;
 }
+.btnwarning {
+  color: #f39c12;
+  font-size: 1.4em;
+}
+.btnwarning:hover {
+  color: #f1c40f;
+}
 .btndanger {
   color: #c0392b;
   font-size: 1.4em;
@@ -121,7 +161,27 @@ body {
 .btndanger:hover {
   color: #e74c3c;
 }
+.btnexotic {
+  color: #8c14fc;
+  font-size: 1.4em;
+}
+.btnexotic:hover {
+  color: #a537fd;
+}
 
+.btn {
+  font-weight: 300 !important;
+  letter-spacing: 1px;
+}
 .fixLineHeightText {
   line-height: 4em !important;
+}
+// general
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }

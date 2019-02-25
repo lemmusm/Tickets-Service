@@ -1,7 +1,9 @@
 <div class="slim-mainpanel mt-5">
   <div class="container">
     <app-menucontrolpanel></app-menucontrolpanel>
-    <label class="section-title">LISTADO DE SOLICITUDES</label>
+    <label class="section-title text-primary mb-3"
+      >LISTADO DE SOLICITUDES</label
+    >
     <table
       id="listadoTickets"
       datatable
@@ -11,31 +13,32 @@
     >
       <thead>
         <tr>
-          <th class="text-center">ID</th>
-          <th class="text-center">Usuario</th>
-          <th class="text-center">Departamento</th>
-          <th class="text-center">Servicio</th>
-          <th class="text-center">Creación</th>
-          <th class="text-center">Status</th>
-          <th class="text-center">Acciones</th>
+          <th class="text-center tx-bold" width="10%">ID</th>
+          <th class="text-center tx-bold">Usuario</th>
+          <!-- <th class="text-center tx-bold">Departamento</th> -->
+          <th class="text-center tx-bold">Servicio</th>
+          <th class="text-center tx-bold">Creación</th>
+          <th class="text-center tx-bold">Status</th>
+          <th class="text-center tx-bold">Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let ticket of tickets; let i = index">
-          <td class="text-center fixLineHeightText">
+          <td class="text-center fixLineHeightText tx-normal">
             UPPE-{{ ticket.id_ticket }}
           </td>
-          <td class="fixLineHeightText">{{ ticket.displayName }}</td>
-          <td class="fixLineHeightText">{{ ticket.departamento }}</td>
-          <td class="fixLineHeightText">{{ ticket.servicio }}</td>
-          <td class="text-center fixLineHeightText">
+          <td class="fixLineHeightText tx-normal">{{ ticket.displayName }}</td>
+          <!-- <td class="fixLineHeightText tx-normal">{{ ticket.departamento }}</td> -->
+          <td class="fixLineHeightText tx-normal">{{ ticket.servicio }}</td>
+          <td class="text-center fixLineHeightText tx-normal">
             {{ ticket.created_at | date: 'mediumDate' | uppercase }}
           </td>
           <td
-            class="text-center fixLineHeightText"
+            class="text-center fixLineHeightText tx-boldx"
             [ngClass]="{
               colorBlue: ticket.status === 'Abierto',
               colorGreen: ticket.status === 'Realizado',
+              colorPurple: ticket.status === 'En proceso',
               colorYellow: ticket.status === 'N/A'
             }"
           >
@@ -43,21 +46,37 @@
           </td>
           <td>
             <div class="row fixMarginRow">
-              <div class="col-6 fixPaddingCol">
+              <div class="col-md-4 fixPaddingCol">
+                <div class="btn-demo">
+                  <a
+                    class="btn btncustom"
+                    [routerLink]="['/detalles-ticket', ticket.id_ticket]"
+                    placement="top"
+                    ngbTooltip="Editar"
+                  >
+                    <i class="btnsuccess colorPurple far fa-eye"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-4 fixPaddingCol">
                 <div class="btn-demo">
                   <a
                     class="btn btncustom"
                     [routerLink]="['/editarTicketAdmin', ticket.id_ticket]"
+                    placement="top"
+                    ngbTooltip="Editar"
                   >
                     <i class="btnsuccess far fa-edit"></i>
                   </a>
                 </div>
               </div>
-              <div class="col-6 fixPaddingCol">
+              <div class="col-md-4 fixPaddingCol">
                 <div class="btn-demo">
                   <a
                     class="btn btncustom"
                     (click)="deleteTicket(ticket.id_ticket)"
+                    placement="top"
+                    ngbTooltip="Eliminar"
                   >
                     <i class="btndanger far fa-trash-alt"></i>
                   </a>
