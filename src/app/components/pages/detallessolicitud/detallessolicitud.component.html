@@ -31,13 +31,13 @@
                 ><strong class="tx-normal text-primary"
                   >Fecha de creación:</strong
                 >
-                {{ ticket.created_at }}</label
+                {{ ticket.created_at | date: 'shortDate' }}</label
               >
               <label class="section-label tx-normal text-right"
                 ><strong class="tx-normal text-primary"
                   >Fecha de atención:</strong
                 >
-                {{ ticket.updated_at }}</label
+                {{ ticket.updated_at | date: 'shortDate' }}</label
               >
               <label class="section-label tx-normal text-right"
                 ><strong class="tx-normal text-primary">Atendio:</strong>

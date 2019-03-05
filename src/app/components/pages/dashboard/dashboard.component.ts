@@ -28,8 +28,9 @@ export class DashboardComponent implements OnInit {
     this.getTicketsByUsuario();
   }
 
-  // tslint:disable-next-line:max-line-length
-  // Consulta UID en la base de datos local y compará con el de firebase, si existe omite el guardado si no lo guarda en la base de datos local
+  /* Consulta UID en la base de datos local y compará con el de firebase,
+  // si existe omite el guardado si no lo guarda en la base de datos local
+  */
   verifyAndSaveUser() {
     this.apiservice
       .getUsuarioByUID(this.authservice.usuario.uid)
@@ -38,6 +39,24 @@ export class DashboardComponent implements OnInit {
           this.postUsuario(); // llamada al método post para guardar
         } else {
           console.log('🎯👍');
+        }
+        /* Algoritmo para actualizar el nombre en la base de datos cuando el correo
+        // electrónico es reasignado.
+        */
+        if (response.displayName !== this.authservice.usuario.displayName) {
+          this.apiservice
+            .updateDisplayNameAndPhotoURL(
+              this.authservice.uid,
+              this.authservice.usuario
+            )
+            .subscribe(
+              res => {
+                // console.log(res);
+              },
+              error => {
+                // console.log(error);
+              }
+            );
         }
       });
   }

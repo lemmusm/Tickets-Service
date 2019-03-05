@@ -9,8 +9,8 @@ import { Ticket } from '../models/ticket';
 })
 export class ApiService {
   // URL API
-  // API_URL = 'https://www.uppenjamo.edu.mx/laravel/webapiuppe/';
-  API_URL = 'http://webapiuppe/';
+  API_URL = 'https://www.uppenjamo.edu.mx/laravel/webapiuppe/';
+  // API_URL = 'http://webapiuppe/';
   // Arreglo de ubicaciones
   ubicaciones = [
     { id: 1, ubicacion: 'UD-1' },
@@ -56,6 +56,15 @@ export class ApiService {
   updateUsuario(uid: string, usuario: any): Observable<Usuario> {
     return this.http.put<Usuario>(
       `${this.API_URL}api/usuarios/` + uid,
+      usuario
+    );
+  }
+  /* Actualiza el nombre e imagen en la base de datos cuando el correo
+    // electrónico es reasignado.
+  */
+  updateDisplayNameAndPhotoURL(uid: string, usuario: any) {
+    return this.http.put(
+      `${this.API_URL}api/usuarios/updateDisplayName/` + uid,
       usuario
     );
   }
