@@ -3,20 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/pages/login/login.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { GuardService } from './providers/guard.service';
-import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuario/editar-usuario.component';
-import { ListaUsuarioComponent } from './components/pages/usuario/lista-usuario/lista-usuario.component';
-import { ControlpanelComponent } from './components/pages/controlpanel/controlpanel.component';
-import { ListaDepartamentoComponent } from './components/pages/departamento/lista-departamento/lista-departamento.component';
-import { EditarDepartamentoComponent } from './components/pages/departamento/editar-departamento/editar-departamento.component';
-import { AgregardepartamentoComponent } from './components/pages/departamento/agregardepartamento/agregardepartamento.component';
-import { ListaTicketsComponent } from './components/pages/ticket/lista-tickets/lista-tickets.component';
-import { EditarTicketAdminComponent } from './components/pages/ticket/editar-ticket-admin/editar-ticket-admin.component';
-import { EditarUsuarioAdminComponent } from './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.component';
-import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/crear-ticket.component';
-import { DetallessolicitudComponent } from './components/pages/detallessolicitud/detallessolicitud.component';
-import { ChangelogComponent } from './components/pages/changelog/changelog.component';
-import { EstadisticasFechasComponent } from './components//shared/charts/estadisticas-fechas/estadisticas-fechas.component';
-import { DetallesticketComponent } from './components/pages/ticket/detallesticket/detallesticket.component';
 
 const routes: Routes = [
   {
@@ -28,81 +14,84 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [GuardService]
   },
-  // {
-  //   path: 'historial',
-  //   component: HistorialComponent,
-  //   canActivate: [GuardService]
-  // },
   {
     path: 'editarUsuario/:id',
-    component: EditarUsuarioComponent,
+    loadChildren:
+      './components/pages/usuario/editar-usuario/editar-usuario.module#EditarUsuarioModule',
     canActivate: [GuardService]
   },
   {
     path: 'editarUsuarioAdmin/:id',
-    component: EditarUsuarioAdminComponent,
+    loadChildren:
+      './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.module#EditarUsuarioAdminModule',
     canActivate: [GuardService]
   },
   {
     path: 'listado-usuarios',
-    component: ListaUsuarioComponent,
+    loadChildren:
+      './components/pages/usuario/lista-usuario/lista-usuario.module#ListaUsuarioModule',
     canActivate: [GuardService]
   },
   {
     path: 'listado-departamentos',
-    component: ListaDepartamentoComponent,
+    loadChildren:
+      './components/pages/departamento/lista-departamento/lista-departamento.module#ListaDepartamentoModule',
     canActivate: [GuardService]
   },
   {
     path: 'agregar-departamento',
-    component: AgregardepartamentoComponent,
+    loadChildren:
+      './components/pages/departamento/agregardepartamento/agregardepartamento.module#AgregardepartamentoModule',
     canActivate: [GuardService]
   },
   {
     path: 'editarDepartamento/:id',
-    component: EditarDepartamentoComponent,
+    loadChildren:
+      './components/pages/departamento/editar-departamento/editar-departamento.module#EditarDepartamentoModule',
     canActivate: [GuardService]
   },
   {
     path: 'listado-tickets',
-    component: ListaTicketsComponent,
+    loadChildren:
+      './components/pages/ticket/lista-tickets/lista-tickets.module#ListaTicketsModule',
     canActivate: [GuardService]
   },
   {
     path: 'editarTicketAdmin/:id',
-    component: EditarTicketAdminComponent,
+    loadChildren:
+      './components/pages/ticket/editar-ticket-admin/editar-ticket-admin.module#EditarTicketAdminModule',
     canActivate: [GuardService]
   },
   // Detalles solicitud administrador
   {
     path: 'detalles-ticket/:id',
-    component: DetallesticketComponent,
+    loadChildren:
+      './components/pages/ticket/detallesticket/detallesticket.module#DetallesticketModule',
     canActivate: [GuardService]
   },
   // Detalles solicitud usuario
   {
     path: 'detalles-solicitud/:id',
-    component: DetallessolicitudComponent,
+    loadChildren:
+      './components/pages/detallessolicitud/detallessolicitud.module#DetallessolicitudModule',
     canActivate: [GuardService]
   },
   {
     path: 'crear-ticket',
-    component: CrearTicketComponent,
+    loadChildren:
+      './components/pages/ticket/crear-ticket/crear-ticket.module#CrearTicketModule',
     canActivate: [GuardService]
   },
   {
-    path: 'control-panel',
-    component: ControlpanelComponent,
+    path: 'estadistica',
+    loadChildren:
+      './components/pages/estadistica/estadistica.module#EstadisticaModule',
     canActivate: [GuardService]
   },
   {
     path: 'changelogs',
-    component: ChangelogComponent,
-    canActivate: [GuardService]
-  },
-  {
-    path: 'estadisticas-fechas',
-    component: EstadisticasFechasComponent,
+    loadChildren:
+      './components/pages/changelog/changelog.module#ChangelogModule',
     canActivate: [GuardService]
   },
   {

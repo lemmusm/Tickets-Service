@@ -16,14 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { Ng2IziToastModule } from 'ng2-izitoast';
 // datatables
 import { DataTablesModule } from 'angular-datatables';
-// AngularMaterial
+// // AngularMaterial
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatFormFieldModule,
-  MatInputModule,
-  MatDatepickerModule,
-  MatNativeDateModule
-} from '@angular/material';
 import { DatePipe } from '@angular/common';
 // ngBootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -34,27 +28,7 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 import { LoginComponent } from './components/pages/login/login.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
-import { ListaUsuarioComponent } from './components/pages/usuario/lista-usuario/lista-usuario.component';
 import { MenuComponent } from './components/shared/menu/menu.component';
-import { EditarUsuarioComponent } from './components/pages/usuario/editar-usuario/editar-usuario.component';
-import { ControlpanelComponent } from './components/pages/controlpanel/controlpanel.component';
-import { MenucontrolpanelComponent } from './components/shared/menucontrolpanel/menucontrolpanel.component';
-import { ListaDepartamentoComponent } from './components/pages/departamento/lista-departamento/lista-departamento.component';
-import { EditarDepartamentoComponent } from './components/pages/departamento/editar-departamento/editar-departamento.component';
-import { AgregardepartamentoComponent } from './components/pages/departamento/agregardepartamento/agregardepartamento.component';
-import { ListaTicketsComponent } from './components/pages/ticket/lista-tickets/lista-tickets.component';
-import { EditarTicketComponent } from './components/pages/ticket/editar-ticket/editar-ticket.component';
-import { EditarTicketAdminComponent } from './components/pages/ticket/editar-ticket-admin/editar-ticket-admin.component';
-import { EditarUsuarioAdminComponent } from './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.component';
-import { CrearTicketComponent } from './components/pages/ticket/crear-ticket/crear-ticket.component';
-import { HistorialComponent } from './components/pages/historial/historial.component';
-import { ServiciosComponent } from './components/shared/charts/servicios/servicios.component';
-import { StatusComponent } from './components/shared/charts/status/status.component';
-import { DepartamentosComponent } from './components/shared/charts/departamentos/departamentos.component';
-import { DetallessolicitudComponent } from './components/pages/detallessolicitud/detallessolicitud.component';
-import { ChangelogComponent } from './components/pages/changelog/changelog.component';
-import { EstadisticasFechasComponent } from './components/shared/charts/estadisticas-fechas/estadisticas-fechas.component';
-import { DetallesticketComponent } from './components/pages/ticket/detallesticket/detallesticket.component';
 
 @NgModule({
   declarations: [
@@ -63,27 +37,7 @@ import { DetallesticketComponent } from './components/pages/ticket/detallesticke
     LoginComponent,
     NavbarComponent,
     FooterComponent,
-    ListaUsuarioComponent,
-    MenuComponent,
-    EditarUsuarioComponent,
-    ControlpanelComponent,
-    MenucontrolpanelComponent,
-    ListaDepartamentoComponent,
-    EditarDepartamentoComponent,
-    AgregardepartamentoComponent,
-    ListaTicketsComponent,
-    EditarTicketComponent,
-    EditarTicketAdminComponent,
-    EditarUsuarioAdminComponent,
-    CrearTicketComponent,
-    HistorialComponent,
-    ServiciosComponent,
-    StatusComponent,
-    DepartamentosComponent,
-    DetallessolicitudComponent,
-    ChangelogComponent,
-    EstadisticasFechasComponent,
-    DetallesticketComponent
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -94,18 +48,10 @@ import { DetallesticketComponent } from './components/pages/ticket/detallesticke
     FormsModule,
     DataTablesModule,
     Ng2IziToastModule,
-    BrowserAnimationsModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    NgbModule
+    NgbModule, // tooltips
+    BrowserAnimationsModule
   ],
-  providers: [
-    DatePipe,
-    MatDatepickerModule,
-    { provide: LOCALE_ID, useValue: 'es' }
-  ],
+  providers: [DatePipe, { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
