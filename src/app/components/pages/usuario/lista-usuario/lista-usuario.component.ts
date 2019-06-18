@@ -21,10 +21,10 @@ export class ListaUsuarioComponent implements OnInit {
   constructor(private apiservice: ApiService, private alerta: AlertaService) { }
 
   ngOnInit() {
-    this.getUsuarios();
+    this.mostrarUsuarios();
   }
 // Trae los usuarios y los enlista en una datatable
-  getUsuarios() {
+  mostrarUsuarios() {
     this.dtOptions = { pagingType: 'full_numbers', pageLength: 10 };
     this.apiservice.getUsuarios()
         .subscribe(
@@ -43,7 +43,7 @@ export class ListaUsuarioComponent implements OnInit {
         );
   }
 // Elimina usuario seleccionado mediante un popup de confirmacion mostrando una alerta
-  deleteUsuario(uid: string) {
+  borrarUsuario(uid: string) {
     Swal.fire({
       title: '¿Deseas eliminar el registro?',
       text: 'Será borrado de forma permanente',
@@ -82,6 +82,6 @@ export class ListaUsuarioComponent implements OnInit {
 // Recarga la tabla despues de que se borra el usuario
   recargaDataTable() {
     $('#listadoUsuarios').DataTable().destroy();
-    this.getUsuarios();
+    this.mostrarUsuarios();
   }
 }

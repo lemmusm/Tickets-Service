@@ -1,6 +1,5 @@
 <div class="slim-mainpanel mt-5">
   <div class="container">
-    <app-menucontrolpanel></app-menucontrolpanel>
     <label class="section-title">LISTADO DE USUARIOS</label>
     <table
       id="listadoUsuarios"
@@ -24,7 +23,7 @@
           <td class="fixLineHeightText tx-normal">{{ usuario.displayName }}</td>
           <td class="fixLineHeightText tx-normal">{{ usuario.email }}</td>
           <td class="fixLineHeightText tx-normal">
-            {{ usuario.departamento.departamento }}
+            {{ usuario.departamento?.departamento }}
           </td>
           <td>
             <div class="row fixMarginRow">
@@ -32,7 +31,7 @@
                 <div class="btn-demo">
                   <a
                     class="btn btncustom"
-                    [routerLink]="['/editarUsuarioAdmin', usuario.uid]"
+                    [routerLink]="['/admin/editar-usuario', usuario.uid]"
                   >
                     <i
                       class="btnsuccess far fa-edit"
@@ -44,7 +43,7 @@
               </div>
               <div class="col-6">
                 <div class="btn-demo">
-                  <a class="btn btncustom" (click)="deleteUsuario(usuario.uid)">
+                  <a class="btn btncustom" (click)="borrarUsuario(usuario.uid)">
                     <i
                       class="btndanger far fa-trash-alt"
                       placement="top"

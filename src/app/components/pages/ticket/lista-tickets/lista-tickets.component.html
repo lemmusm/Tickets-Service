@@ -1,16 +1,8 @@
 <div class="slim-mainpanel mt-5">
   <div class="container">
-    <app-menucontrolpanel></app-menucontrolpanel>
-    <label class="section-title text-primary mb-3"
-      >LISTADO DE SOLICITUDES</label
-    >
-    <table
-      id="listadoTickets"
-      datatable
-      [dtOptions]="dtOptions"
-      [dtTrigger]="dtTrigger"
-      class="row-border hover table"
-    >
+
+    <label class="section-title text-primary mb-3">LISTADO DE SOLICITUDES</label>
+    <table id="listadoTickets" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table">
       <thead>
         <tr>
           <th class="text-center tx-bold" width="10%">ID</th>
@@ -33,51 +25,36 @@
           <td class="text-center fixLineHeightText tx-normal">
             {{ ticket.created_at | date: 'mediumDate' | uppercase }}
           </td>
-          <td
-            class="text-center fixLineHeightText tx-boldx"
-            [ngClass]="{
+          <td class="text-center fixLineHeightText tx-boldx" [ngClass]="{
               colorBlue: ticket.status === 'Abierto',
               colorGreen: ticket.status === 'Realizado',
               colorPurple: ticket.status === 'En proceso',
               colorYellow: ticket.status === 'N/A'
-            }"
-          >
+            }">
             {{ ticket.status }}
           </td>
           <td>
             <div class="row fixMarginRow">
               <div class="col-md-4 fixPaddingCol">
                 <div class="btn-demo">
-                  <a
-                    class="btn btncustom"
-                    [routerLink]="['/detalles-ticket', ticket.id_ticket]"
-                    placement="top"
-                    ngbTooltip="Visualizar"
-                  >
+                  <a class="btn btncustom" [routerLink]="['/admin/revisar-ticket', ticket.id_ticket]" placement="top"
+                    ngbTooltip="Revisar">
                     <i class="btnsuccess colorPurple far fa-eye"></i>
                   </a>
                 </div>
               </div>
               <div class="col-md-4 fixPaddingCol">
                 <div class="btn-demo">
-                  <a
-                    class="btn btncustom"
-                    [routerLink]="['/editarTicketAdmin', ticket.id_ticket]"
-                    placement="top"
-                    ngbTooltip="Editar"
-                  >
+                  <a class="btn btncustom" [routerLink]="['/admin/atender-ticket', ticket.id_ticket]" placement="top"
+                    ngbTooltip="Atender">
                     <i class="btnsuccess far fa-edit"></i>
                   </a>
                 </div>
               </div>
               <div class="col-md-4 fixPaddingCol">
                 <div class="btn-demo">
-                  <a
-                    class="btn btncustom"
-                    (click)="deleteTicket(ticket.id_ticket)"
-                    placement="top"
-                    ngbTooltip="Eliminar"
-                  >
+                  <a class="btn btncustom" (click)="borrarTicket(ticket.id_ticket)" placement="top"
+                    ngbTooltip="Eliminar">
                     <i class="btndanger far fa-trash-alt"></i>
                   </a>
                 </div>

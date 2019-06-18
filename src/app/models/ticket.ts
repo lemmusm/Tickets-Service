@@ -1,6 +1,8 @@
+import { Servicio } from './servicio';
 export interface Ticket {
   id_ticket?: string;
-  servicio?: string;
+  servicio_id?: string;
+  servicio?: Servicio;
   descripcion?: string;
   diagnostico?: string;
   tecnico?: string;

@@ -13,11 +13,11 @@ export interface GraphStatus {
   count: number;
 }
 @Component({
-  selector: 'app-estadisticas-fechas',
-  templateUrl: './estadisticas-fechas.component.html',
+  selector: 'app-indicadores',
+  templateUrl: './indicadores.component.html',
   styles: []
 })
-export class EstadisticasFechasComponent implements OnInit {
+export class IndicadoresComponent implements OnInit {
   // variables para obtener total e indicador por periodo
   indicador = 0;
   total = 0;
@@ -36,18 +36,19 @@ export class EstadisticasFechasComponent implements OnInit {
   apiDateTo: any;
   // generate random color
   colorR = [];
-  dynamicColors = function() {
+  dynamicColors = function () {
     const r = Math.floor(Math.random() * 255);
     const g = Math.floor(Math.random() * 255);
     const b = Math.floor(Math.random() * 255);
+    const a = .75;
     return 'rgb(' + r + ',' + g + ',' + b + ')';
   };
   // end random color
-  constructor(private apiservice: ApiService, private datePipe: DatePipe) {}
+  constructor(private apiservice: ApiService, private datePipe: DatePipe) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   // Trae datos de estatus por rango de fechas
-  getDataByDates() {
+  mostrarIndicadores() {
     this.indicador = 0;
     this.total = 0;
     // Obtiene la fecha del formulario, cambia formato y agrega horario
@@ -57,18 +58,23 @@ export class EstadisticasFechasComponent implements OnInit {
       this.datePipe.transform(this.dateTo, 'yyyy-MM-dd') + ' 23.59.59';
 
     this.apiservice
-      .getDates(this.dates.dateFrom, this.dates.dateTo)
+      .getIndicadores(this.dates.dateFrom, this.dates.dateTo)
       .subscribe((response: any) => {
         this.gstatusdates = response;
         this.graphstatusdates = response;
         const labels = this.graphstatusdates.map(x => x.status);
         const count: any = this.graphstatusdates.map((x: any) => x.count);
-        // Obtener numero total de items
+        /*
+        // Algoritmo para obtener los indicadores ISO
+        */
         for (let i = 0; i < count.length; i++) {
           this.total += count[i]; // Se obtiene el número total de items
         }
-        /* Algoritmo para obtener indicadores por medio de la regla de tres total es 100%,
-        entonces realizado cuanto es? */
+        /*
+          Regla de tres: El total es 100%, entonces lo realizado cuanto es?
+          -> count [0] es la posición del arreglo [realizado (0), abierto (1), en proceso (2)]
+          en este caso se hace el conteo de lo realizado por count[0]
+        */
         this.indicador = (count[0] * 100) / this.total; // realizados * 100 % total
         // Aplicar color random
         // tslint:disable-next-line:forin
@@ -76,24 +82,22 @@ export class EstadisticasFechasComponent implements OnInit {
           this.colorR.push(this.dynamicColors());
         }
         this.chartStatusDates = new Chart('chartStatusDates', {
-          type: 'bar',
+          type: 'pie',
           data: {
             labels: labels,
             datasets: [
               {
                 data: count,
                 backgroundColor: this.colorR,
-                borderColor: 'transparent',
+                borderColor: 'white',
                 borderDash: [1],
-                pointBorderColor: '#e74c3c',
-                pointBackgroundColor: '#e74c3c',
                 fill: false
               }
             ]
           },
           options: {
             legend: {
-              display: false
+              display: true
             },
             title: {
               display: true
@@ -101,12 +105,12 @@ export class EstadisticasFechasComponent implements OnInit {
             scales: {
               xAxes: [
                 {
-                  display: true
+                  display: false
                 }
               ],
               yAxes: [
                 {
-                  display: true,
+                  display: false,
                   ticks: {
                     beginAtZero: true
                   }

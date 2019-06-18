@@ -5,15 +5,12 @@ import { FormsModule } from '@angular/forms';
 
 import { EditarUsuarioAdminRoutingModule } from './editar-usuario-admin-routing.module';
 import { EditarUsuarioAdminComponent } from './editar-usuario-admin.component';
-import { SharedModule } from 'src/app/shared.module';
-
 @NgModule({
   declarations: [EditarUsuarioAdminComponent],
   imports: [
     CommonModule,
     EditarUsuarioAdminRoutingModule,
-    FormsModule,
-    SharedModule
+    FormsModule
   ]
 })
 export class EditarUsuarioAdminModule {}

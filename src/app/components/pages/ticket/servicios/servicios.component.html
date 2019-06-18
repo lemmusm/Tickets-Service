@@ -1,0 +1,65 @@
+<div class="slim-mainpanel">
+  <div class="container">
+    <div class="section-wrapper mt-5">
+      <label class="section-title tx-normal text-primary">Crear servicio</label>
+      <form class="form-layout" #addServicio="ngForm" (submit)="agregarServicio(); addServicio.reset();">
+        <div class="row mg-b-25">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label section-label tx-normal">Nombre del serivio: <span
+                  class="tx-danger">*</span></label>
+              <input class="form-control section-label tx-normal" type="text" name="servicio"
+                [(ngModel)]="servicio.servicio" placeholder="Servicio" required />
+            </div>
+          </div>
+          <div class="col-6 text-right">
+            <button class="btn btn-teal bd-0" [disabled]="!addServicio.form.valid">
+              Agregar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- LISTA -->
+    <label class="section-title text-primary mb-3">Listado servicios</label>
+    <table id="listadoServicios" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+      class="row-border hover table">
+      <thead>
+        <tr>
+          <th style="width: 5%" class="text-center tx-bold">#</th>
+          <th style="width: 20%" class="text-center tx-bold">Servicio</th>
+          <th style="width: 15%" class="text-center tx-bold">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let servicio of servicios; let i = index">
+          <td class="text-center fixLineHeightText tx-normal">{{ i + 1 }}</td>
+          <td class="fixLineHeightText tx-normal">
+            {{ servicio.servicio }}
+          </td>
+          <td>
+            <div class="row fixMarginRow">
+              <div class="col-6">
+                <div class="btn-demo">
+                  <a class="btn btncustom" [routerLink]="[
+                      '/admin/editar-servicio',
+                      servicio.id_servicio
+                    ]">
+                    <i class="btnsuccess far fa-edit" placement="top" ngbTooltip="Editar"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="btn-demo">
+                  <a class="btn btncustom" (click)="eliminarServicio(servicio.id_servicio)">
+                    <i class="btndanger far fa-trash-alt" placement="top" ngbTooltip="Eliminar"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

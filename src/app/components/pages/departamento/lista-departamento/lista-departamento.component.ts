@@ -16,15 +16,15 @@ export class ListaDepartamentoComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   message: any;
 
-  constructor(private apiservice: ApiService, private alerta: AlertaService) {}
+  constructor(private apiservice: ApiService, private alerta: AlertaService) { }
 
   ngOnInit() {
-    this.getDepartamentos();
+    this.mostrarDepartamentos();
   }
   // Trea los departamentos
-  getDepartamentos() {
+  mostrarDepartamentos() {
     this.dtOptions = { pagingType: 'full_numbers', pageLength: 10 };
-    this.apiservice.getDepartamentos().subscribe(
+    this.apiservice.getCompleteDepartamentos().subscribe(
       (response: any) => {
         this.departamentos = response;
         this.dtTrigger.next();
@@ -35,7 +35,7 @@ export class ListaDepartamentoComponent implements OnInit {
     );
   }
   // Elimina el departamento seleccionado
-  deleteDepartamento(id: number) {
+  eliminarDepartamento(id: number) {
     Swal.fire({
       title: '¿Deseas eliminar el registro?',
       text: 'Será borrado de forma permanente',
@@ -75,6 +75,6 @@ export class ListaDepartamentoComponent implements OnInit {
     $('#listadoDepartamentos')
       .DataTable()
       .destroy();
-    this.getDepartamentos();
+    this.mostrarDepartamentos();
   }
 }

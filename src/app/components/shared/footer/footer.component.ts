@@ -7,27 +7,10 @@ import { Router } from '@angular/router';
   templateUrl: './footer.component.html',
   styles: []
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
   year = new Date().getFullYear();
   email: any;
 
-  constructor(public authservice: AuthService, private router: Router) {}
+  constructor(public authservice: AuthService, private router: Router) { }
 
-  ngOnInit() {}
-
-  controlpanel() {
-    this.email = this.authservice.usuario.email;
-
-    switch (this.email) {
-      case 'mhernandez@uppenjamo.edu.mx':
-        this.router.navigate(['listado-tickets']);
-        break;
-      case 'cc@uppenjamo.edu.mx':
-        this.router.navigate(['listado-tickets']);
-        break;
-      default:
-        location.href = 'https://uppenjamo.edu.mx';
-        break;
-    }
-  }
 }

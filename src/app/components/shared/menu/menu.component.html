@@ -1,24 +1,89 @@
-<div class="slim-navbar">
+<div class="slim-navbar mb-5">
   <div class="container">
     <ul class="nav">
       <li class="nav-item">
         <a class="nav-link tx-bold" [routerLink]="['dashboard']">
           <i class="fas fa-tachometer-alt"></i>
-          <span>Mi historial</span>
+          <span>Mi solicitudes</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link tx-bold" (click)="verifyUpdatePerfil()">
+        <a class="nav-link tx-bold" (click)="actualizarUsuario()">
           <i class="fas fa-ticket-alt"></i>
           <span>Solicitar servicio</span>
         </a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link tx-bold" [routerLink]="['historial']">
-          <i class="fas fa-list-ul"></i>
-          <span>Mi historial</span>
+      <li class="nav-item with-sub mega-dropdown">
+        <a class="nav-link" href="#">
+          <i class="icon ion-ios-filing-outline"></i>
+          <span>Administrador</span>
         </a>
-      </li> -->
+        <div class="sub-item">
+          <div class="row">
+            <div class="col-lg mg-t-30 mg-lg-t-0">
+              <label class="section-label title-section-label">SOLICITUDES</label>
+              <ul>
+                <li>
+                  <a [routerLink]="['/admin/listado-tickets']">
+                    <span>Solicitudes</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/admin/servicios']">
+                    <span>Servicios</span>
+                  </a>
+                </li>
+              </ul>
+              <label class="section-label title-section-label mg-t-20">ESTADÍSTICAS</label>
+              <ul>
+                <li>
+                  <a [routerLink]="['/admin/estadistica']">
+                    <span>Generales</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/admin/indicadores']">
+                    <span>Indicadores ISO</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg mg-t-30 mg-lg-t-0">
+              <label class="section-label title-section-label">USUARIOS</label>
+              <ul>
+                <li>
+                  <a [routerLink]="['/admin/listado-usuarios']">
+                    <span>Listado de usuarios</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/admin/roles']">
+                    <span>Roles</span>
+                  </a>
+                </li>
+              </ul>
+              <label class="section-label title-section-label mg-t-20">DEPARTAMENTOS</label>
+              <ul>
+                <li>
+                  <a [routerLink]="['/admin/agregar-departamento']">
+                    <span>Agregar departamento</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/admin/listado-departamentos']">
+                    <span>Listado de departamentos</span>
+                  </a>
+                </li>
+                <li>
+                  <a [routerLink]="['/admin/ubicaciones']">
+                    <span>Ubicaciones</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
     </ul>
   </div>
 </div>

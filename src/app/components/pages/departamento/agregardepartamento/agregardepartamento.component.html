@@ -1,51 +1,27 @@
 <div class="slim-mainpanel">
   <div class="container">
-    <app-menucontrolpanel></app-menucontrolpanel>
     <div class="section-wrapper mt-5">
-      <label class="section-title tx-normal text-primary"
-        >Crear departamento</label
-      >
-      <label class="section-title section-label tx-normal mb-3"
-        >Completa la información</label
-      >
-      <form
-        class="form-layout"
-        #addDepartamentoForm="ngForm"
-        (submit)="addDepartamento()"
-      >
+      <label class="section-title tx-normal text-primary">Crear departamento</label>
+      <label class="section-title section-label tx-normal mb-3">Completa la información</label>
+      <form class="form-layout" #addDepartamentoForm="ngForm" (submit)="agregarDepartamento()">
         <div class="row mg-b-25">
           <div class="col-lg-6">
             <div class="form-group">
-              <label class="form-control-label section-label tx-normal"
-                >Área/Departamento: <span class="tx-danger">*</span></label
-              >
-              <input
-                class="form-control section-label tx-normal"
-                type="text"
-                name="dpto_name"
-                [(ngModel)]="departamento.departamento"
-                placeholder="Inserta el área/departamento"
-                required
-              />
+              <label class="form-control-label section-label tx-normal">Área/Departamento: <span
+                  class="tx-danger">*</span></label>
+              <input class="form-control section-label tx-normal" type="text" name="dpto_name"
+                [(ngModel)]="departamento.departamento" placeholder="Inserta el área/departamento" required />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group mg-b-10-force">
-              <label class="form-control-label section-label tx-normal"
-                >Departamento: <span class="tx-danger">*</span></label
-              >
-              <select
-                class="form-control select2 section-label tx-normal"
-                [(ngModel)]="departamento.ubicacion"
-                name="ubicacion"
-                required
-              >
-                <option
-                  clas="section-label tx-normal"
-                  *ngFor="let ubicacion of ubicaciones"
-                  [value]="ubicacion.ubicacion"
-                >
-                  {{ ubicacion.ubicacion }}
+              <label class="form-control-label section-label tx-normal">Ubicación: <span
+                  class="tx-danger">*</span></label>
+              <select class="form-control select2 section-label tx-normal" [(ngModel)]="departamento.ubicacion_id"
+                name="ubicacion" required>
+                <option class=" section-label tx-normal" *ngFor="let ubicacion of ubicaciones"
+                  [value]="ubicacion.id_ubicacion">
+                  {{ ubicacion.ubicacion}}
                 </option>
               </select>
             </div>
@@ -55,10 +31,7 @@
         <div class="form-layout-footer">
           <div class="row">
             <div class="col-12 text-right">
-              <button
-                class="btn btn-teal bd-0"
-                [disabled]="!addDepartamentoForm.form.valid"
-              >
+              <button class="btn btn-teal bd-0" [disabled]="!addDepartamentoForm.form.valid">
                 Agregar
               </button>
             </div>

@@ -29,7 +29,6 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { MenuComponent } from './components/shared/menu/menu.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,4 +53,4 @@ import { MenuComponent } from './components/shared/menu/menu.component';
   providers: [DatePipe, { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,3 +1,4 @@
+import { Ubicacion } from './../../../../models/ubicacion';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/providers/api.service';
 import { Router } from '@angular/router';
@@ -13,14 +14,15 @@ export class AgregardepartamentoComponent implements OnInit {
 
   departamento: Departamento = {};
   message: any;
-  ubicaciones = this.apiservice.ubicaciones;
+  ubicaciones: Ubicacion;
   constructor(public apiservice: ApiService, private router: Router, private alerta: AlertaService) { }
 
   ngOnInit() {
+    this.mostrarUbicaciones();
   }
-
-  addDepartamento() {
-    this.apiservice.postDepartamento(this.departamento)
+// Agrega un nuevo departamento
+  agregarDepartamento() {
+    this.apiservice.addDepartamento(this.departamento)
         .subscribe(
           (response: any) => {
             this.message = response;
@@ -30,7 +32,7 @@ export class AgregardepartamentoComponent implements OnInit {
               'green',
               'far fa-check-circle'
             );
-            this.router.navigate(['listado-departamentos']);
+            this.router.navigate(['admin/listado-departamentos']);
           },
           error => {
             console.log(error);
@@ -40,6 +42,15 @@ export class AgregardepartamentoComponent implements OnInit {
               'red',
               'fas fa-times'
             );
+          }
+        );
+  }
+// Trae las ubicaciones para usarlas en el SELECT
+  mostrarUbicaciones(){
+    this.apiservice.getUbicaciones()
+        .subscribe(
+          (response: any) => {
+            this.ubicaciones = response;
           }
         );
   }

@@ -1,103 +1,57 @@
 <div class="slim-mainpanel">
   <div class="container">
-    <app-menucontrolpanel></app-menucontrolpanel>
     <div class="section-wrapper mg-t-20">
-      <form
-        class="form-layout form-layout-2"
-        #updateTicketForm="ngForm"
-        (submit)="updateTicket()"
-      >
+      <form class="form-layout form-layout-2" #updateTicketForm="ngForm" (submit)="actualizarTicket()">
         <div class="row no-gutters">
           <div class="col-md-12">
             <div class="form-group text-center border-0">
-              <img
-                src="./assets/img/logo_uppe.png"
-                width="100"
-                alt="logouppe"
-              />
+              <img src="./assets/img/logo_uppe.png" width="100" alt="logouppe" />
             </div>
           </div>
           <div class="col-md-12">
-            <h6
-              class="position-name text-center tx-teal tx-20 font-weight-light"
-            >
+            <h6 class="position-name text-center tx-teal tx-20 font-weight-light">
               R1PI6 | SERVICIO DE SOPORTE TÉCNICO
             </h6>
           </div>
           <div class="col-md-6">
             <div class="form-group border-0">
-              <label class="form-control-label text-left"
-                ><span class="tx-danger"
-                  >TICKET ID: U-{{ ticket.id_ticket }}</span
-                ></label
-              >
+              <label class="form-control-label text-left"><span class="tx-danger">TICKET ID:
+                  U-{{ ticket.id_ticket }}</span></label>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group text-right border-0">
-              <label class="form-control-label tx-primary"
-                >Fecha de creación:
-                {{ ticket.created_at | date: 'mediumDate' | uppercase }}</label
-              >
+              <label class="form-control-label tx-primary">Fecha de creación:
+                {{ ticket.created_at | date: 'mediumDate' | uppercase }}</label>
             </div>
           </div>
           <div class="col-md-4 mg-t--1">
             <div class="form-group">
-              <label class="form-control-label tx-primary"
-                >Solicitante: <span class="tx-danger">*</span></label
-              >
-              <input
-                class="form-control section-label tx-normal"
-                type="text"
-                name="solicitante"
-                [(ngModel)]="ticket.displayName"
-                placeholder="Inserta tu nombre"
-              />
+              <label class="form-control-label tx-primary">Solicitante: <span class="tx-danger">*</span></label>
+              <input class="form-control section-label tx-normal" type="text" name="solicitante"
+                [(ngModel)]="ticket.displayName" placeholder="Inserta tu nombre" />
             </div>
           </div>
           <div class="col-md-4 mg-t--1">
             <div class="form-group mg-md-l--1">
-              <label class="form-control-label tx-primary"
-                >Correo electrónico: <span class="tx-danger">*</span></label
-              >
-              <input
-                class="form-control section-label tx-normal"
-                type="text"
-                name="email"
-                [(ngModel)]="ticket.email"
-                placeholder="Inserta tu correo institucional"
-              />
+              <label class="form-control-label tx-primary">Correo electrónico: <span class="tx-danger">*</span></label>
+              <input class="form-control section-label tx-normal" type="text" name="email" [(ngModel)]="ticket.email"
+                placeholder="Inserta tu correo institucional" />
             </div>
           </div>
           <div class="col-md-4 mg-t--1">
             <div class="form-group mg-md-l--1">
-              <label class="form-control-label tx-primary"
-                >Departamento: <span class="tx-danger">*</span></label
-              >
-              <input
-                class="form-control section-label tx-normal"
-                type="text"
-                name="departamento"
-                [(ngModel)]="ticket.departamento"
-                placeholder="Inserta tu departamento"
-              />
+              <label class="form-control-label tx-primary">Departamento: <span class="tx-danger">*</span></label>
+              <input class="form-control section-label tx-normal" type="text" name="departamento"
+                [(ngModel)]="ticket.departamento" placeholder="Inserta tu departamento" />
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group bd-t-0-force">
-              <label class="form-control-label tx-primary"
-                >Tipo de servicio: <span class="tx-danger">*</span></label
-              >
-              <select
-                id="select2-a"
-                class="form-control section-label tx-normal"
-                name="servicio"
-                [(ngModel)]="ticket.servicio"
-              >
-                <option
-                  *ngFor="let servicio of servicios"
-                  [value]="servicio.servicio"
-                >
+              <label class="form-control-label tx-primary">Tipo de servicio: <span class="tx-danger">*</span></label>
+              <select id="select2-a" class="form-control section-label tx-normal" name="servicio"
+                [(ngModel)]="ticket.servicio_id">
+                <option *ngFor="let servicio of servicios" [value]="servicio.id_servicio">
                   {{ servicio.servicio }}
                 </option>
               </select>
@@ -105,43 +59,23 @@
           </div>
           <div class="col-md-8">
             <div class="form-group mg-md-l--1 bd-t-0-force">
-              <label class="form-control-label tx-primary"
-                >Descripción: <span class="tx-danger">*</span></label
-              >
-              <textarea
-                rows="5"
-                class="form-control section-label tx-normal"
-                name="descripcion"
-                [(ngModel)]="ticket.descripcion"
-                placeholder="Describe tu problema presentado."
-              ></textarea>
+              <label class="form-control-label tx-primary">Descripción: <span class="tx-danger">*</span></label>
+              <textarea rows="5" class="form-control section-label tx-normal" name="descripcion"
+                [(ngModel)]="ticket.descripcion" placeholder="Describe tu problema presentado."></textarea>
             </div>
           </div>
           <div class="col-md-8">
             <div class="form-group bd-t-0-force  mg-md-l--1">
-              <label class="form-control-label tx-primary"
-                >Diagnóstico: <span class="tx-danger">*</span></label
-              >
-              <textarea
-                rows="5"
-                class="form-control section-label tx-normal"
-                name="diagnostico"
-                [(ngModel)]="ticket.diagnostico"
-                placeholder="Detalles de la solución al problema."
-              ></textarea>
+              <label class="form-control-label tx-primary">Diagnóstico: <span class="tx-danger">*</span></label>
+              <textarea rows="5" class="form-control section-label tx-normal" name="diagnostico"
+                [(ngModel)]="ticket.diagnostico" placeholder="Detalles de la solución al problema."></textarea>
             </div>
           </div>
           <div class="col-md-4 mg-t--1">
             <div class="form-group mg-md-l--1">
-              <label class="form-control-label tx-primary"
-                >Status: <span class="tx-danger">*</span></label
-              >
-              <select
-                id="select2-a"
-                class="form-control section-label tx-normal"
-                name="stat"
-                [(ngModel)]="ticket.status"
-              >
+              <label class="form-control-label tx-primary">Status: <span class="tx-danger">*</span></label>
+              <select id="select2-a" class="form-control section-label tx-normal" name="stat"
+                [(ngModel)]="ticket.status">
                 <option *ngFor="let status of estados" [value]="status.status">
                   {{ status.status }}
                 </option>
@@ -153,29 +87,16 @@
           <div class="row">
             <div class="col-md-6 text-left">
               <div class="form-group border-0">
-                <label class="form-control-label tx-primary"
-                  >Atendio: <span class="tx-danger">*</span></label
-                >
-                <input
-                  class="form-control section-label tx-normal"
-                  type="text"
-                  readonly=""
-                  name="tecnico"
-                  [(ngModel)]="ticket.tecnico"
-                />
+                <label class="form-control-label tx-primary">Atendio: <span class="tx-danger">*</span></label>
+                <input class="form-control section-label tx-normal" type="text" readonly="" name="tecnico"
+                  [(ngModel)]="ticket.tecnico" />
               </div>
             </div>
             <div class="col-6 text-right">
-              <button
-                class="btn btn-teal bd-0 tx-normal"
-                [disabled]="!updateTicketForm.form.valid"
-              >
+              <button class="btn btn-teal bd-0 tx-normal" [disabled]="!updateTicketForm.form.valid">
                 Cerrar ticket
               </button>
-              <button
-                class="btn btn-secondary bd-0 ml-2 tx-normal"
-                [routerLink]="['/listado-tickets']"
-              >
+              <button class="btn btn-secondary bd-0 ml-2 tx-normal" [routerLink]="['/listado-tickets']">
                 Cancelar
               </button>
             </div>

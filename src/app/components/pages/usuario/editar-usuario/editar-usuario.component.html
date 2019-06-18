@@ -1,33 +1,23 @@
 <div class="slim-mainpanel">
   <div class="container">
     <div class="section-wrapper mt-5">
-      <label class="section-title tx-normal text-primary"
-        >Actualización de perfil</label
-      >
-      <form
-        class="form-layout"
-        #updateUsuarioForm="ngForm"
-        (submit)="updateUsuario()"
-      >
+      <label class="section-title tx-normal text-primary"><strong>Actualización de perfil</strong></label>
+      <form class="form-layout" #updateUsuarioForm="ngForm" (submit)="actualizarUsuario()">
         <div class="row mg-b-25">
           <div class="col-lg-7">
             <div class="card card-experience mg-t-20">
               <div class="card-body">
-                <div class="slim-card-title section-label tx-normal">
-                  Datos personales
-                </div>
                 <div class="media">
                   <img class="experience-logo" src="{{ usuario?.photoURL }}" />
                   <div class="media-body">
                     <h6 class="position-name section-label tx-normal">
-                      {{ usuario?.displayName }}
+                      <strong class="txteal">{{ usuario?.displayName }}</strong>
                     </h6>
                     <p class="position-company section-label tx-normal">
                       {{ usuario?.email }}
                     </p>
                     <p class="position-year section-label tx-normal">
-                      {{ usuario.departamento?.departamento }} | Universidad
-                      Politécnica de Pénjamo
+                      Universidad Politécnica de Pénjamo
                     </p>
                   </div>
                 </div>
@@ -38,21 +28,13 @@
             <div class="card card-experience mg-t-20">
               <div class="card-body">
                 <div class="form-group mg-b-10-force">
-                  <label class="form-control-label section-label tx-normal"
-                    >Departamento: <span class="tx-danger">*</span></label
-                  >
-                  <select
-                    class="form-control select2 section-label tx-normal"
-                    [(ngModel)]="usuario.departamento_id"
-                    name="departamento"
-                    required
-                  >
+                  <label class="form-control-label section-label tx-normal">Departamento: <span
+                      class="tx-danger">*</span></label>
+                  <select class="form-control select2 section-label tx-normal" [(ngModel)]="usuario.departamento_id"
+                    name="departamento" required>
                     <option label="Selecciona tu área"></option>
-                    <option
-                      class="form-control select2 section-label tx-normal"
-                      *ngFor="let departamento of departamentos"
-                      [value]="departamento?.id_departamento"
-                    >
+                    <option class="form-control select2 section-label tx-normal"
+                      *ngFor="let departamento of departamentos" [value]="departamento?.id_departamento">
                       {{ departamento.departamento }}
                     </option>
                   </select>
@@ -64,10 +46,7 @@
         <div class="form-layout-footer">
           <div class="row">
             <div class="col-12 text-right">
-              <button
-                class="btn btn-teal bd-0"
-                [disabled]="!updateUsuarioForm.form.valid"
-              >
+              <button class="btn btn-teal bd-0" [disabled]="!updateUsuarioForm.form.valid">
                 Actualizar
               </button>
               <button class="btn btn-secondary bd-0 ml-2">Cancelar</button>

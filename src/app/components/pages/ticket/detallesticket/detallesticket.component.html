@@ -1,11 +1,10 @@
 <div class="slim-mainpanel">
   <div class="container">
-    <app-menucontrolpanel></app-menucontrolpanel>
     <div class="section-wrapper mg-t-20">
       <div class="row justify-content-end">
         <div class="col-md-3 tx-right">
           <a
-            [routerLink]="['/editarTicketAdmin', ticket.id_ticket]"
+            [routerLink]="['/admin/atender-ticket', ticket.id_ticket]"
             class="btn btn-indigo rounded-circle btn-icon"
             placement="top"
             ngbTooltip="Editar"

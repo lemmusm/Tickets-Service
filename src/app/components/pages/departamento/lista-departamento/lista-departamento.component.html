@@ -1,14 +1,8 @@
 <div class="slim-mainpanel">
-  <div class="container pd-t-30">
-    <app-menucontrolpanel></app-menucontrolpanel>
+  <div class="container">
     <label class="section-title text-primary mb-3">Listado departamentos</label>
-    <table
-      id="listadoDepartamentos"
-      datatable
-      [dtOptions]="dtOptions"
-      [dtTrigger]="dtTrigger"
-      class="row-border hover table"
-    >
+    <table id="listadoDepartamentos" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+      class="row-border hover table">
       <thead>
         <tr>
           <th style="width: 5%" class="text-center tx-bold">#</th>
@@ -25,7 +19,7 @@
             {{ departamento.departamento }}
           </td>
           <td class="fixLineHeightText tx-normal">
-            {{ departamento.ubicacion }}
+            {{ departamento.ubicacion?.ubicacion }}
           </td>
           <td class="text-center fixLineHeightText tx-normal">
             {{ departamento.usuarios.length }}
@@ -34,32 +28,18 @@
             <div class="row fixMarginRow">
               <div class="col-6">
                 <div class="btn-demo">
-                  <a
-                    class="btn btncustom"
-                    [routerLink]="[
-                      '/editarDepartamento',
+                  <a class="btn btncustom" [routerLink]="[
+                      '/admin/editar-departamento',
                       departamento.id_departamento
-                    ]"
-                  >
-                    <i
-                      class="btnsuccess far fa-edit"
-                      placement="top"
-                      ngbTooltip="Editar"
-                    ></i>
+                    ]">
+                    <i class="btnsuccess far fa-edit" placement="top" ngbTooltip="Editar"></i>
                   </a>
                 </div>
               </div>
               <div class="col-6">
                 <div class="btn-demo">
-                  <a
-                    class="btn btncustom"
-                    (click)="deleteDepartamento(departamento.id_departamento)"
-                  >
-                    <i
-                      class="btndanger far fa-trash-alt"
-                      placement="top"
-                      ngbTooltip="Eliminar"
-                    ></i>
+                  <a class="btn btncustom" (click)="eliminarDepartamento(departamento.id_departamento)">
+                    <i class="btndanger far fa-trash-alt" placement="top" ngbTooltip="Eliminar"></i>
                   </a>
                 </div>
               </div>

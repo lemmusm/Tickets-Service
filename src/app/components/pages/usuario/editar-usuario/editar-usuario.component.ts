@@ -20,12 +20,12 @@ export class EditarUsuarioComponent implements OnInit {
   constructor(public router: Router, private aroute: ActivatedRoute, private apiservice: ApiService, private alerta: AlertaService) { }
 
   ngOnInit() {
-    this.getusuarioByUid();
+    this.mostrarUsuarioFiltrado();
   }
 
-// Trae datos de acuerdo al uid actual
-  getusuarioByUid() {
-    this.apiservice.getUsuarioByUID(this.uid)
+  // Trae datos de acuerdo al uid actual
+  mostrarUsuarioFiltrado() {
+    this.apiservice.getFilterUser(this.uid)
       .subscribe(
         (response: any) => {
           this.usuario = response;
@@ -36,8 +36,8 @@ export class EditarUsuarioComponent implements OnInit {
         }
       );
   }
-// Actualiza usuario seleccionado
-  updateUsuario() {
+  // Actualiza usuario seleccionado
+  actualizarUsuario() {
     this.apiservice.updateUsuario(this.uid, this.usuario)
       .subscribe(
         (response: any) => {
@@ -52,7 +52,7 @@ export class EditarUsuarioComponent implements OnInit {
         }
       );
   }
-// Trae los departamentos para usarlos dentro del select options
+  // Trae los departamentos para usarlos dentro del select options
   getDepartamentos() {
     this.apiservice.getDepartamentos()
       .subscribe(

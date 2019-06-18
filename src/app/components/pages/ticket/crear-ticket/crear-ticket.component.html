@@ -1,93 +1,53 @@
 <div class="slim-mainpanel">
   <div class="container">
     <div class="section-wrapper mg-t-20">
-      <form
-        class="form-layout form-layout-2"
-        #addTicketForm="ngForm"
-        (submit)="addTicket()"
-      >
+      <form class="form-layout form-layout-2" #addTicketForm="ngForm" (submit)="guardarSolicitud()">
         <div class="row no-gutters">
           <div class="col-md-12">
             <div class="form-group text-center border-0">
-              <img
-                src="./assets/img/logo_uppe.png"
-                width="100"
-                alt="logouppe"
-              />
+              <img src="./assets/img/logo_uppe.png" width="100" alt="logouppe" />
             </div>
           </div>
           <div class="col-md-12">
-            <h6
-              class="position-name text-center tx-teal tx-20 font-weight-light"
-            >
+            <h6 class="position-name text-center tx-teal tx-20 font-weight-light">
               R1PI6 | SERVICIO DE SOPORTE TÉCNICO
             </h6>
           </div>
           <div class="col-md-12">
             <div class="form-group text-right border-0">
-              <label class="form-control-label tx-primary"
-                >Fecha: {{ fecha | date: 'mediumDate' | uppercase }}</label
-              >
+              <label class="form-control-label tx-primary">Fecha: {{ fecha | date: 'mediumDate' | uppercase }}</label>
             </div>
           </div>
           <div class="col-md-4 mg-t--1">
             <div class="form-group">
               <label class="form-control-label tx-primary">Solicitante: </label>
-              <input
-                class="form-control section-label tx-normal"
-                type="text"
-                name="solicitante"
-                [(ngModel)]="usuario.displayName"
-                readonly=""
-              />
+              <input class="form-control section-label tx-normal" type="text" name="solicitante"
+                [(ngModel)]="usuario.displayName" readonly="" />
             </div>
           </div>
           <div class="col-md-4 mg-t--1">
             <div class="form-group mg-md-l--1">
-              <label class="form-control-label tx-primary"
-                >Correo electrónico:
+              <label class="form-control-label tx-primary">Correo electrónico:
               </label>
-              <input
-                class="form-control section-label tx-normal"
-                type="text"
-                name="email"
-                [(ngModel)]="usuario.email"
-                readonly=""
-              />
+              <input class="form-control section-label tx-normal" type="text" name="email" [(ngModel)]="usuario.email"
+                readonly="" />
             </div>
           </div>
           <div class="col-md-4 mg-t--1">
             <div class="form-group">
-              <label class="form-control-label tx-primary"
-                >Área/Departamento:
+              <label class="form-control-label tx-primary">Área/Departamento:
               </label>
-              <input
-                class="form-control section-label tx-normal"
-                type="text"
-                name="departamento"
-                [(ngModel)]="usuario.departamento.departamento"
-                readonly=""
-              />
+              <input class="form-control section-label tx-normal" type="text" name="departamento"
+                [(ngModel)]="usuario.departamento.departamento" readonly="" />
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group mg-t--1 bd-t-0-force">
-              <label class="form-control-label tx-primary"
-                >Selecciona el tipo de servicio:
-                <span class="tx-danger">*</span></label
-              >
-              <select
-                id="select2-a"
-                label="Selecciona el tipo de servicio"
-                class="form-control section-label tx-normal"
-                name="servicio"
-                [(ngModel)]="ticket.servicio"
-                required
-              >
-                <option
-                  *ngFor="let servicio of servicios"
-                  [value]="servicio.servicio"
-                >
+              <label class="form-control-label tx-primary">Selecciona el tipo de servicio:
+                <span class="tx-danger">*</span></label>
+              <select id="select2-a" label="Selecciona el tipo de servicio" class="form-control section-label tx-normal"
+                name="servicio" [(ngModel)]="ticket.servicio_id" required>
+                <option *ngFor="let servicio of servicios" [value]="servicio.id_servicio">
                   {{ servicio.servicio }}
                 </option>
               </select>
@@ -95,25 +55,15 @@
           </div>
           <div class="col-md-8">
             <div class="form-group mg-t--1 bd-t-0-force">
-              <label class="form-control-label tx-primary"
-                >Describe la solucitud del servicio:
-                <span class="tx-danger">*</span></label
-              >
-              <textarea
-                rows="5"
-                class="form-control section-label tx-normal"
-                name="descripcion"
-                [(ngModel)]="ticket.descripcion"
-                placeholder="Describe tu problema presentado."
-                required
-              ></textarea>
+              <label class="form-control-label tx-primary">Describe la solucitud del servicio:
+                <span class="tx-danger">*</span></label>
+              <textarea rows="5" class="form-control section-label tx-normal" name="descripcion"
+                [(ngModel)]="ticket.descripcion" placeholder="Describe tu problema presentado." required></textarea>
             </div>
           </div>
           <div class="col-md-9">
             <div class="form-group text-left border-0">
-              <label class="form-control-label tx-danger font-weight-bold"
-                >Importante:</label
-              >
+              <label class="form-control-label tx-danger font-weight-bold">Importante:</label>
               <ul class="list-group">
                 <li class="list-group-item  border-0">
                   <p class="mg-b-0 tx-light">
@@ -133,26 +83,16 @@
           </div>
           <div class="col-md-3">
             <div class="form-group text-right border-0">
-              <label class="form-control-label tx-primary"
-                >Huella dígital única de usuario:</label
-              >
-              <input
-                class="form-control section-label tx-normal details text-right"
-                readonly=""
-                type="text"
-                name="usuario_uid"
-                [(ngModel)]="ticket.usuario_uid"
-              />
+              <label class="form-control-label tx-primary">Huella dígital única de usuario:</label>
+              <input class="form-control section-label tx-normal details text-right" readonly="" type="text"
+                name="usuario_uid" [(ngModel)]="ticket.usuario_uid" />
             </div>
           </div>
         </div>
         <div class="col-md-12 text-right ">
           <div class="row text-right">
             <div class="col-12 text-right ">
-              <button
-                class="btn btn-teal bd-0"
-                [disabled]="!addTicketForm.form.valid"
-              >
+              <button class="btn btn-teal bd-0" [disabled]="!addTicketForm.form.valid">
                 Crear solicitud
               </button>
             </div>

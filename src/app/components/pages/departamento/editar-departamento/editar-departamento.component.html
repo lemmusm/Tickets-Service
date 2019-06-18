@@ -1,49 +1,26 @@
 <div class="slim-mainpanel">
   <div class="container">
-    <app-menucontrolpanel></app-menucontrolpanel>
     <div class="section-wrapper mt-5">
-      <label class="section-title tx-normal text-primary mb-5"
-        >Editar departamento</label
-      >
-      <form
-        class="form-layout"
-        #updateDptoForm="ngForm"
-        (submit)="updateDepartamento()"
-      >
+      <label class="section-title tx-normal text-primary mb-5">Editar departamento</label>
+      <form class="form-layout" #updateDptoForm="ngForm" (submit)="actualizarDepartamento()">
         <div class="row mg-b-25">
           <div class="col-lg-6">
             <div class="form-group">
-              <label class="form-control-label section-label tx-normal"
-                >Área/Departamento: <span class="tx-danger">*</span></label
-              >
-              <input
-                class="form-control section-label tx-normal"
-                type="text"
-                name="dpto_name"
-                #dpto_name="ngModel"
-                [(ngModel)]="departamento.departamento"
-                placeholder="Inserta el departamento"
-                required
-              />
+              <label class="form-control-label section-label tx-normal">Área/Departamento: <span
+                  class="tx-danger">*</span></label>
+              <input class="form-control section-label tx-normal" type="text" name="dpto_name" #dpto_name="ngModel"
+                [(ngModel)]="departamento.departamento" placeholder="Inserta el departamento" required />
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group mg-b-10-force">
-              <label class="form-control-label section-label tx-normal"
-                >Departamento: <span class="tx-danger">*</span></label
-              >
-              <select
-                class="form-control select2 section-label tx-normal"
-                [(ngModel)]="departamento.ubicacion"
-                name="ubicacion"
-                required
-              >
-                <option
-                  class=" section-label tx-normal"
-                  *ngFor="let ubicacion of ubicaciones"
-                  [value]="ubicacion.ubicacion"
-                >
-                  {{ ubicacion.ubicacion }}
+              <label class="form-control-label section-label tx-normal">Ubicación: <span
+                  class="tx-danger">*</span></label>
+              <select class="form-control select2 section-label tx-normal" [(ngModel)]="departamento.ubicacion_id"
+                name="ubicacion" required>
+                <option class=" section-label tx-normal" *ngFor="let ubicacion of ubicaciones"
+                  [value]="ubicacion.id_ubicacion">
+                  {{ ubicacion.ubicacion}}
                 </option>
               </select>
             </div>
@@ -53,16 +30,10 @@
         <div class="form-layout-footer">
           <div class="row">
             <div class="col-12 text-right">
-              <button
-                class="btn btn-teal bd-0"
-                [disabled]="!updateDptoForm.form.valid"
-              >
+              <button class="btn btn-teal bd-0" [disabled]="!updateDptoForm.form.valid">
                 Actualizar
               </button>
-              <button
-                class="btn btn-secondary bd-0 ml-2"
-                [routerLink]="['/listado-departamentos']"
-              >
+              <button class="btn btn-secondary bd-0 ml-2" [routerLink]="['listado-departamentos']">
                 Cancelar
               </button>
             </div>

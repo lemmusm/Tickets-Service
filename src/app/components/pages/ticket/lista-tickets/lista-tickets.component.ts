@@ -11,12 +11,13 @@ import Swal from 'sweetalert2';
   styles: []
 })
 export class ListaTicketsComponent implements OnInit {
+  totalTickets: any;
   tickets: Ticket;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   message: any;
 
-  constructor(private apiservice: ApiService, private alerta: AlertaService) {}
+  constructor(private apiservice: ApiService, private alerta: AlertaService) { }
 
   ngOnInit() {
     this.getTickets();
@@ -39,7 +40,7 @@ export class ListaTicketsComponent implements OnInit {
     );
   }
 
-  deleteTicket(id: number) {
+  borrarTicket(id: number) {
     Swal.fire({
       title: '¿Deseas eliminar el registro?',
       text: 'Será borrado de forma permanente',

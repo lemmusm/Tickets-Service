@@ -1,0 +1,24 @@
+<div class="slim-mainpanel">
+  <div class="container">
+    <div class="section-wrapper mt-5">
+      <label class="section-title tx-normal text-primary">Actualizar servicio</label>
+      <form class="form-layout" #updateServicio="ngForm" (submit)="actualizarServicio()">
+        <div class="row mg-b-25">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label section-label tx-normal">Nombre del servicio: <span
+                  class="tx-danger">*</span></label>
+              <input class="form-control section-label tx-normal" type="text" name="servicio"
+                [(ngModel)]="servicio.servicio" placeholder="Servicio" required />
+            </div>
+          </div>
+          <div class="col-6 text-right">
+            <button class="btn btn-teal bd-0" [disabled]="!updateServicio.form.valid">
+              Actualizar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

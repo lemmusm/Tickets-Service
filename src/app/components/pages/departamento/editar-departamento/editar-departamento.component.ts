@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/providers/api.service';
 import { AlertaService } from 'src/app/providers/alerta.service';
 import { Departamento } from 'src/app/models/departamento';
+import { Ubicacion } from 'src/app/models/ubicacion';
 
 @Component({
   selector: 'app-editar-departamento',
@@ -13,17 +14,18 @@ export class EditarDepartamentoComponent implements OnInit {
 
   id = this.aroute.snapshot.paramMap.get('id');
   departamento: Departamento = {};
+  ubicaciones: Ubicacion;
   message: any;
-  ubicaciones = this.apiservice.ubicaciones;
 
   constructor(public router: Router, private aroute: ActivatedRoute, private apiservice: ApiService, private alerta: AlertaService) { }
 
   ngOnInit() {
-    this.getDepartamentoByID();
+    this.mostrarDepartamento();
+    this.mostrarUbicaciones();
   }
 
-  getDepartamentoByID() {
-    this.apiservice.getDepartamentoByID(this.id)
+  mostrarDepartamento() {
+    this.apiservice.getDepartamento(this.id)
         .subscribe(
           (response: any) => {
             this.departamento = response;
@@ -39,7 +41,15 @@ export class EditarDepartamentoComponent implements OnInit {
         );
   }
 
-  updateDepartamento() {
+  mostrarUbicaciones() {
+    this.apiservice.getUbicaciones()
+        .subscribe(
+          (response: any) => {
+            this.ubicaciones = response;
+          }
+        );
+  }
+  actualizarDepartamento() {
     this.apiservice.updateDepartamento(this.id, this.departamento)
         .subscribe(
           (response: any) => {
@@ -50,7 +60,7 @@ export class EditarDepartamentoComponent implements OnInit {
               'green',
               'far fa-check-circle'
             );
-            this.router.navigate(['/listado-departamentos']);
+            this.router.navigate(['admin/listado-departamentos']);
           },
           error => {
             this.alerta.toastNotification(

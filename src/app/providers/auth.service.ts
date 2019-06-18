@@ -29,7 +29,7 @@ export class AuthService {
     this.getUserFirebase();
   }
 
-// Método para la autenticación
+  // Método para la autenticación
   signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('email');
@@ -42,7 +42,7 @@ export class AuthService {
         console.log(error);
       });
   }
-// Este método comprueba si es un alumno para cambiar de vista
+  // Este método comprueba si es un alumno para cambiar de vista
   isAlumno() {
     this.email.slice(0, 9);
     if (this.email) {
@@ -63,14 +63,14 @@ export class AuthService {
       return 0;
     }
   }
-// Método para el cierre de sesión
-signOut() {
-  this.afauth.auth.signOut()
-    .then(() => {
-      this.router.navigate(['/login']);
-    });
-}
-// Trae datos de firebase auth y verifica el estatus de la autenticacion y muestra/oculta componentes
+  // Método para el cierre de sesión
+  signOut() {
+    this.afauth.auth.signOut()
+      .then(() => {
+        this.router.navigate(['/login']);
+      });
+  }
+  // Trae datos de firebase auth y verifica el estatus de la autenticacion y muestra/oculta componentes
   getUserFirebase() {
     this.afauth.authState.subscribe(
       auth => {
@@ -97,7 +97,7 @@ signOut() {
     );
   }
 
-// Verifica el estatus de la autenticacion y se usa con GuardService
+  // Verifica el estatus de la autenticacion y se usa con GuardService
   isAuth() {
     return this.afauth.authState
       .pipe(

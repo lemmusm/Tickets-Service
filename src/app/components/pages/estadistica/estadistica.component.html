@@ -1,22 +1,74 @@
 <div class="slim-mainpanel">
-  <div class="container pd-t-30">
-    <app-menucontrolpanel></app-menucontrolpanel>
-    <h1 class="section-title text-primary">Estadisticas</h1>
+  <div class="container">
     <div class="section-wrapper mg-t-20">
-      <div class="dash-headline-two mt-3 mb-3">
-        <div></div>
-        <div class="d-h-t-right">
-          <div class="summary-item">
-            <h1 class="txteal">{{ totalTickets }}</h1>
-            <span class="tx-black">Solicitudes<br />totales</span>
+      <label class="section-title tx-bold text-primary mb-3">
+        Estadísticas sobre tickets
+      </label>
+      <form class="form-layout form-layout-2" #statisticsForm="ngForm" (submit)="mostrarinfoTickets()">
+        <div class="row mt-3">
+          <div class="card">
+            <div class="card-body mt-5">
+              <h6 class="slim-card-title">Solicitudes totales</h6>
+              <h1 class="tx-lato tx-primary tx-center">
+                <strong>{{ totalTickets }}</strong>
+              </h1>
+            </div>
           </div>
+          <div class="col-md-6 mg-t--1">
+            <div class="card card-experience mg-t-20">
+              <div class="card-body">
+                <div class="form-group mg-b-10-force">
+                  <label class="form-control-label section-label tx-normal">Elige el parametro para obtener
+                    estadísticas: <span class="tx-danger">*</span></label>
+                  <select class="form-control select2 section-label tx-normal" [(ngModel)]="lista_parametros.parametro"
+                    name="departamento" required>
+                    <option class="form-control select2 section-label tx-normal" *ngFor="let param of lista_parametros"
+                      [value]="param.parametro">
+                      {{ param.parametro | uppercase }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mg-t--1">
+            <div class="card card-experience mg-t-20">
+              <div class="card-body">
+                <div class="form-group no-borders">
+                  <button class="btn btn-teal bd-0" [disabled]="!statisticsForm.form.valid">
+                    Obtener datos
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <canvas id="chartStatistics">{{ chartStatistics }}</canvas>
+      </div>
+      <div class="col-md-12 mt-5 mb-5">
+        <div class="table-responsive">
+          <table class="table mg-b-0">
+            <thead>
+              <tr>
+                <th *ngFor="let g of graph" class="tx-bold text-center">
+                  {{ g.parametro }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th *ngFor="let g of graph" class="tx-normal text-center">
+                  {{ g.count }}
+                </th>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-
-    <app-estadisticas-fechas></app-estadisticas-fechas>
-    <app-graphservicios></app-graphservicios>
-    <app-graphstatus></app-graphstatus>
-    <app-graphdepartamentos></app-graphdepartamentos>
   </div>
 </div>

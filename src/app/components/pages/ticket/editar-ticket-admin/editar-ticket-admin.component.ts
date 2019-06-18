@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/providers/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertaService } from 'src/app/providers/alerta.service';
 import { AuthService } from 'src/app/providers/auth.service';
+import { Servicio } from 'src/app/models/servicio';
 
 @Component({
   selector: 'app-editar-ticket-admin',
@@ -14,61 +15,73 @@ export class EditarTicketAdminComponent implements OnInit {
 
   id = this.aroute.snapshot.paramMap.get('id');
   ticket: Ticket = {};
+  servicios: Servicio;
   message: any;
   estados = this.apiservice.estados;
-  servicios = this.apiservice.servicios;
 
   constructor(
-      private apiservice: ApiService,
-      public authservice: AuthService,
-      private router: Router,
-      private aroute: ActivatedRoute,
-      private alerta: AlertaService
-    ) { }
+    private apiservice: ApiService,
+    public authservice: AuthService,
+    private router: Router,
+    private aroute: ActivatedRoute,
+    private alerta: AlertaService
+  ) {
+    this.mostrarTicket();
+    this.mostrarServicios();
+  }
 
   ngOnInit() {
-    this.getTicketByID();
   }
-// Trae los registros de los tickets almacenados en la base de datos
-  getTicketByID() {
-    this.apiservice.getTicketByID(this.id)
-        .subscribe(
-          (response: any) => {
-            this.ticket = response;
-            this.ticket.tecnico = this.authservice.usuario.displayName; // Almacena el nombre de Firebase para firmar como el técnico
-          },
-          error => {
-            this.alerta.toastNotification(
-              error.name,
-              '',
-              'red',
-              'fas fa-times'
-            );
-          }
-        );
+  // Trae los registros de los tickets almacenados en la base de datos
+  mostrarTicket() {
+    this.apiservice.getTicket(this.id)
+      .subscribe(
+        (response: any) => {
+          this.ticket = response;
+          this.ticket.tecnico = this.authservice.usuario.displayName; // Almacena el nombre de Firebase para firmar como el técnico
+        },
+        error => {
+          this.alerta.toastNotification(
+            error.name,
+            '',
+            'red',
+            'fas fa-times'
+          );
+        }
+      );
   }
-// Actualiza el registro seleccionado en la base de datos
-  updateTicket() {
+
+  mostrarServicios() {
+    this.apiservice.getServicios()
+      .subscribe(
+        (response: any) => {
+          this.servicios = response;
+        }
+      );
+  }
+  // Actualiza el registro seleccionado en la base de datos
+  actualizarTicket() {
+    console.log(this.ticket);
     this.apiservice.updateTicket(this.id, this.ticket)
-        .subscribe(
-          (response: any) => {
-            this.message = response;
-            this.alerta.toastNotification(
-              this.message.message,
-              '',
-              'green',
-              'far fa-check-circle'
-            );
-            this.router.navigate(['/listado-tickets']);
-          },
-          error => {
-            this.alerta.toastNotification(
-              error.name,
-              '',
-              'red',
-              'fas fa-times'
-            );
-          }
-        );
+      .subscribe(
+        (response: any) => {
+          this.message = response;
+          this.alerta.toastNotification(
+            this.message.message,
+            '',
+            'green',
+            'far fa-check-circle'
+          );
+          // this.router.navigate(['admin/listado-tickets']);
+        },
+        error => {
+          this.alerta.toastNotification(
+            error.name,
+            '',
+            'red',
+            'fas fa-times'
+          );
+        }
+      );
   }
 }

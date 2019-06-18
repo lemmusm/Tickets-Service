@@ -1,6 +1,6 @@
 <div class="slim-mainpanel mt-2">
   <div class="container">
-    <div class="dash-headline-two">
+    <!-- <div class="dash-headline-two">
       <div>
         <h4 class="tx-inverse section-title tx-normal">
           Buen día, {{ authservice.displayName }}!
@@ -8,31 +8,13 @@
         <p class="tx-primary tx-normal">
           {{ fecha | date: 'fullDate' }}
         </p>
-      </div>
-      <!-- <div class="d-h-t-right">
-                <div class="summary-item">
-                    <h1>$1,433</h1>
-                    <span>Earnings<br>for today</span>
-                </div>
-                <div class="summary-item">
-                    <h1>$296</h1>
-                    <span>Expenses<br>for today</span>
-                </div>
-            </div> -->
-    </div>
+  </div> -->
 
     <div class="row mt-n">
       <div class="col-md-12">
-        <label class="section-title tx-bold text-primary mb-3"
-          >MI HISTORIAL DE SOLICITUDES REALIZADAS</label
-        >
-        <table
-          id="listadoTickets"
-          datatable
-          [dtOptions]="dtOptions"
-          [dtTrigger]="dtTrigger"
-          class="row-border hover table tx-normal"
-        >
+        <h3 class="section-title tx-bold text-primary mb-3">MI HISTORIAL DE SOLICITUDES REALIZADAS</h3>
+        <table id="listadoTickets" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+          class="row-border hover table tx-normal">
           <thead>
             <tr>
               <th class="text-center tx-bold">Ticket ID</th>
@@ -47,29 +29,23 @@
               <td class="text-center tx-normal fixPaddingCol">
                 U-{{ ticket.id_ticket }}
               </td>
-              <td class="tx-normal fixPaddingCol">{{ ticket.servicio }}</td>
-              <td class="tx-normal fixPaddingCol">{{ ticket.descripcion }}</td>
-              <td
-                class="text-center tx-boldx fixPaddingCol"
-                [ngClass]="{
-                  colorBlue: ticket.status === 'Abierto',
-                  colorGreen: ticket.status === 'Realizado',
-                  colorPurple: ticket.status === 'En proceso',
-                  colorYellow: ticket.status === 'N/A'
-                }"
-              >
+              <td class="fixLineHeightText tx-normal">{{ ticket.servicio?.servicio }}</td>
+              <td class="fixLineHeightText tx-normal">{{ ticket.descripcion }}</td>
+              <td class="text-center fixLineHeightText tx-boldx"
+                  [ngClass]="{
+                    colorBlue: ticket.status === 'Abierto',
+                    colorGreen: ticket.status === 'Realizado',
+                    colorPurple: ticket.status === 'En proceso',
+                    colorYellow: ticket.status === 'N/A'
+              }">
                 {{ ticket.status }}
               </td>
               <td>
                 <div class="row fixMarginRow">
                   <div class="col-12">
                     <div class="btn-demo">
-                      <a
-                        class="btn btncustom"
-                        [routerLink]="['/detalles-solicitud', ticket.id_ticket]"
-                        placement="top"
-                        ngbTooltip="Ver detalles"
-                      >
+                      <a class="btn btncustom" [routerLink]="['/detalle-solicitud', ticket.id_ticket]" placement="top"
+                        ngbTooltip="Ver detalles">
                         <i class="btnexotic far fa-eye"></i>
                       </a>
                     </div>
