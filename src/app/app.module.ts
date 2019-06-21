@@ -50,7 +50,7 @@ import { MenuComponent } from './components/shared/menu/menu.component';
     NgbModule, // tooltips
     BrowserAnimationsModule
   ],
-  providers: [DatePipe, { provide: LOCALE_ID, useValue: 'es' }],
+  providers: [ DatePipe, { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-<div [hidden]="!this.authservice.login">
+<div *ngIf="this.authservice.active">
   <div class="slim-header">
     <div class="container">
       <div class="slim-header-left">
@@ -9,15 +9,15 @@
       <div class="slim-header-right">
         <div class="dropdown dropdown-c">
           <a href="" class="logged-user tx-normal" data-toggle="dropdown">
-            <img src="{{ this.authservice.photoURL }}" alt="" />
-            <span>{{ authservice.displayName }}</span>
+            <img src="{{ this.authservice.usuario.photoURL }}" alt="avatar" />
+            <span>{{ authservice.usuario.displayName }}</span>
             <i class="fa fa-angle-down"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <nav class="nav">
               <a
                 class="nav-link tx-normal"
-                [routerLink]="['editar-usuario/', this.authservice.uid]"
+                [routerLink]="['editar-usuario/', this.authservice.usuario.uid]"
                 ><i class="fas fa-edit"></i>Editar perfil</a
               >
               <a class="nav-link tx-normal" (click)="signOut()"

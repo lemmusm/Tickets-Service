@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Usuario } from '../models/usuario';
 import { AlertaService } from './alerta.service';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,13 @@ export class AuthService {
   email: string;
   photoURL: string;
   // variable para ocultar/mostrar navbar/footer
-  login = false;
+  active = false;
+  admin = false;
+  rol: any;
   // variable para almacenar numeros
   nums = '0123456789';
 
-  constructor(private afauth: AngularFireAuth, private router: Router, private alerta: AlertaService) {
+  constructor(private afauth: AngularFireAuth, private apiservice: ApiService, private router: Router, private alerta: AlertaService) {
     this.getUserFirebase();
   }
 
@@ -68,13 +71,13 @@ export class AuthService {
     this.afauth.auth.signOut()
       .then(() => {
         this.router.navigate(['/login']);
+        this.active = false;
       });
   }
   // Trae datos de firebase auth y verifica el estatus de la autenticacion y muestra/oculta componentes
   getUserFirebase() {
     this.afauth.authState.subscribe(
       auth => {
-
         if (auth) {
           this.uid = auth.uid;
           this.displayName = auth.displayName;
@@ -85,26 +88,50 @@ export class AuthService {
           // Se alamacena los datos de firebase en el modelo
           this.usuario = auth;
           // Muestra componentes navbar/footer cuando el usuario esta autenticado
-          this.login = true;
+          this.active = true;
+          // Se obtiene el rol del usuario para usarlo en administrator()/rol.guard
+          this.apiservice.getFilterUser(this.uid)
+              .subscribe(
+                response => {
+                  this.rol = response.rol.rol;
+                  if (this.rol === 'Administrador') {
+                    this.admin = true;
+                    this.router.navigate(['/admin/listado-tickets']);
+                  } else {
+                    this.admin = false;
+                  }
+                }
+              );
         } else {
           this.displayName = '';
           this.email = '';
           this.photoURL = '';
           // Oculta componentes navbar/footer cuando el usuario no esta autenticado
-          this.login = false;
+          this.active = false;
         }
       }
     );
   }
-
-  // Verifica el estatus de la autenticacion y se usa con GuardService
-  isAuth() {
+  // Verifica si es administrador a través del rol.guard
+  administrator() {
+    if (this.rol === 'Administrador') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  // Verifica el estatus de la autenticacion y se usa con auth.guard
+  authenticated(): any {
     return this.afauth.authState
       .pipe(
         map(auth => {
           if (auth == null) {
             this.router.navigate(['login']);
+            // Oculta componentes navbar/footer cuando el usuario no esta autenticado
+            this.active = false;
           }
+          // Muestra componentes navbar/footer cuando el usuario esta autenticado
+          this.active = true;
           return auth != null;
         })
       );

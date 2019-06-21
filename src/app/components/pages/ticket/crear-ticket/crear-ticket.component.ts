@@ -23,7 +23,7 @@ export class CrearTicketComponent implements OnInit {
   };
   message: any; // variable creada para almacenar la respuesta del servidor
   fecha = new Date(); // variable que almacena la fecha actual
-  id = this.authservice.uid; // Se almacena el uid de los datos de firebase
+  id = this.authservice.usuario.uid; // Se almacena el uid de los datos de firebase
   servicios: Servicio;
 
   constructor(
@@ -46,7 +46,7 @@ export class CrearTicketComponent implements OnInit {
     this.apiservice.getFilterUser(this.id)
         .subscribe((response: any) => {
           this.usuario = response;
-          this.ticket.usuario_uid = this.authservice.uid; // Se almacena el uid de los datos de firebase para usarlo como huella digital
+          this.ticket.usuario_uid = this.authservice.usuario.uid; // Se almacena el uid de los datos de firebase para usarlo como huella digital
         });
         // .pipe(
         //   map(

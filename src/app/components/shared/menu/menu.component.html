@@ -13,7 +13,7 @@
           <span>Solicitar servicio</span>
         </a>
       </li>
-      <li class="nav-item with-sub mega-dropdown">
+      <li class="nav-item with-sub mega-dropdown" *ngIf="this.authservice.admin">
         <a class="nav-link" href="#">
           <i class="icon ion-ios-filing-outline"></i>
           <span>Administrador</span>

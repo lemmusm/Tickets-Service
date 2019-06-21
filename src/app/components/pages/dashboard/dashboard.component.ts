@@ -18,8 +18,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     public authservice: AuthService,
-    private apiservice: ApiService,
-    private router: Router
+    private apiservice: ApiService
   ) { }
 
   ngOnInit() {
@@ -27,16 +26,16 @@ export class DashboardComponent implements OnInit {
     this.mostrarTicketsDelUsuario();
   }
 
-  /*
-    Consulta UID en la base de datos local y compará con el de firebase,
-    si existe omite el guardado de lo contrario lo guarda en la base de datos local.
-    Verifica si el uid de la base de datos es igual a undefined/vacio, es decir,
-    si el usuario no ha sido registrado en la base de datos llama al método saveUsuario() para guardarlo,
-    en caso de estar guardado manda mensaje en consola (🎯👍).
-    Enseguida mediante una sentencia if se comprueba que el nombre/avatar de la base de datos
-    y firebase sea igual, de lo contrario actualiza los datos local, debido a que los algunos correos
-    institucionales del personal son reasignables por el movimiento de puestos.
-  */
+/*
+  Consulta UID en la base de datos local y compará con el de firebase,
+  si existe omite el guardado de lo contrario lo guarda en la base de datos local.
+  Verifica si el uid de la base de datos es igual a undefined/vacio, es decir,
+  si el usuario no ha sido registrado en la base de datos llama al método saveUsuario() para guardarlo,
+  en caso de estar guardado manda mensaje en consola (🎯👍).
+  Enseguida mediante una sentencia if se comprueba que el nombre/avatar de la base de datos
+  y firebase sea igual, de lo contrario actualiza los datos local, debido a que los algunos correos
+  institucionales del personal son reasignables por el movimiento de puestos.
+*/
   verificaUsuario() {
     this.apiservice
       .getFilterUser(this.authservice.usuario.uid)
@@ -47,28 +46,19 @@ export class DashboardComponent implements OnInit {
           console.log('🎯👍');
         }
 
-        /*
-        // Algoritmo para actualizar el nombre del usuario en la base de datos cuando el correo
-        // electrónico es reasignado, datos traidos desde firebase.
-        */
+/*
+// Algoritmo para actualizar el nombre del usuario en la base de datos cuando el correo
+// electrónico es reasignado, datos traidos desde firebase.
+*/
         if (response.displayName !== this.authservice.usuario.displayName) {
           this.apiservice
             .updateUsuario(
               // Envia como parametros el id y datos del usuario
-              this.authservice.uid,
+              this.authservice.usuario.uid,
               this.authservice.usuario
             )
             .subscribe();
         }
-        // // Redirecciona de acuerdo al rol del usuario
-        // switch (response.rol_id) {
-        //   case 1: // rol_id = 1 === administrador
-        //     this.router.navigate(['listado-tickets']);
-        //     break;
-        //   default:
-        //     this.router.navigate(['dashboard']);
-        //     break;
-        // }
       });
   }
 /*
@@ -87,10 +77,10 @@ export class DashboardComponent implements OnInit {
       this.dtTrigger.next();
     });
   }
-  /*
-    Guardausuario de firebase en la base de datos, si es completado o hay error, a tarvés de
-    la consola manda un mensaje.
-  */
+/*
+  Guardausuario de firebase en la base de datos, si es completado o hay error, a tarvés de
+  la consola manda un mensaje.
+*/
   guardaUsuarioEnBD() {
     this.apiservice.saveUsuario(this.authservice.usuario).subscribe(
       response => {

@@ -11,7 +11,7 @@ import { AlertaService } from 'src/app/providers/alerta.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private apiservice: ApiService, private authservice: AuthService, private router: Router, public alerta: AlertaService) { }
+  constructor(private apiservice: ApiService, public authservice: AuthService, private router: Router, public alerta: AlertaService) { }
 
   ngOnInit() {
   }

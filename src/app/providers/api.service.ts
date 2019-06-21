@@ -12,8 +12,8 @@ import { Rol } from '../models/rol';
 })
 export class ApiService {
   // URL API
-  // API_URL = 'https://www.uppenjamo.edu.mx/laravel/webapiuppe/';
-  API_URL = 'http://webapiuppe/';
+  API_URL = 'https://www.uppenjamo.edu.mx/laravel/webapiuppe/';
+  // API_URL = 'http://webapiuppe/';
   // Arreglo de los status
   estados = [
     { id: 1, status: 'Abierto' },
