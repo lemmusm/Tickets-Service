@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   usuario: Usuario = {}; // variable de tipo usuario para manejar los datos
-  id = this.authservice.usuario.uid; // Guarda el uid de firebase en la variable
+  id = this.authservice.uid; // Guarda el uid de firebase en la variable
 
   constructor(
     public authservice: AuthService,
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
 */
   verificaUsuario() {
     this.apiservice
-      .getFilterUser(this.authservice.usuario.uid)
+      .getFilterUser(this.authservice.uid)
       .subscribe((response: any) => {
         if (response.uid === undefined) {
           this.guardaUsuarioEnBD(); // llamada al método post para guardar usuario
@@ -50,11 +50,11 @@ export class DashboardComponent implements OnInit {
 // Algoritmo para actualizar el nombre del usuario en la base de datos cuando el correo
 // electrónico es reasignado, datos traidos desde firebase.
 */
-        if (response.displayName !== this.authservice.usuario.displayName) {
+        if (response.displayName !== this.authservice.displayName) {
           this.apiservice
             .updateUsuario(
               // Envia como parametros el id y datos del usuario
-              this.authservice.usuario.uid,
+              this.authservice.uid,
               this.authservice.usuario
             )
             .subscribe();
