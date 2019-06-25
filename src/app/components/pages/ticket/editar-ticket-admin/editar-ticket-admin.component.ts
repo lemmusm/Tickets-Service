@@ -61,7 +61,6 @@ export class EditarTicketAdminComponent implements OnInit {
   }
   // Actualiza el registro seleccionado en la base de datos
   actualizarTicket() {
-    console.log(this.ticket);
     this.apiservice.updateTicket(this.id, this.ticket)
       .subscribe(
         (response: any) => {
@@ -72,7 +71,7 @@ export class EditarTicketAdminComponent implements OnInit {
             'green',
             'far fa-check-circle'
           );
-          // this.router.navigate(['admin/listado-tickets']);
+          this.router.navigate(['admin/listado-tickets']);
         },
         error => {
           this.alerta.toastNotification(

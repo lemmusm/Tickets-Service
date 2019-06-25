@@ -9791,7 +9791,7 @@ table.dataTable {
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   padding-top: 0.54rem;
   padding-bottom: 0.54rem;
-  background-color: #e9ecef;
+  background-color: #e3e3e3;
   border-color: transparent;
   border-radius: 0; }
   .dataTables_wrapper .dataTables_paginate .paginate_button:hover, .dataTables_wrapper .dataTables_paginate .paginate_button:focus {
