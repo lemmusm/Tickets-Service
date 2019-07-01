@@ -38,7 +38,7 @@ export class EditarTicketAdminComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.ticket = response;
-          this.ticket.tecnico = this.authservice.usuario.displayName; // Almacena el nombre de Firebase para firmar como el técnico
+          this.ticket.tecnico = this.authservice.displayName; // Almacena el nombre de Firebase para firmar como el técnico
         },
         error => {
           this.alerta.toastNotification(

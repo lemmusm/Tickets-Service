@@ -18,12 +18,12 @@ export class MenuComponent implements OnInit {
 
   // Comprobar si el usuario no ha actualizado su perfil por primera vez, si es así solicita actualizar
   actualizarUsuario() {
-    this.apiservice.getFilterUser(this.authservice.usuario.uid)
+    this.apiservice.getFilterUser(this.authservice.uid)
       .subscribe(
         (response: any) => {
           if (response.departamento_id === 2) {
             // this.router.navigate(['editarUsuario/:id']);
-            this.router.navigate(['editar-usuario/' + this.authservice.usuario.uid]);
+            this.router.navigate(['editar-usuario/' + this.authservice.uid]);
             this.alerta.toastNotification(
               'Actualiza el departamento o área al que perteneces.',
               '',

@@ -19,129 +19,129 @@ const routes: Routes = [
   {
     path: 'editar-usuario/:id',
     loadChildren:
-      './components/pages/usuario/editar-usuario/editar-usuario.module#EditarUsuarioModule',
+      () => import('./components/pages/usuario/editar-usuario/editar-usuario.module').then(m => m.EditarUsuarioModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'admin/editar-usuario/:id',
     loadChildren:
-      './components/pages/usuario/editar-usuario-admin/editar-usuario-admin.module#EditarUsuarioAdminModule',
+      () => import('./components/pages/usuario/editar-usuario-admin/editar-usuario-admin.module').then(m => m.EditarUsuarioAdminModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
     path: 'admin/listado-usuarios',
     loadChildren:
-      './components/pages/usuario/lista-usuario/lista-usuario.module#ListaUsuarioModule',
+      () => import('./components/pages/usuario/lista-usuario/lista-usuario.module').then(m => m.ListaUsuarioModule),
     canActivate: [AuthGuard, RolGuard]
   },
   // roles
   {
     path: 'admin/roles',
     loadChildren:
-      './components/pages/usuario/roles/roles.module#RolesModule',
+      () => import('./components/pages/usuario/roles/roles.module').then(m => m.RolesModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
     path: 'admin/editar-rol/:id',
     loadChildren:
-      './components/pages/usuario/editar-rol/editar-rol.module#EditarRolModule',
+      () => import('./components/pages/usuario/editar-rol/editar-rol.module').then(m => m.EditarRolModule),
     canActivate: [AuthGuard, RolGuard]
   },
   // departamentos
   {
     path: 'admin/listado-departamentos',
     loadChildren:
-      './components/pages/departamento/lista-departamento/lista-departamento.module#ListaDepartamentoModule',
+      () => import('./components/pages/departamento/lista-departamento/lista-departamento.module').then(m => m.ListaDepartamentoModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
     path: 'admin/agregar-departamento',
     loadChildren:
-      './components/pages/departamento/agregardepartamento/agregardepartamento.module#AgregardepartamentoModule',
+      () => import('./components/pages/departamento/agregardepartamento/agregardepartamento.module').then(m => m.AgregardepartamentoModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
     path: 'admin/editar-departamento/:id',
     loadChildren:
-      './components/pages/departamento/editar-departamento/editar-departamento.module#EditarDepartamentoModule',
+      () => import('./components/pages/departamento/editar-departamento/editar-departamento.module').then(m => m.EditarDepartamentoModule),
     canActivate: [AuthGuard, RolGuard]
   },
   // ubicaciones
   {
     path: 'admin/ubicaciones',
     loadChildren:
-      './components/pages/departamento/ubicaciones/ubicaciones.module#UbicacionesModule',
+      () => import('./components/pages/departamento/ubicaciones/ubicaciones.module').then(m => m.UbicacionesModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
     path: 'admin/editar-ubicacion/:id',
     loadChildren:
-      './components/pages/departamento/editar-ubicacion/editar-ubicacion.module#EditarUbicacionModule',
+      () => import('./components/pages/departamento/editar-ubicacion/editar-ubicacion.module').then(m => m.EditarUbicacionModule),
     canActivate: [AuthGuard, RolGuard]
   },
   // solicitudes
   {
     path: 'admin/listado-tickets',
     loadChildren:
-      './components/pages/ticket/lista-tickets/lista-tickets.module#ListaTicketsModule',
+      () => import('./components/pages/ticket/lista-tickets/lista-tickets.module').then(m => m.ListaTicketsModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
     path: 'admin/atender-ticket/:id',
     loadChildren:
-      './components/pages/ticket/editar-ticket-admin/editar-ticket-admin.module#EditarTicketAdminModule',
+      () => import('./components/pages/ticket/editar-ticket-admin/editar-ticket-admin.module').then(m => m.EditarTicketAdminModule),
     canActivate: [AuthGuard, RolGuard]
   },
   // Detalles solicitud administrador
   {
     path: 'admin/revisar-ticket/:id',
     loadChildren:
-      './components/pages/ticket/detallesticket/detallesticket.module#DetallesticketModule',
+      () => import('./components/pages/ticket/detallesticket/detallesticket.module').then(m => m.DetallesticketModule),
     canActivate: [AuthGuard, RolGuard]
   },
   // Detalles solicitud usuario
   {
     path: 'detalle-solicitud/:id',
     loadChildren:
-      './components/pages/detallessolicitud/detallessolicitud.module#DetallessolicitudModule',
+      () => import('./components/pages/detallessolicitud/detallessolicitud.module').then(m => m.DetallessolicitudModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'crear-ticket',
     loadChildren:
-      './components/pages/ticket/crear-ticket/crear-ticket.module#CrearTicketModule',
+      () => import('./components/pages/ticket/crear-ticket/crear-ticket.module').then(m => m.CrearTicketModule),
     canActivate: [AuthGuard]
   },
   // servicios
   {
     path: 'admin/servicios',
     loadChildren:
-      './components/pages/ticket/servicios/servicios.module#ServiciosModule',
+      () => import('./components/pages/ticket/servicios/servicios.module').then(m => m.ServiciosModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
     path: 'admin/editar-servicio/:id',
     loadChildren:
-      './components/pages/ticket/editar-servicio/editar-servicio.module#EditarServicioModule',
+      () => import('./components/pages/ticket/editar-servicio/editar-servicio.module').then(m => m.EditarServicioModule),
     canActivate: [AuthGuard, RolGuard]
   },
   // estadisticas
   {
     path: 'admin/indicadores',
     loadChildren:
-      './components/pages/indicadores/indicadores.module#IndicadoresModule',
+      () => import('./components/pages/indicadores/indicadores.module').then(m => m.IndicadoresModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
     path: 'admin/estadistica',
     loadChildren:
-      './components/pages/estadistica/estadistica.module#EstadisticaModule',
+      () => import('./components/pages/estadistica/estadistica.module').then(m => m.EstadisticaModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
     path: 'app/version',
     loadChildren:
-      './components/pages/changelog/changelog.module#ChangelogModule',
+      () => import('./components/pages/changelog/changelog.module').then(m => m.ChangelogModule),
     canActivate: [AuthGuard, RolGuard]
   },
   {
