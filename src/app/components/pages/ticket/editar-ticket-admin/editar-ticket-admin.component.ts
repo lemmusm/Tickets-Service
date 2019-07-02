@@ -25,12 +25,11 @@ export class EditarTicketAdminComponent implements OnInit {
     private router: Router,
     private aroute: ActivatedRoute,
     private alerta: AlertaService
-  ) {
-    this.mostrarTicket();
-    this.mostrarServicios();
-  }
+  ) { }
 
   ngOnInit() {
+    this.mostrarTicket();
+    this.mostrarServicios();
   }
   // Trae los registros de los tickets almacenados en la base de datos
   mostrarTicket() {

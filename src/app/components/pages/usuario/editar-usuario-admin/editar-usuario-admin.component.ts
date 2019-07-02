@@ -22,7 +22,11 @@ export class EditarUsuarioAdminComponent implements OnInit {
   departamentos: Departamento;
   msg: any;
 
-  constructor(public router: Router, private aroute: ActivatedRoute, private apiservice: ApiService, private alerta: AlertaService) { }
+  constructor(
+    public router: Router,
+    private aroute: ActivatedRoute,
+    private apiservice: ApiService,
+    private alerta: AlertaService) { }
 
   ngOnInit() {
     this.mostrarUsuarioFiltrado();
@@ -70,11 +74,11 @@ export class EditarUsuarioAdminComponent implements OnInit {
   // Trae roles para usarlos en select options
   mostrarRoles() {
     this.apiservice.getRoles()
-        .subscribe(
-          (response: any) => {
-            this.roles = response;
-          }
-        );
+      .subscribe(
+        (response: any) => {
+          this.roles = response;
+        }
+      );
   }
 }
 

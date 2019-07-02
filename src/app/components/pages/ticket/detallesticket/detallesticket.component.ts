@@ -11,7 +11,7 @@ import { Ticket } from 'src/app/models/ticket';
 export class DetallesticketComponent implements OnInit {
   id = this.aroute.snapshot.paramMap.get('id'); // Para capturar el id seleccionado
   ticket: Ticket = {};
-  constructor(private apiservice: ApiService, private aroute: ActivatedRoute) {}
+  constructor(private apiservice: ApiService, private aroute: ActivatedRoute) { }
 
   ngOnInit() {
     this.mostrarTicket();
@@ -19,8 +19,8 @@ export class DetallesticketComponent implements OnInit {
 
   mostrarTicket() {
     this.apiservice.getTicket(this.id)
-        .subscribe((response: any) => {
-          this.ticket = response;
-        });
+      .subscribe((response: any) => {
+        this.ticket = response;
+      });
   }
 }

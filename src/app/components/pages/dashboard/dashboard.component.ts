@@ -24,10 +24,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.mostrarTicketsDelUsuario();
   }
-/*
-  Trae los datos (usuario/tickets) filtrados del usuario actual, de acuerdo al uid de firebase
-  consulta los datos almacenados en local.
-*/
+  /*
+    Trae los datos (usuario/tickets) filtrados del usuario actual, de acuerdo al uid de firebase
+    consulta los datos almacenados en local.
+  */
   mostrarTicketsDelUsuario() {
     this.dtOptions = {
       pagingType: 'full_numbers',

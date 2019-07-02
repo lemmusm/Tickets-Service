@@ -17,7 +17,12 @@ export class EditarDepartamentoComponent implements OnInit {
   ubicaciones: Ubicacion;
   message: any;
 
-  constructor(public router: Router, private aroute: ActivatedRoute, private apiservice: ApiService, private alerta: AlertaService) { }
+  constructor(
+    public router: Router,
+    private aroute: ActivatedRoute,
+    private apiservice: ApiService,
+    private alerta: AlertaService
+  ) { }
 
   ngOnInit() {
     this.mostrarDepartamento();
@@ -26,50 +31,50 @@ export class EditarDepartamentoComponent implements OnInit {
 
   mostrarDepartamento() {
     this.apiservice.getDepartamento(this.id)
-        .subscribe(
-          (response: any) => {
-            this.departamento = response;
-          },
-          error => {
-            this.alerta.toastNotification(
-              error.name,
-              '',
-              'red',
-              'fas fa-times'
-            );
-          }
-        );
+      .subscribe(
+        (response: any) => {
+          this.departamento = response;
+        },
+        error => {
+          this.alerta.toastNotification(
+            error.name,
+            '',
+            'red',
+            'fas fa-times'
+          );
+        }
+      );
   }
 
   mostrarUbicaciones() {
     this.apiservice.getUbicaciones()
-        .subscribe(
-          (response: any) => {
-            this.ubicaciones = response;
-          }
-        );
+      .subscribe(
+        (response: any) => {
+          this.ubicaciones = response;
+        }
+      );
   }
   actualizarDepartamento() {
     this.apiservice.updateDepartamento(this.id, this.departamento)
-        .subscribe(
-          (response: any) => {
-            this.message = response;
-            this.alerta.toastNotification(
-              this.message.message,
-              '',
-              'green',
-              'far fa-check-circle'
-            );
-            this.router.navigate(['admin/listado-departamentos']);
-          },
-          error => {
-            this.alerta.toastNotification(
-              error.name,
-              '',
-              'red',
-              'fas fa-times'
-            );
-          }
-        );
+      .subscribe(
+        (response: any) => {
+          this.message = response;
+          this.alerta.toastNotification(
+            this.message.message,
+            '',
+            'green',
+            'far fa-check-circle'
+          );
+          this.router.navigate(['admin/listado-departamentos']);
+        },
+        error => {
+          this.alerta.toastNotification(
+            error.name,
+            '',
+            'red',
+            'fas fa-times'
+          );
+        }
+      );
   }
 }

@@ -20,38 +20,38 @@ export class AgregardepartamentoComponent implements OnInit {
   ngOnInit() {
     this.mostrarUbicaciones();
   }
-// Agrega un nuevo departamento
+  // Agrega un nuevo departamento
   agregarDepartamento() {
     this.apiservice.addDepartamento(this.departamento)
-        .subscribe(
-          (response: any) => {
-            this.message = response;
-            this.alerta.toastNotification(
-              this.message.message,
-              '',
-              'green',
-              'far fa-check-circle'
-            );
-            this.router.navigate(['admin/listado-departamentos']);
-          },
-          error => {
-            console.log(error);
-            this.alerta.toastNotification(
-              error.name,
-              '',
-              'red',
-              'fas fa-times'
-            );
-          }
-        );
+      .subscribe(
+        (response: any) => {
+          this.message = response;
+          this.alerta.toastNotification(
+            this.message.message,
+            '',
+            'green',
+            'far fa-check-circle'
+          );
+          this.router.navigate(['admin/listado-departamentos']);
+        },
+        error => {
+          console.log(error);
+          this.alerta.toastNotification(
+            error.name,
+            '',
+            'red',
+            'fas fa-times'
+          );
+        }
+      );
   }
-// Trae las ubicaciones para usarlas en el SELECT
-  mostrarUbicaciones(){
+  // Trae las ubicaciones para usarlas en el SELECT
+  mostrarUbicaciones() {
     this.apiservice.getUbicaciones()
-        .subscribe(
-          (response: any) => {
-            this.ubicaciones = response;
-          }
-        );
+      .subscribe(
+        (response: any) => {
+          this.ubicaciones = response;
+        }
+      );
   }
 }

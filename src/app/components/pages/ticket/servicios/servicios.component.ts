@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Servicio } from 'src/app/models/servicio';
 import { ApiService } from 'src/app/providers/api.service';
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './servicios.component.html',
   styles: []
 })
-export class ServiciosComponent {
+export class ServiciosComponent implements OnInit {
   servicio: Servicio = {};
   servicios: Servicio;
   dtOptions: DataTables.Settings = {};
@@ -23,7 +23,9 @@ export class ServiciosComponent {
     private apiservice: ApiService,
     private alerta: AlertaService,
     private router: Router
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.mostrarServicios();
   }
 

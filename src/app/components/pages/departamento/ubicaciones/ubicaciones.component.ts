@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Ubicacion } from 'src/app/models/ubicacion';
 import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/providers/api.service';
 import { AlertaService } from 'src/app/providers/alerta.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -12,17 +11,20 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './ubicaciones.component.html',
   styles: []
 })
-export class UbicacionesComponent {
+export class UbicacionesComponent implements OnInit {
   ubicacion: Ubicacion = {};
   ubicaciones: Ubicacion;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   message: any;
 
-  constructor(private apiservice: ApiService, private alerta: AlertaService, private router: Router) {
+  constructor(
+    private apiservice: ApiService,
+    private alerta: AlertaService) { }
+
+  ngOnInit() {
     this.mostrarUbicaciones();
   }
-
   // Trea los departamentos
   mostrarUbicaciones() {
     this.dtOptions = { pagingType: 'full_numbers', pageLength: 10 };

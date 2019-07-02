@@ -29,9 +29,7 @@ export class EstadisticaComponent {
     { id: 3, parametro: 'status' }
   ];
 
-  constructor(private apiservice: ApiService) {
-
-  }
+  constructor(private apiservice: ApiService) {}
 
   mostrarinfoTickets() {
     this.mostrarTotalTickets(); // muestra el total de solicitudes

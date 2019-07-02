@@ -31,7 +31,7 @@ export class CrearTicketComponent implements OnInit {
     private router: Router,
     public authservice: AuthService,
     private alerta: AlertaService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.mostrarUsuarioFiltrado();
@@ -44,21 +44,10 @@ export class CrearTicketComponent implements OnInit {
   */
   mostrarUsuarioFiltrado() {
     this.apiservice.getFilterUser(this.id)
-        .subscribe((response: any) => {
-          this.usuario = response;
-          this.ticket.usuario_uid = this.authservice.uid; // Se almacena el uid de los datos de firebase para usarlo como huella digital
-        });
-        // .pipe(
-        //   map(
-        //     response => response['displayName']
-        //   )
-        // ).subscribe(
-        //   respuesta => {
-        //     this.usuario.displayName = respuesta;
-        //     console.log(this.usuario);
-        //   }
-        // );
-
+      .subscribe((response: any) => {
+        this.usuario = response;
+        this.ticket.usuario_uid = this.authservice.uid; // Se almacena el uid de los datos de firebase para usarlo como huella digital
+      });
   }
   /*
     Método para agregra solicitud a la base de datos, envia usuario_uid, servicio y descripcion,
@@ -82,15 +71,15 @@ export class CrearTicketComponent implements OnInit {
       }
     );
   }
-    /**
-     * Obtiene los servicios registrados en la base de datos
-     */
+  /**
+   * Obtiene los servicios registrados en la base de datos
+   */
   mostrarServicios() {
     this.apiservice.getServicios()
-        .subscribe(
-          (response: any) => {
-            this.servicios = response;
-          }
-        );
+      .subscribe(
+        (response: any) => {
+          this.servicios = response;
+        }
+      );
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/providers/api.service';
 import { AlertaService } from 'src/app/providers/alerta.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,13 +9,19 @@ import { Rol } from 'src/app/models/rol';
   templateUrl: './editar-rol.component.html',
   styles: []
 })
-export class EditarRolComponent {
+export class EditarRolComponent implements OnInit {
 
   id = this.aroute.snapshot.paramMap.get('id');
   rol: Rol = {};
   message: any;
 
-  constructor(public router: Router, private aroute: ActivatedRoute, private apiservice: ApiService, private alerta: AlertaService) {
+  constructor(
+    public router: Router,
+    private aroute: ActivatedRoute,
+    private apiservice: ApiService,
+    private alerta: AlertaService) { }
+
+  ngOnInit() {
     this.mostrarRol();
   }
 

@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Rol } from 'src/app/models/rol';
 import { Subject } from 'rxjs';
 import { ApiService } from 'src/app/providers/api.service';
 import { AlertaService } from 'src/app/providers/alerta.service';
-import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
@@ -12,14 +11,18 @@ import Swal from 'sweetalert2';
   templateUrl: './roles.component.html',
   styles: []
 })
-export class RolesComponent {
+export class RolesComponent implements OnInit {
   rol: Rol = {};
   roles: Rol;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   message: any;
 
-  constructor(private apiservice: ApiService, private alerta: AlertaService, private router: Router) {
+  constructor(
+    private apiservice: ApiService,
+    private alerta: AlertaService) { }
+
+  ngOnInit() {
     this.mostrarRoles();
   }
 

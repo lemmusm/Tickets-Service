@@ -1,5 +1,5 @@
 import { Servicio } from './../../../../models/servicio';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/providers/api.service';
 import { AlertaService } from 'src/app/providers/alerta.service';
@@ -9,12 +9,18 @@ import { AlertaService } from 'src/app/providers/alerta.service';
   templateUrl: './editar-servicio.component.html',
   styles: []
 })
-export class EditarServicioComponent {
+export class EditarServicioComponent implements OnInit {
   id = this.aroute.snapshot.paramMap.get('id');
   servicio: Servicio = {};
   message: any;
 
-  constructor(public router: Router, private aroute: ActivatedRoute, private apiservice: ApiService, private alerta: AlertaService) {
+  constructor(
+    public router: Router,
+    private aroute: ActivatedRoute,
+    private apiservice: ApiService,
+    private alerta: AlertaService) { }
+
+  ngOnInit() {
     this.mostrarServicio();
   }
 

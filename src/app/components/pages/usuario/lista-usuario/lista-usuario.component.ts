@@ -23,26 +23,26 @@ export class ListaUsuarioComponent implements OnInit {
   ngOnInit() {
     this.mostrarUsuarios();
   }
-// Trae los usuarios y los enlista en una datatable
+  // Trae los usuarios y los enlista en una datatable
   mostrarUsuarios() {
     this.dtOptions = { pagingType: 'full_numbers', pageLength: 10 };
     this.apiservice.getUsuarios()
-        .subscribe(
-          (response: Usuario) => {
-            this.usuarios = response;
-            this.dtTrigger.next();
-          },
-          error => {
-            this.alerta.toastNotification(
-              error.name,
-              '',
-              'red',
-              'fas fa-times'
-            );
-          }
-        );
+      .subscribe(
+        (response: Usuario) => {
+          this.usuarios = response;
+          this.dtTrigger.next();
+        },
+        error => {
+          this.alerta.toastNotification(
+            error.name,
+            '',
+            'red',
+            'fas fa-times'
+          );
+        }
+      );
   }
-// Elimina usuario seleccionado mediante un popup de confirmacion mostrando una alerta
+  // Elimina usuario seleccionado mediante un popup de confirmacion mostrando una alerta
   borrarUsuario(uid: string) {
     Swal.fire({
       title: '¿Deseas eliminar el registro?',
@@ -56,30 +56,30 @@ export class ListaUsuarioComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.apiservice.deleteUsuario(uid)
-        .subscribe(
-          response => {
-            this.message = response;
-            this.alerta.toastNotification(
-              this.message.message,
-              '',
-              'yellow',
-              'far fa-check-circle'
-            );
-            this.recargaDataTable();
-          },
-          error => {
-            this.alerta.toastNotification(
-              error.statusText,
-              '',
-              'red',
-              'fas fa-times'
-            );
-          }
-        );
+          .subscribe(
+            response => {
+              this.message = response;
+              this.alerta.toastNotification(
+                this.message.message,
+                '',
+                'yellow',
+                'far fa-check-circle'
+              );
+              this.recargaDataTable();
+            },
+            error => {
+              this.alerta.toastNotification(
+                error.statusText,
+                '',
+                'red',
+                'fas fa-times'
+              );
+            }
+          );
       }
     });
   }
-// Recarga la tabla despues de que se borra el usuario
+  // Recarga la tabla despues de que se borra el usuario
   recargaDataTable() {
     $('#listadoUsuarios').DataTable().destroy();
     this.mostrarUsuarios();

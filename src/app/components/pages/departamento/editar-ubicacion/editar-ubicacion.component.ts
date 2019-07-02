@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Ubicacion } from 'src/app/models/ubicacion';
 import { AlertaService } from 'src/app/providers/alerta.service';
 import { ApiService } from 'src/app/providers/api.service';
@@ -9,13 +9,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './editar-ubicacion.component.html',
   styles: []
 })
-export class EditarUbicacionComponent {
+export class EditarUbicacionComponent implements OnInit {
 
   id = this.aroute.snapshot.paramMap.get('id');
   ubicacion: Ubicacion = {};
   message: any;
 
-  constructor(public router: Router, private aroute: ActivatedRoute, private apiservice: ApiService, private alerta: AlertaService) {
+  constructor(public router: Router,
+    private aroute: ActivatedRoute,
+    private apiservice: ApiService,
+    private alerta: AlertaService
+  ) { }
+
+  ngOnInit() {
     this.mostrarUbicacion();
   }
 
