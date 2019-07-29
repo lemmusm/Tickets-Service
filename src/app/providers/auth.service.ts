@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 // angularfire auth
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
@@ -6,7 +6,6 @@ import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 // map
 import { map } from 'rxjs/operators';
-import { Usuario } from '../models/usuario';
 import { AlertaService } from './alerta.service';
 import { ApiService } from './api.service';
 
@@ -27,7 +26,7 @@ export class AuthService {
   // variable para almacenar numeros
   nums = '0123456789';
 
-  constructor(private afauth: AngularFireAuth, private apiservice: ApiService, private router: Router, private alerta: AlertaService) {
+  constructor(private afauth: AngularFireAuth, private apiservice: ApiService, private router: Router, private alerta: AlertaService, private ngZone: NgZone) {
     this.getUserFirebase();
   }
 
@@ -38,7 +37,7 @@ export class AuthService {
     provider.setCustomParameters({ hd: 'uppenjamo.edu.mx' });
     this.afauth.auth.signInWithPopup(provider)
       .then(data => {
-        this.router.navigate(['dashboard']);
+        this.ngZone.run(() => this.router.navigate(['dashboard'])).then();
         this.admin = false;
       })
       .catch(error => {
@@ -106,37 +105,37 @@ export class AuthService {
   guardaUsuarioEnBD() {
     let uid: any;
     this.apiservice.getFilterUser(this.uid)
-        .pipe(
-          map( x => x.uid)
-        )
-        .subscribe(
-          (res: any) => {
-            uid = res;
-            switch (uid) {
-              case undefined :
-                const user = {
-                  uid: this.uid,
-                  departamento_id: 2,
-                  displayName: this.displayName,
-                  photoURL: this.photoURL,
-                  email: this.email,
-                  rol_id: 2
-                };
-                this.apiservice.saveUsuario(user).subscribe(
-                  response => {
-                    console.log('::saved_user::💾');
-                  },
-                  error => {
-                    console.log('::error_saving_user::💥');
-                  }
-                );
-                break;
-              case this.uid:
-                this.verificaUsuarioEnDB();
-                break;
-            }
+      .pipe(
+        map(x => x.uid)
+      )
+      .subscribe(
+        (res: any) => {
+          uid = res;
+          switch (uid) {
+            case undefined:
+              const user = {
+                uid: this.uid,
+                departamento_id: 2,
+                displayName: this.displayName,
+                photoURL: this.photoURL,
+                email: this.email,
+                rol_id: 2
+              };
+              this.apiservice.saveUsuario(user).subscribe(
+                (response: any) => {
+                  console.log(response.message);
+                },
+                error => {
+                  console.error(error);
+                }
+              );
+              break;
+            case this.uid:
+              this.verificaUsuarioEnDB();
+              break;
           }
-        );
+        }
+      );
   }
   /*
     Consulta UID en la base de datos local y compará con el de firebase,
@@ -153,44 +152,44 @@ export class AuthService {
       .getFilterUser(this.uid)
       .subscribe(
         (response: any) => {
-        /*
-          if-else if - else donde si no existe el usuario en la base de datos se guarda un nuevo
-          registro con datos de firebase y si la fotografia o nombre han sido cambiados en api_firebase(correo)
-          se actualizan en la base de datos y si el departamento_id/rol_id son nulos se actualiza al usuario,
-          de lo contrario el usuario esta guardado y se comprueba si es o no administrador.
-        */
-       this.usuarioLocal = response;
-       this.rol = this.usuarioLocal.rol.rol;
-       if (this.usuarioLocal.photoURL !== this.photoURL || this.usuarioLocal.displayName !== this.displayName) {
-          const user = {
-            uid: this.uid,
-            departamento_id: this.usuarioLocal.departamento_id,
-            displayName: this.displayName,
-            photoURL: this.photoURL,
-            email: this.email,
-            rol_id: this.usuarioLocal.rol_id
-          };
-          this.apiservice.updateUsuario(this.uid, user).subscribe();
-          console.log('::name_picture:📷');
-        } else if (this.usuarioLocal.departamento_id === null || this.usuarioLocal.rol_id === null) {
-          const user = {
-            uid: this.uid,
-            departamento_id: 2,
-            displayName: this.displayName,
-            photoURL: this.photoURL,
-            email: this.email,
-            rol_id: 2
-          };
-          this.apiservice.updateUsuario(this.uid, user).subscribe();
-          console.log('::profile::👷');
-        } else {
-          console.log('::ok::👍');
-        }
-        this.isAdmin();
-      });
+          /*
+            if-else if - else donde si no existe el usuario en la base de datos se guarda un nuevo
+            registro con datos de firebase y si la fotografia o nombre han sido cambiados en api_firebase(correo)
+            se actualizan en la base de datos y si el departamento_id/rol_id son nulos se actualiza al usuario,
+            de lo contrario el usuario esta guardado y se comprueba si es o no administrador.
+          */
+          this.usuarioLocal = response;
+          this.rol = this.usuarioLocal.rol.rol;
+          if (this.usuarioLocal.photoURL !== this.photoURL || this.usuarioLocal.displayName !== this.displayName) {
+            const user = {
+              uid: this.uid,
+              departamento_id: this.usuarioLocal.departamento_id,
+              displayName: this.displayName,
+              photoURL: this.photoURL,
+              email: this.email,
+              rol_id: this.usuarioLocal.rol_id
+            };
+            this.apiservice.updateUsuario(this.uid, user).subscribe();
+            console.log('::name_picture:📷');
+          } else if (this.usuarioLocal.departamento_id === null || this.usuarioLocal.rol_id === null) {
+            const user = {
+              uid: this.uid,
+              departamento_id: 2,
+              displayName: this.displayName,
+              photoURL: this.photoURL,
+              email: this.email,
+              rol_id: 2
+            };
+            this.apiservice.updateUsuario(this.uid, user).subscribe();
+            console.log('::profile::👷');
+          } else {
+            console.log('::ok::👍');
+          }
+          this.isAdmin();
+        });
   }
   /*
-  // Comprueba el valor de rol y define si es administrador o usuario regular
+   Comprueba el valor de rol y define si es administrador o usuario regular
   */
   isAdmin() {
     switch (this.rol) {
@@ -206,7 +205,7 @@ export class AuthService {
     }
   }
   /*
-  // Verifica si es administrador a través del rol.guard
+   Verifica si es administrador a través del rol.guard
   */
   administrator() {
     if (this.rol === 'Administrador') {
@@ -216,7 +215,7 @@ export class AuthService {
     }
   }
   /*
-  // Verifica el estatus de la autenticacion y se usa con auth.guard
+   Verifica el estatus de la autenticacion y se usa con auth.guard
   */
   authenticated(): any {
     return this.afauth.authState
