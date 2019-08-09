@@ -37,8 +37,12 @@ export class AuthService {
     provider.setCustomParameters({ hd: 'uppenjamo.edu.mx' });
     this.afauth.auth.signInWithPopup(provider)
       .then(data => {
-        this.ngZone.run(() => this.router.navigate(['dashboard'])).then();
-        this.admin = false;
+        // Comprueba si es un administrador el que inicio sesión
+        if (this.admin !== true) {
+          this.ngZone.run(() => this.router.navigate(['dashboard'])).then();
+        } else {
+          this.ngZone.run(() => this.router.navigate(['/admin/listado-tickets'])).then();
+        }
       })
       .catch(error => {
         console.log(error);
@@ -195,7 +199,6 @@ export class AuthService {
     switch (this.rol) {
       case 'Administrador':
         this.admin = true;
-        this.router.navigate(['/admin/listado-tickets']);
         console.log('::admin::👽');
         break;
       default:

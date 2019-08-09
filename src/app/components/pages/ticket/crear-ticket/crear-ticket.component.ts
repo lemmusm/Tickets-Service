@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/providers/auth.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
 import { Servicio } from 'src/app/models/servicio';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-ticket',
@@ -14,8 +15,7 @@ import { Servicio } from 'src/app/models/servicio';
   styles: []
 })
 export class CrearTicketComponent implements OnInit {
-  // Se crea objeto de tipo ticket y se inicializa
-  array: any = { displayName: '', departamento: {} };
+
   ticket: Ticket = {};
   // se crea objeto de tipo Usuario y a su vez el objeto departartamento, ambos se inicializan
   usuario: Usuario = {
@@ -25,6 +25,10 @@ export class CrearTicketComponent implements OnInit {
   fecha = new Date(); // variable que almacena la fecha actual
   id = this.authservice.uid; // Se almacena el uid de los datos de firebase
   servicios: Servicio;
+
+  ruta = 'https://www.uppenjamo.edu.mx/sistemas/uploads/';
+  selectedFile: File;
+  formData: any = '';
 
   constructor(
     private apiservice: ApiService,
@@ -55,6 +59,38 @@ export class CrearTicketComponent implements OnInit {
     'Asignación pendiente'.
   */
   guardarSolicitud() {
+    /*
+      Detecta si hay archivo seleccionado, si hay comprueba que no exista en el  almacenamiento,
+      si existe, no crea la solicitud y marca error, de lo contrario guarda la solicitud.
+
+      Si no existe archivo seleccionado, guarda la solicitud.
+    */
+    if (this.selectedFile) {
+      this.apiservice.sendFile(this.formData)
+        .subscribe(
+          (response: any) => {
+            if (response.status === 'error') {
+              Swal.fire({
+                title: response.message,
+                html: '<strong class="file"> Se recomienda cambiar el nombre del archivo </strong>',
+                type: 'error',
+                confirmButtonText: 'Ok'
+              });
+            } else {
+              this.generaSolicitud(); // Guarda solicitud
+              console.log(response.message);
+            }
+          },
+          error => {
+            this.alerta.toastNotification(error.statusText, '', 'red', 'fas fa-times');
+          }
+        );
+    } else {
+      this.generaSolicitud();
+    }
+  }
+
+  generaSolicitud() {
     this.apiservice.saveSolicitud(this.ticket).subscribe(
       (response: any) => {
         this.message = response;
@@ -71,9 +107,11 @@ export class CrearTicketComponent implements OnInit {
       }
     );
   }
+  // Guarda solicitud, detacta si el archivo enviado existe cancela envio, si no crea la
+
   /**
    * Obtiene los servicios registrados en la base de datos
-   */
+  */
   mostrarServicios() {
     this.apiservice.getServicios()
       .subscribe(
@@ -81,5 +119,25 @@ export class CrearTicketComponent implements OnInit {
           this.servicios = response;
         }
       );
+  }
+
+  /*
+    Obtiene data del file, comprueba si el archivo sobrepasa el peso maáximo, si es así no carga el file.
+  */
+  onFileSelected(event: any) {
+    this.selectedFile = <File>event.target.files[0];
+    const peso = this.selectedFile.size / 1048576; // Obtiene el peso y lo convierte a Mb
+    if (this.selectedFile.size > 17825792) {
+      Swal.fire({
+        title: 'Sobrepasó peso máximo de 16Mb',
+        html: '<strong class="file"> Tu archivo pesa: </strong>' + '<strong class="tx-danger">' + peso.toFixed(1) + 'Mb' + '</strong> ' + '<strong class="file">, el archivo no se cargará. </strong>',
+        type: 'error',
+        confirmButtonText: 'Ok'
+      });
+    } else {
+      this.formData = new FormData();
+      this.formData.append('file', this.selectedFile, this.selectedFile.name);
+      this.ticket.filesattach = this.ruta + this.selectedFile.name;
+    }
   }
 }

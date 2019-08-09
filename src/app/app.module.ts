@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { Ng2IziToastModule } from 'ng2-izitoast';
 // datatables
 import { DataTablesModule } from 'angular-datatables';
-// // AngularMaterial
+// AngularMaterial
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
 // ngBootstrap
@@ -29,6 +29,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { MenuComponent } from './components/shared/menu/menu.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,8 +37,7 @@ import { MenuComponent } from './components/shared/menu/menu.component';
     LoginComponent,
     NavbarComponent,
     FooterComponent,
-    MenuComponent
-  ],
+    MenuComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,10 +47,10 @@ import { MenuComponent } from './components/shared/menu/menu.component';
     FormsModule,
     DataTablesModule,
     Ng2IziToastModule,
-    NgbModule, // tooltips
+    NgbModule, // ngbootstrap-tooltips
     BrowserAnimationsModule
   ],
-  providers: [ DatePipe, { provide: LOCALE_ID, useValue: 'es' }],
+  providers: [DatePipe, { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

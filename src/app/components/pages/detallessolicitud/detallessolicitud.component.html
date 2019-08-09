@@ -13,55 +13,44 @@
 
           <div class="row mg-t-20">
             <div class="col-md">
-              <label class="section-label tx-normal text-left"
-                ><strong class="tx-normal text-primary">Solicitante:</strong>
-                {{ ticket.displayName }}</label
-              >
-              <label class="section-label tx-normal text-left"
-                ><strong class="tx-normal text-primary">Departamento:</strong>
-                {{ ticket.departamento }}</label
-              >
-              <label class="section-label tx-normal text-left"
-                ><strong class="tx-normal text-primary">Email:</strong>
-                {{ ticket.email }}</label
-              >
+              <label class="section-label tx-normal text-left"><strong
+                  class="tx-normal text-primary">Solicitante:</strong>
+                {{ ticket.displayName }}</label>
+              <label class="section-label tx-normal text-left"><strong
+                  class="tx-normal text-primary">Departamento:</strong>
+                {{ ticket.departamento }}</label>
+              <label class="section-label tx-normal text-left"><strong class="tx-normal text-primary">Email:</strong>
+                {{ ticket.email }}</label>
             </div>
             <div class="col-md">
-              <label class="section-label tx-normal text-right"
-                ><strong class="tx-normal text-primary"
-                  >Fecha de creación:</strong
-                >
-                {{ ticket.created_at | date: 'shortDate' }}</label
-              >
-              <label class="section-label tx-normal text-right"
-                ><strong class="tx-normal text-primary"
-                  >Fecha de atención:</strong
-                >
-                {{ ticket.updated_at | date: 'shortDate' }}</label
-              >
-              <label class="section-label tx-normal text-right"
-                ><strong class="tx-normal text-primary">Atendio:</strong>
-                {{ ticket.tecnico }}</label
-              >
+              <label class="section-label tx-normal text-right"><strong class="tx-normal text-primary">Fecha de
+                  creación:</strong>
+                {{ ticket.created_at | date: 'shortDate' }}</label>
+              <label class="section-label tx-normal text-right"><strong class="tx-normal text-primary">Fecha de
+                  atención:</strong>
+                {{ ticket.updated_at | date: 'shortDate' }}</label>
+              <label class="section-label tx-normal text-right"><strong class="tx-normal text-primary">Atendio:</strong>
+                {{ ticket.tecnico }}</label>
             </div>
           </div>
           <div class="row mg-t-40">
             <div class="col-md-6">
               <label class="section-label tx-normal">
                 <strong class="tx-normal text-primary">
-                  Descripción:</strong
-                ></label
-              >
+                  Descripción:</strong>
+              </label>
               <label class="section-label tx-normal">
                 {{ ticket.descripcion }}
               </label>
+
+              <a class="file" href="{{ticket.filesattach}}" placement="top" ngbTooltip="Descargar" target="_blank">
+                <strong>{{filename}}</strong>
+              </a>
             </div>
             <div class="col-md-6">
               <label class="section-label tx-normal">
                 <strong class="tx-normal text-primary">
-                  Diagnóstico:</strong
-                ></label
-              >
+                  Diagnóstico:</strong></label>
               <label class="section-label tx-normal">
                 {{ ticket.diagnostico }}
               </label>
@@ -72,25 +61,19 @@
             <div class="col-md-6">
               <label class="section-label tx-normal">
                 <strong class="tx-normal text-primary">
-                  Tipo de servicio:</strong
-                ></label
-              >
+                  Tipo de servicio:</strong></label>
               <label class="section-label tx-normal">
                 {{ ticket.servicio }}
               </label>
             </div>
             <div class="col-md-6">
               <label class="section-label tx-normal">
-                <strong class="tx-normal text-primary"> Status:</strong></label
-              >
-              <label
-                class="section-label tx-normal"
-                [ngClass]="{
+                <strong class="tx-normal text-primary"> Status:</strong></label>
+              <label class="section-label tx-normal" [ngClass]="{
                   colorBlue: ticket.status === 'Abierto',
                   colorGreen: ticket.status === 'Realizado',
                   colorYellow: ticket.status === 'N/A'
-                }"
-              >
+                }">
                 {{ ticket.status }}
               </label>
             </div>
@@ -98,10 +81,8 @@
           <hr class="mg-b-60" />
           <div class="row mg-t-40">
             <div class="col-md-12">
-              <label
-                class="section-label tx-normal tx-normal text-right text-primary"
-                >Huella digital solicitante:</label
-              >
+              <label class="section-label tx-normal tx-normal text-right text-primary">Huella digital
+                solicitante:</label>
               <label class="section-label tx-normal tx-normal text-right">
                 {{ ticket.usuario_uid }}
               </label>

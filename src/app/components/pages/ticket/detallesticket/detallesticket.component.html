@@ -3,12 +3,8 @@
     <div class="section-wrapper mg-t-20">
       <div class="row justify-content-end">
         <div class="col-md-3 tx-right">
-          <a
-            [routerLink]="['/admin/atender-ticket', ticket.id_ticket]"
-            class="btn btn-indigo rounded-circle btn-icon"
-            placement="top"
-            ngbTooltip="Editar"
-          >
+          <a [routerLink]="['/admin/atender-ticket', ticket.id_ticket]" class="btn btn-indigo rounded-circle btn-icon"
+            placement="top" ngbTooltip="Editar">
             <div>
               <i class="far fa-edit"></i>
             </div>
@@ -42,15 +38,11 @@
             </div>
             <div class="col-md">
               <label class="section-label tx-normal text-right">
-                <strong class="tx-normal text-primary"
-                  >Fecha de creación:</strong
-                >
+                <strong class="tx-normal text-primary">Fecha de creación:</strong>
                 {{ ticket.created_at }}
               </label>
               <label class="section-label tx-normal text-right">
-                <strong class="tx-normal text-primary"
-                  >Fecha de atención:</strong
-                >
+                <strong class="tx-normal text-primary">Fecha de atención:</strong>
                 {{ ticket.updated_at }}
               </label>
               <label class="section-label tx-normal text-right">
@@ -67,6 +59,9 @@
               <label class="section-label tx-normal">
                 {{ ticket.descripcion }}
               </label>
+              <a class="file" href="{{ticket.filesattach}}" placement="top" ngbTooltip="Descargar" target="_blank">
+                <strong>{{filename}}</strong>
+              </a>
             </div>
             <div class="col-md-6">
               <label class="section-label">
@@ -82,8 +77,7 @@
             <div class="col-md-6">
               <label class="section-label">
                 <strong class="tx-normal text-primary">
-                  Tipo de servicio:</strong
-                >
+                  Tipo de servicio:</strong>
               </label>
               <label class="section-label tx-normal">
                 {{ ticket.servicio }}
@@ -93,14 +87,11 @@
               <label class="section-label">
                 <strong class="tx-normal text-primary"> Status:</strong>
               </label>
-              <label
-                class="section-label tx-normal"
-                [ngClass]="{
+              <label class="section-label tx-normal" [ngClass]="{
                   colorBlue: ticket.status === 'Abierto',
                   colorGreen: ticket.status === 'Realizado',
                   colorYellow: ticket.status === 'N/A'
-                }"
-              >
+                }">
                 {{ ticket.status }}
               </label>
             </div>

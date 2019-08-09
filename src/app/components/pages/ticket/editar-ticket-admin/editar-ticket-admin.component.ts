@@ -16,6 +16,7 @@ export class EditarTicketAdminComponent implements OnInit {
   id = this.aroute.snapshot.paramMap.get('id');
   ticket: Ticket = {};
   servicios: Servicio;
+  filename: any;
   message: any;
   estados = this.apiservice.estados;
 
@@ -38,8 +39,8 @@ export class EditarTicketAdminComponent implements OnInit {
         (response: any) => {
           this.ticket = response;
           this.ticket.tecnico = this.authservice.displayName; // Almacena el nombre de Firebase para firmar como el técnico
-        },
-        error => {
+          this.filename = this.ticket.filesattach.substring(this.ticket.filesattach.lastIndexOf('uploads/') + 8); // Substrae el nombre del archivo de la cadena
+        }, error => {
           this.alerta.toastNotification(
             error.name,
             '',

@@ -5,6 +5,7 @@ export interface Ticket {
   servicio?: Servicio;
   descripcion?: string;
   diagnostico?: string;
+  filesattach?: string;
   tecnico?: string;
   status?: string;
   created_at?: string;

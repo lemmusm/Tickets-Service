@@ -13,6 +13,7 @@ import { Rol } from '../models/rol';
 export class ApiService {
   // URL API
   API_URL = 'https://www.uppenjamo.edu.mx/laravel/webapiuppe/';
+  // API_URL = 'https://www.uppenjamo.edu.mx/laravel/testing_webapiuppe/';
   // API_URL = 'http://webapiuppe/';
   // Arreglo de los status
   estados = [
@@ -115,6 +116,11 @@ export class ApiService {
   // Trae los ultimos 15 registros (tickets) usado en
   getLastTickets() {
     return this.http.get(`${this.API_URL}api/lastTickets/filtertickets`);
+  }
+
+  // SEND FILES
+  sendFile(formData: any) {
+    return this.http.post(`${this.API_URL}api/ticket/file`, formData);
   }
   // ROLES
   getRoles(): Observable<Rol> {

@@ -192,3 +192,19 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+// files
+.file {
+  color: #6610f2 !important
+}
+// input types
+
+input[type="file"]::-webkit-file-upload-button{
+  background-color: #1CAF9A;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  width: 150px;
+  text-align: left;
+  cursor: pointer;
+}

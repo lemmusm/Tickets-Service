@@ -61,6 +61,16 @@
                 [(ngModel)]="ticket.descripcion" placeholder="Describe tu problema presentado." required></textarea>
             </div>
           </div>
+          <div class="col-md-12">
+            <div class="form-group mg-t--1 bd-t-0-force">
+              <label class="form-control-label tx-primary">Adjuntar archivo:
+                <span class="tx-danger">Tipo de archivos admitidos:.png, .jpg, .jpeg, .zip, .rar, .pdf Peso máximo de
+                  archivo: 16Mb</span>
+              </label>
+              <input type="file" name="filesattach" accept=".png, .jpg, .jpeg, .zip, .rar, .pdf" class="inputfile"
+                (change)="onFileSelected($event)">
+            </div>
+          </div>
           <div class="col-md-9">
             <div class="form-group text-left border-0">
               <label class="form-control-label tx-danger font-weight-bold">Importante:</label>
@@ -70,8 +80,6 @@
                     - No se instalará software pirata.
                   </p>
                   <p class="mg-b-0 tx-light">
-                    - Enviar archivos adjuntos por correo electrónico en caso de
-                    requerirse.
                   </p>
                   <p class="mg-b-0 tx-light">
                     - Las solicitudes serán atendidas como van llegando a
@@ -99,6 +107,7 @@
           </div>
         </div>
       </form>
+      <!-- <app-loading></app-loading> -->
     </div>
   </div>
 </div>

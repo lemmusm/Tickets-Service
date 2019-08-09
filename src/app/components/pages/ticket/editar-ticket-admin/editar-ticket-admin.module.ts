@@ -5,13 +5,16 @@ import { FormsModule } from '@angular/forms';
 
 import { EditarTicketAdminRoutingModule } from './editar-ticket-admin-routing.module';
 import { EditarTicketAdminComponent } from './editar-ticket-admin.component';
+// ngBootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [EditarTicketAdminComponent],
   imports: [
     CommonModule,
     EditarTicketAdminRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ]
 })
-export class EditarTicketAdminModule {}
+export class EditarTicketAdminModule { }
