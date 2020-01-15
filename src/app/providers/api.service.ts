@@ -1,29 +1,27 @@
-import { Servicio } from 'src/app/models/servicio';
-import { Ubicacion } from './../models/ubicacion';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Usuario } from '../models/usuario';
-import { Departamento } from '../models/departamento';
-import { Ticket } from '../models/ticket';
-import { Rol } from '../models/rol';
+import { Servicio } from "src/app/models/servicio";
+import { Ubicacion } from "./../models/ubicacion";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Usuario } from "../models/usuario";
+import { Departamento } from "../models/departamento";
+import { Ticket } from "../models/ticket";
+import { Rol } from "../models/rol";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ApiService {
   // URL API
-  // API_URL = 'https://www.uppenjamo.edu.mx/laravel/webapiuppe/';
-  API_URL = 'https://www.uppenjamo.edu.mx/laravel/testing_webapiuppe/';
-  // API_URL = 'http://webapiuppe/';
+  API_URL = "https://yourendpoint/";
   // Arreglo de los status
   estados = [
-    { id: 1, status: 'Abierto' },
-    { id: 2, status: 'Realizado' },
-    { id: 3, status: 'N/A' },
-    { id: 4, status: 'En proceso' }
+    { id: 1, status: "Abierto" },
+    { id: 2, status: "Realizado" },
+    { id: 3, status: "N/A" },
+    { id: 4, status: "En proceso" }
   ];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // USUARIOS
   // Trae todos los usuarios registrados
@@ -35,7 +33,9 @@ export class ApiService {
     con información filtrada de Tickets ()
   */
   getCompleteUser(uid: string): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.API_URL}api/usuarios/getCompleteUser/` + uid);
+    return this.http.get<Usuario>(
+      `${this.API_URL}api/usuarios/getCompleteUser/` + uid
+    );
   }
   // Trae usuario por el uid con toda la informacion (tickets, departamento, rol)
   getFilterUser(uid: string): Observable<Usuario> {
@@ -64,7 +64,9 @@ export class ApiService {
   }
   // Trae todos los departamentos con informacion extra
   getCompleteDepartamentos(): Observable<Departamento> {
-    return this.http.get<Departamento>(`${this.API_URL}api/completeDepartamentos`);
+    return this.http.get<Departamento>(
+      `${this.API_URL}api/completeDepartamentos`
+    );
   }
   // Trae el departamento seleccionado por el id
   getDepartamento(id: string): Observable<Departamento> {
@@ -146,10 +148,16 @@ export class ApiService {
     return this.http.get<Ubicacion>(`${this.API_URL}api/ubicaciones/` + id);
   }
   addUbicacion(ubicacion: any): Observable<Ubicacion> {
-    return this.http.post<Ubicacion>(`${this.API_URL}api/ubicaciones`, ubicacion);
+    return this.http.post<Ubicacion>(
+      `${this.API_URL}api/ubicaciones`,
+      ubicacion
+    );
   }
   updateUbicacion(id: string, ubicacion: any): Observable<Ubicacion> {
-    return this.http.put<Ubicacion>(`${this.API_URL}api/ubicaciones/` + id, ubicacion);
+    return this.http.put<Ubicacion>(
+      `${this.API_URL}api/ubicaciones/` + id,
+      ubicacion
+    );
   }
   deleteUbicacion(id: number): Observable<Ubicacion> {
     return this.http.delete<Ubicacion>(`${this.API_URL}api/ubicaciones/` + id);
@@ -165,7 +173,10 @@ export class ApiService {
     return this.http.post<Servicio>(`${this.API_URL}api/servicios`, servicio);
   }
   updateServicio(id: string, servicio: any): Observable<Servicio> {
-    return this.http.put<Servicio>(`${this.API_URL}api/servicios/` + id, servicio);
+    return this.http.put<Servicio>(
+      `${this.API_URL}api/servicios/` + id,
+      servicio
+    );
   }
   deleteServicio(id: number): Observable<Servicio> {
     return this.http.delete<Servicio>(`${this.API_URL}api/servicios/` + id);
@@ -179,20 +190,21 @@ export class ApiService {
   getinfoTickets(parametro: string) {
     return this.http.get(
       `${this.API_URL}api/estadisticas/infoTickets` +
-      '?' +
-      'parametro=' + parametro
+        "?" +
+        "parametro=" +
+        parametro
     );
   }
   // Get data by between range dates
   getIndicadores(dateFrom: string, dateTo: string) {
     return this.http.get(
       `${this.API_URL}api/estadisticas/indicadores` +
-      '?' +
-      'dateFrom=' +
-      dateFrom +
-      '&' +
-      'dateTo=' +
-      dateTo
+        "?" +
+        "dateFrom=" +
+        dateFrom +
+        "&" +
+        "dateTo=" +
+        dateTo
     );
   }
 }
