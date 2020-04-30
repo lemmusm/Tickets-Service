@@ -30,7 +30,7 @@
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
     "firebase": "^5.7.3",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "ng2-charts": "^1.6.0",
     "ng2-izitoast": "^2.0.0",
     "popper.js": "^1.14.6",
